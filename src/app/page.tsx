@@ -57,6 +57,23 @@ const slideInRight = {
 
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  // Sample placeholder images for carousel
+  const carouselImages = [
+    { id: 1, title: "Damp Survey", color: "bg-blue-100" },
+    { id: 2, title: "Damp Proofing", color: "bg-green-100" },
+    { id: 3, title: "Plastering Work", color: "bg-purple-100" },
+    { id: 4, title: "External Rendering", color: "bg-orange-100" },
+  ]
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [carouselImages.length])
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -146,7 +163,7 @@ export default function Index() {
               <a href="#about" className="text-gray-300 hover:text-white transition-colors font-medium">About</a>
               <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium">Services</a>
               <a href="#contact" className="text-gray-300 hover:text-white transition-colors font-medium">Contact</a>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold">
+              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-black hover:from-blue-700 hover:to-indigo-700 font-semibold">
                 <Phone className="w-4 h-4 mr-2" />
                 07943 51930
               </Button>
@@ -271,7 +288,7 @@ export default function Index() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-20 px-4 bg-[#090909] text-white relative overflow-hidden">
+      <section id="home" className="h-screen bg-[#090909] text-white relative overflow-hidden flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
@@ -281,79 +298,157 @@ export default function Index() {
             className="object-cover opacity-100"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/40 to-[#090909]/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
         
-        <div className="container mx-auto relative">
-          <motion.div 
-            className="text-center max-w-5xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            <motion.div variants={fadeInUp}>
-              <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-500 px-4 py-2 text-sm font-semibold">
-                <Shield className="w-4 h-4 mr-2" />
-                25-Year Workmanship Guarantee
-              </Badge>
-            </motion.div>
-            
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-none"
-              variants={fadeInUp}
-            >
-              <span className="text-white leading-tight">JDK Plastering &{' '}</span>
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
-                Damp Specialist
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
-              variants={fadeInUp}
-            >
-              We bring over a decade of hands-on experience, precision craftsmanship, and reliable service to homes and businesses across the UK. We specialize in damp proofing, plastering, rendering, EWI insulation, Venetian plastering and more.
-            </motion.p>
-            
+        <div className="container mx-auto relative px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-              variants={fadeInUp}
+              className="text-left"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
             >
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              <motion.div variants={fadeInUp}>
+                <Badge className="mb-4 bg-gradient-to-r from-purple-800 to-purple-900 text-white border-purple-700 px-6 py-3 text-base font-bold shadow-lg">
+                  🏆 We Beat Any Damp Company Price in the UK
+                </Badge>
+              </motion.div>
+              
+              <motion.div variants={fadeInUp}>
+                <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-500 px-4 py-2 text-sm font-semibold">
+                  <Shield className="w-4 h-4 mr-2" />
+                  25-Year Workmanship Guarantee
+                </Badge>
+              </motion.div>
+              
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                variants={fadeInUp}
               >
-                Get Free Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-6 text-lg font-semibold border-2 border-white text-[#090909] hover:bg-[#090909] hover:text-white transition-all duration-300"
+                Trusted Damp Proofing & Plastering Experts Protecting UK Properties for Over 10 Years
+              </motion.h1>
+              
+              <motion.p 
+                className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed"
+                variants={fadeInUp}
               >
-                <Phone className="w-5 h-5 mr-2" />
-                Call Now
-              </Button>
+                JDK Plastering provides expert damp proofing solutions to safeguard your property. Our tailored services tackle rising and penetrating damp, delivering lasting protection for homes and businesses.
+              </motion.p>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 mb-8"
+                variants={fadeInUp}
+              >
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Get Free Quote
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="relative px-8 py-6 text-lg font-semibold border-2 border-white text-black bg-white overflow-hidden group transition-all duration-300 hover:border-blue-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform -translate-x-full skew-x-12 group-hover:translate-x-0 transition-transform duration-700 ease-out origin-left"></div>
+                  <div className="relative z-10 flex items-center group-hover:text-white transition-colors duration-400">
+                    <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="group-hover:tracking-wide transition-all duration-300">07943 51930</span>
+                  </div>
+                </Button>
+              </motion.div>
+
+              <motion.div 
+                className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+                variants={staggerContainer}
+              >
+                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
+                  <Award className="w-6 h-6 text-blue-400 mx-auto sm:mx-0 mb-2" />
+                  <p className="text-gray-300 text-sm font-medium">Fully Qualified & Insured</p>
+                </motion.div>
+                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
+                  <Users className="w-6 h-6 text-indigo-400 mx-auto sm:mx-0 mb-2" />
+                  <p className="text-gray-300 text-sm font-medium">Trusted by Homeowners</p>
+                </motion.div>
+                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
+                  <CheckCircle className="w-6 h-6 text-green-400 mx-auto sm:mx-0 mb-2" />
+                  <p className="text-gray-300 text-sm font-medium">Free Site Surveys</p>
+                </motion.div>
+              </motion.div>
             </motion.div>
 
+            {/* Right Side - Image Carousel (Desktop Only) */}
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-              variants={staggerContainer}
+              className="hidden lg:block"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <motion.div className="text-center" variants={fadeInUp}>
-                <Award className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">Fully Qualified & Insured</p>
-              </motion.div>
-              <motion.div className="text-center" variants={fadeInUp}>
-                <Users className="w-8 h-8 text-indigo-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">Trusted by Homeowners & Contractors</p>
-              </motion.div>
-              <motion.div className="text-center" variants={fadeInUp}>
-                <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">Free Site Surveys & Transparent Quotes</p>
-              </motion.div>
+              <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm ml-auto">
+                <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
+                  Our Work Gallery
+                </h3>
+                
+                {/* Carousel Container */}
+                <div className="relative overflow-hidden rounded-lg">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {carouselImages.map((image, index) => (
+                      <div key={image.id} className="w-full flex-shrink-0">
+                        <div className={`aspect-video ${image.color} flex items-center justify-center border-2 border-slate-200 rounded-lg`}>
+                          <div className="text-center p-4">
+                            <div className="w-16 h-16 bg-slate-300 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                              <span className="text-slate-600 text-xs font-medium">IMG</span>
+                            </div>
+                            <span className="text-slate-700 font-medium text-sm">{image.title}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Carousel Indicators */}
+                <div className="flex justify-center space-x-2 mt-4">
+                  {carouselImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-colors ${
+                        index === currentSlide ? 'bg-blue-600' : 'bg-slate-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+                
+                {/* Navigation Arrows */}
+                <div className="flex justify-between items-center mt-4">
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)}
+                    className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+                  >
+                    <ArrowRight className="w-4 h-4 text-slate-600 rotate-180" />
+                  </button>
+                  
+                  <span className="text-sm text-slate-500">
+                    {currentSlide + 1} / {carouselImages.length}
+                  </span>
+                  
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev + 1) % carouselImages.length)}
+                    className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+                  >
+                    <ArrowRight className="w-4 h-4 text-slate-600" />
+                  </button>
+                </div>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
