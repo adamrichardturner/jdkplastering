@@ -9,6 +9,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 
 export default function Footer() {
+  const year = new Date().getFullYear()
   return (
     <footer className="bg-[#090909] text-white py-16 border-t border-gray-800">
       <div className="container mx-auto px-4">
@@ -123,7 +124,7 @@ export default function Footer() {
 
         <div className="text-center text-gray-400">
           <p>
-            &copy; 2024 JDK Plastering & Damp Solutions. All rights reserved.
+            &copy; {year} JDK Plastering & Damp Solutions. All rights reserved.
           </p>
         </div>
       </div>

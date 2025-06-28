@@ -86,27 +86,29 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
       <nav className="fixed top-0 left-0 right-0 w-full bg-[#090909]/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <motion.div
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Image
-                src="/logo/jdk-logo.svg"
-                alt="JDK Plastering & Damp Specialist Logo"
-                width={50}
-                height={50}
-                className="w-12 h-12 object-contain"
-              />
-              <div>
-                <div className="text-xl font-bold text-white">
-                  JDK PLASTERING
+            <Link href="/">
+              <motion.div
+                className="flex items-center space-x-3"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Image
+                  src="/logo/jdk-logo.svg"
+                  alt="JDK Plastering & Damp Specialist Logo"
+                  width={50}
+                  height={50}
+                  className="w-12 h-12 object-contain"
+                />
+                <div>
+                  <div className="text-xl font-bold text-white">
+                    JDK PLASTERING
+                  </div>
+                  <div className="text-xs text-gray-300 uppercase tracking-wider">
+                    & DAMP SPECIALIST
+                  </div>
                 </div>
-                <div className="text-xs text-gray-300 uppercase tracking-wider">
-                  & DAMP SPECIALIST
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
 
             <div className="hidden md:flex items-center space-x-8">
               <Link
@@ -182,32 +184,13 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
-              {/* Top Section - Logo with Close Button */}
+              {/* Top Section - Close Button */}
               <motion.div
-                className="flex justify-between items-center px-6 pt-12 pb-8"
+                className="flex justify-end items-center px-6 pt-12 pb-8"
                 initial={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
               >
-                {/* Logo */}
-                <div className="flex items-center space-x-3">
-                  <Image
-                    src="/logo/jdk-logo.svg"
-                    alt="JDK Plastering & Damp Specialist Logo"
-                    width={50}
-                    height={50}
-                    className="w-12 h-12 object-contain"
-                  />
-                  <div>
-                    <div className="text-xl font-bold text-white">
-                      JDK PLASTERING
-                    </div>
-                    <div className="text-xs text-gray-300 uppercase tracking-wider">
-                      & DAMP SPECIALIST
-                    </div>
-                  </div>
-                </div>
-
                 {/* Close Button */}
                 <motion.button
                   onClick={() => setIsMenuOpen(false)}
@@ -234,13 +217,15 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                     <Link
                       href="/"
                       className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/') ? 'text-blue-400' : 'text-white'
+                        isActivePage('/')
+                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
+                          : 'text-white'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Home
                       {isActivePage('/') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400 rounded-full"></div>
+                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
                       )}
                     </Link>
                   </motion.div>
@@ -251,13 +236,15 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                     <Link
                       href="/about"
                       className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/about') ? 'text-blue-400' : 'text-white'
+                        isActivePage('/about')
+                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
+                          : 'text-white'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       About
                       {isActivePage('/about') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400 rounded-full"></div>
+                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
                       )}
                     </Link>
                   </motion.div>
@@ -269,14 +256,14 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                       href="/services"
                       className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
                         isActivePage('/services')
-                          ? 'text-blue-400'
+                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
                           : 'text-white'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Services
                       {isActivePage('/services') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400 rounded-full"></div>
+                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
                       )}
                     </Link>
                   </motion.div>
@@ -288,14 +275,14 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                       href="/contact"
                       className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
                         isActivePage('/contact')
-                          ? 'text-blue-400'
+                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
                           : 'text-white'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Contact
                       {isActivePage('/contact') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400 rounded-full"></div>
+                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
                       )}
                     </Link>
                   </motion.div>
@@ -307,12 +294,36 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   >
                     <Button
-                      className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-6 text-lg transition-colors duration-300"
+                      className="bg-white text-black hover:bg-gray-100 font-semibold px-12 py-8 text-lg transition-colors duration-300"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Phone className="w-5 h-5 mr-2" />
                       07943 51930
                     </Button>
+                  </motion.div>
+
+                  {/* Logo Section */}
+                  <motion.div
+                    className="mt-12 flex items-center justify-center space-x-3"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                  >
+                    <Image
+                      src="/logo/jdk-logo.svg"
+                      alt="JDK Plastering & Damp Specialist Logo"
+                      width={50}
+                      height={50}
+                      className="w-12 h-12 object-contain"
+                    />
+                    <div>
+                      <div className="text-xl font-bold text-white">
+                        JDK PLASTERING
+                      </div>
+                      <div className="text-xs text-gray-300 uppercase tracking-wider">
+                        & DAMP SPECIALIST
+                      </div>
+                    </div>
                   </motion.div>
                 </motion.div>
               </div>
