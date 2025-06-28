@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -58,10 +58,24 @@ const slideInRight = {
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-gray-200 py-2">
+      {/* Top Bar - Hidden on Mobile */}
+      <div className="hidden md:block bg-white border-b border-gray-200 py-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="flex items-center space-x-6 mb-2 sm:mb-0">
@@ -148,24 +162,108 @@ export default function Index() {
             </Button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Overlay */}
           {isMenuOpen && (
             <motion.div 
-              className="md:hidden mt-4 pb-4 border-t border-gray-800"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black z-[60] md:hidden h-screen w-screen flex flex-col"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              <div className="flex flex-col space-y-4 pt-4">
-                <a href="#home" className="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
-                <a href="#about" className="text-gray-300 hover:text-white transition-colors font-medium">About</a>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium">Services</a>
-                <a href="#contact" className="text-gray-300 hover:text-white transition-colors font-medium">Contact</a>
-                <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold w-full">
-                  <Phone className="w-4 h-4 mr-2" />
-                  07943 51930
-                </Button>
+              {/* Top Section - Logo with Close Button */}
+              <motion.div 
+                className="flex justify-between items-center px-6 pt-12 pb-8"
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+              >
+                {/* Logo */}
+                <div className="flex items-center space-x-3">
+                  <Image 
+                    src="/logo/jdk-logo.png" 
+                    alt="JDK Plastering & Damp Specialist Logo" 
+                    width={50} 
+                    height={50}
+                    className="w-12 h-12 object-contain"
+                  />
+                  <div>
+                    <div className="text-xl font-bold text-white">JDK PLASTERING</div>
+                    <div className="text-xs text-gray-300 uppercase tracking-wider">& DAMP SPECIALIST</div>
+                  </div>
+                </div>
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center text-white hover:bg-gray-700/50 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+              </motion.div>
+
+              {/* Center Section - Navigation Menu */}
+              <div className="flex-1 flex flex-col justify-center items-center px-8">
+                <motion.div 
+                  className="flex flex-col space-y-12 text-center"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+                >
+                  <motion.a 
+                    href="#home" 
+                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Home
+                  </motion.a>
+                  <motion.a 
+                    href="#about" 
+                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    About
+                  </motion.a>
+                  <motion.a 
+                    href="#services" 
+                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Services
+                  </motion.a>
+                  <motion.a 
+                    href="#contact" 
+                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Contact
+                  </motion.a>
+                  
+                  <motion.div
+                    className="mt-8"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  >
+                    <Button 
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold px-8 py-6 text-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      07943 51930
+                    </Button>
+                  </motion.div>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -180,7 +278,7 @@ export default function Index() {
             src="/logo/jdk-plastering-wall.png" 
             alt="JDK Plastering work showcase" 
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-100"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/40 to-[#090909]/30"></div>
@@ -201,11 +299,11 @@ export default function Index() {
             </motion.div>
             
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-none"
               variants={fadeInUp}
             >
-              <span className="text-white">JDK Plastering &{' '}</span>
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="text-white leading-tight">JDK Plastering &{' '}</span>
+              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
                 Damp Specialist
               </span>
             </motion.h1>
@@ -214,7 +312,7 @@ export default function Index() {
               className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              From Venetian finishes to external wall insulation — we deliver long-lasting results backed by 10+ years of experience across London, England.
+              We bring over a decade of hands-on experience, precision craftsmanship, and reliable service to homes and businesses across the UK. We specialize in damp proofing, plastering, rendering, EWI insulation, Venetian plastering and more.
             </motion.p>
             
             <motion.div 
@@ -239,20 +337,20 @@ export default function Index() {
             </motion.div>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
               variants={staggerContainer}
             >
               <motion.div className="text-center" variants={fadeInUp}>
-                <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">Price Match Guaranteed</p>
-              </motion.div>
-              <motion.div className="text-center" variants={fadeInUp}>
                 <Award className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">Fully Insured & Certified</p>
+                <p className="text-gray-300 font-medium">Fully Qualified & Insured</p>
               </motion.div>
               <motion.div className="text-center" variants={fadeInUp}>
                 <Users className="w-8 h-8 text-indigo-400 mx-auto mb-3" />
-                <p className="text-gray-300 font-medium">10+ Years Experience</p>
+                <p className="text-gray-300 font-medium">Trusted by Homeowners & Contractors</p>
+              </motion.div>
+              <motion.div className="text-center" variants={fadeInUp}>
+                <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                <p className="text-gray-300 font-medium">Free Site Surveys & Transparent Quotes</p>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -404,7 +502,7 @@ export default function Index() {
               What We Can Help You With
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Comprehensive plastering and damp solutions for residential and commercial properties across London
+              We use only proven methods — backed by industry guidance and quality materials — to treat damp and prevent it from returning. Each of our core services is outlined below.
             </p>
           </motion.div>
 
@@ -499,15 +597,15 @@ export default function Index() {
                 Trusted Experts in Plastering, Damp Proofing & External Wall Systems
               </h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                With over a decade of experience, we specialize in plastering, rendering, and tailored damp-proofing solutions. Our expert team uses premium materials — from lime and acrylic to insulated renders — to deliver high-performance finishes built to last.
+                Whether it&apos;s rising damp, penetrating damp, or condensation issues—we don&apos;t just cover it up, we fix the root cause. Our expert team uses proven techniques and the latest materials to ensure long-lasting results and clean, professional finishes on every project.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                Whether you&apos;re tackling rising damp or boosting energy efficiency, we work clean, quick, and professionally on every job across London and surrounding areas.
+                We provide professional, reliable solutions to keep UK homes and buildings dry and healthy. Whether you&apos;re a homeowner, landlord, or property manager, our friendly, expert team will assess the issue and recommend the best long-term fix.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
-                  <span className="text-gray-300">Clean & Professional Finish</span>
+                  <span className="text-gray-300">Clean, Courteous & Committed to Quality</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
