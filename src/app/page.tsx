@@ -319,7 +319,7 @@ export default function Index() {
                 title: 'Price Match Guaranteed',
                 description: 'Competitive pricing with quality guarantees',
               },
-            ].map((item, index) => (
+            ].map((item) => (
               <div
                 key={item.title}
                 className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/75 transition-all duration-500 ease-out"
