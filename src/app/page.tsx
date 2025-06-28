@@ -310,31 +310,35 @@ export default function Index() {
               initial="initial"
               animate="animate"
             >
-              <motion.div variants={fadeInUp}>
-                <Badge className="mb-4 bg-gradient-to-r from-purple-800 to-purple-900 text-white border-purple-700 px-6 py-3 text-base font-bold shadow-lg">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+                variants={fadeInUp}
+              >
+                <span className="text-white">UK&apos;s Leading </span>
+                <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                  Damp Proofing
+                </span>
+                <span className="text-white"> & Plastering Specialists</span>
+              </motion.h1>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6"
+                variants={fadeInUp}
+              >
+                <Badge className="bg-gradient-to-r from-purple-800 to-purple-900 text-white border-purple-700 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 w-fit">
                   🏆 We Beat Any Damp Company Price in the UK
                 </Badge>
-              </motion.div>
-              
-              <motion.div variants={fadeInUp}>
-                <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-500 px-4 py-2 text-sm font-semibold">
+                <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-500 px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 w-fit">
                   <Shield className="w-4 h-4 mr-2" />
                   25-Year Workmanship Guarantee
                 </Badge>
               </motion.div>
               
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-                variants={fadeInUp}
-              >
-                Trusted Damp Proofing & Plastering Experts Protecting UK Properties for Over 10 Years
-              </motion.h1>
-              
               <motion.p 
                 className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed"
                 variants={fadeInUp}
               >
-                JDK Plastering provides expert damp proofing solutions to safeguard your property. Our tailored services tackle rising and penetrating damp, delivering lasting protection for homes and businesses.
+                <strong className="text-white">Fix damp permanently.</strong> Expert solutions for rising damp, penetrating damp & condensation. Professional plastering & rendering across the UK.
               </motion.p>
               
               <motion.div 
@@ -398,7 +402,7 @@ export default function Index() {
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                   >
-                    {carouselImages.map((image, index) => (
+                    {carouselImages.map((image) => (
                       <div key={image.id} className="w-full flex-shrink-0">
                         <div className={`aspect-video ${image.color} flex items-center justify-center border-2 border-slate-200 rounded-lg`}>
                           <div className="text-center p-4">
