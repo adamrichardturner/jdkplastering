@@ -97,7 +97,7 @@ export default function Index() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen py-4 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
+        className="min-h-screen py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
       >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
@@ -220,67 +220,153 @@ export default function Index() {
               </motion.div>
 
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+                className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
                 variants={staggerContainer}
               >
                 <motion.div
-                  className="flex flex-col items-center sm:items-start group"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
-                    <Award className="w-6 h-6 text-white" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                    <Award className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-white text-base font-semibold text-center sm:text-left">
+                  <p className="text-white text-sm font-semibold text-center leading-tight">
                     Fully Qualified & Insured
                   </p>
                 </motion.div>
-
                 <motion.div
-                  className="flex flex-col items-center sm:items-start group"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
-                    <Users className="w-6 h-6 text-white" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                    <Users className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-white text-base font-semibold text-center sm:text-left">
+                  <p className="text-white text-sm font-semibold text-center leading-tight">
                     Trusted by Homeowners
                   </p>
                 </motion.div>
 
                 <motion.div
-                  className="flex flex-col items-center sm:items-start group"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
-                    <CheckCircle className="w-6 h-6 text-white" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                    <CheckCircle className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-white text-base font-semibold text-center sm:text-left">
+                  <p className="text-white text-sm font-semibold text-center leading-tight">
                     Free Site Surveys
                   </p>
                 </motion.div>
 
                 <motion.div
-                  className="flex flex-col items-center sm:items-start group"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
-                    <Shield className="w-6 h-6 text-white" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                    <Shield className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-white text-base font-semibold text-center sm:text-left">
+                  <p className="text-white text-sm font-semibold text-center leading-tight">
                     Price Match Guaranteed
                   </p>
                 </motion.div>
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Mobile Trust Indicators - Glass Morphism Cards */}
+      <section className="py-16 bg-gradient-to-br from-slate-100 to-slate-200 md:hidden relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              Why Choose JDK Plastering?
+            </h2>
+            <p className="text-slate-600">
+              Trusted professionals across London
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-4 max-w-sm mx-auto">
+            {[
+              {
+                icon: Award,
+                title: 'Fully Qualified & Insured',
+                description:
+                  'PCA-compliant systems with comprehensive warranties',
+              },
+              {
+                icon: Users,
+                title: 'Trusted by Homeowners',
+                description: 'Homeowners, landlords & contractors rely on us',
+              },
+              {
+                icon: CheckCircle,
+                title: 'Free Site Surveys',
+                description: 'Transparent quotes with clear communication',
+              },
+              {
+                icon: Shield,
+                title: 'Price Match Guaranteed',
+                description: 'Competitive pricing with quality guarantees',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/70 hover:border-white/60 transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -3 }}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-white/80 to-white/60 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-white/50">
+                    <item.icon className="w-6 h-6 text-slate-700" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-slate-900 mb-1 text-sm">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="text-center mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Get Free Quote
+            </Button>
+          </motion.div>
         </div>
       </section>
 
