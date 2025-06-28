@@ -9,7 +9,6 @@ import {
   CheckCircle,
   Star,
   ArrowRight,
-  Camera,
   MapPin,
   Calendar,
   Phone,
@@ -19,7 +18,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -40,25 +39,6 @@ const staggerContainer = {
 export default function Projects() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('all')
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-      document.body.style.position = 'fixed'
-      document.body.style.width = '100%'
-    } else {
-      document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-    }
-  }, [isMenuOpen])
 
   const categories = [
     { id: 'all', label: 'All Projects' },
