@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   Phone,
   Mail,
@@ -210,13 +211,15 @@ export default function Index() {
                 className="flex flex-col sm:flex-row gap-4 mb-8"
                 variants={fadeInUp}
               >
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                >
-                  Get Free Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    Get Free Quote
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
               </motion.div>
 
               <motion.div
@@ -224,12 +227,12 @@ export default function Index() {
                 variants={staggerContainer}
               >
                 <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
                     <Award className="w-7 h-7 text-white" />
                   </div>
                   <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -237,12 +240,12 @@ export default function Index() {
                   </p>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
                     <Users className="w-7 h-7 text-white" />
                   </div>
                   <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -251,12 +254,12 @@ export default function Index() {
                 </motion.div>
 
                 <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
                     <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -265,12 +268,12 @@ export default function Index() {
                 </motion.div>
 
                 <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
                     <Shield className="w-7 h-7 text-white" />
                   </div>
                   <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -283,16 +286,19 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Mobile Gradient Transition */}
+      <div className="h-20 bg-gradient-to-b from-[#090909] via-slate-800 to-slate-200 md:hidden"></div>
+
       {/* Mobile Trust Indicators - Glass Morphism Cards */}
-      <section className="py-16 bg-gradient-to-br from-slate-100 to-slate-200 md:hidden relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
+      <section className="py-12 bg-gradient-to-br from-slate-200 to-slate-100 md:hidden relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-indigo-50/30"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mb-6"
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-2">
               Why Choose JDK Plastering?
@@ -329,10 +335,10 @@ export default function Index() {
               <motion.div
                 key={item.title}
                 className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/70 hover:border-white/60 transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, y: -3 }}
               >
                 <div className="flex items-start space-x-4">
@@ -353,19 +359,21 @@ export default function Index() {
           </div>
 
           <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-center mt-6"
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm"
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              Get Free Quote
-            </Button>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                Get Free Quote
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

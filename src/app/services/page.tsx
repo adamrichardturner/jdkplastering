@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   Shield,
   Award,
@@ -200,13 +201,15 @@ export default function Services() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeInUp}
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Get Free Quote
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Get Free Quote
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
@@ -520,14 +523,16 @@ export default function Services() {
                 <Phone className="w-5 h-5 mr-2" />
                 Call 07943 51930
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-10 py-6 text-lg font-semibold"
-              >
-                Get Free Quote
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 px-10 py-6 text-lg font-semibold"
+                >
+                  Get Free Quote
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
