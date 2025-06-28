@@ -166,7 +166,7 @@ export default function Projects() {
       : projects.filter((project) => project.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
+    <div className="min-h-[calc(100vh - 200px)] bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}

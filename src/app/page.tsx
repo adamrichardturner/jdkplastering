@@ -283,32 +283,20 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Mobile Trust Indicators - Optimized for Smooth Scrolling */}
+      {/* Mobile Trust Indicators - No Animations for Smooth Scrolling */}
       <section className="py-16 bg-gradient-to-br from-slate-200 to-slate-100 md:hidden relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-indigo-50/20"></div>
         <div className="container mx-auto px-4 relative">
-          <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
+          <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-2">
               Why Choose JDK Plastering?
             </h2>
             <p className="text-slate-600">
               Trusted professionals across London
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="grid grid-cols-1 gap-4 max-w-sm mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-          >
+          <div className="grid grid-cols-1 gap-4 max-w-sm mx-auto">
             {[
               {
                 icon: Award,
@@ -332,17 +320,9 @@ export default function Index() {
                 description: 'Competitive pricing with quality guarantees',
               },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={item.title}
                 className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/75 transition-all duration-500 ease-out"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.4 + index * 0.1,
-                  ease: 'easeOut',
-                }}
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-white/80 to-white/60 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-white/50">
@@ -357,17 +337,11 @@ export default function Index() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-          >
+          <div className="text-center mt-8">
             <Link href="/contact">
               <Button
                 size="lg"
@@ -377,7 +351,7 @@ export default function Index() {
                 Get Free Quote
               </Button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
