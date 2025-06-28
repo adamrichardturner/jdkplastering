@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Phone } from 'lucide-react'
 import {
   FaFacebookF,
@@ -15,21 +16,23 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <Image
-                src="/logo/jdk-logo.svg"
-                alt="JDK Plastering & Damp Specialist Logo"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
-              />
-              <div>
-                <div className="text-lg font-bold">JDK PLASTERING</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wider">
-                  & DAMP SPECIALIST
+            <Link href="/" className="inline-block">
+              <div className="flex items-center space-x-3 mb-6 hover:opacity-80 transition-opacity">
+                <Image
+                  src="/logo/jdk-logo.svg"
+                  alt="JDK Plastering & Damp Specialist Logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain"
+                />
+                <div>
+                  <div className="text-lg font-bold">JDK PLASTERING</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                    & DAMP SPECIALIST
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Expert plastering, waterproofing, and energy-saving insulation
               systems with over a decade of experience across London.
@@ -70,30 +73,33 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <div className="space-y-3 text-gray-400">
               <div>
-                <a href="#home" className="hover:text-white transition-colors">
+                <Link href="/" className="hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </div>
               <div>
-                <a href="#about" className="hover:text-white transition-colors">
+                <Link
+                  href="/about"
+                  className="hover:text-white transition-colors"
+                >
                   About
-                </a>
+                </Link>
               </div>
               <div>
-                <a
+                <Link
                   href="/services"
                   className="hover:text-white transition-colors"
                 >
                   Services
-                </a>
+                </Link>
               </div>
               <div>
-                <a
+                <Link
                   href="/contact"
                   className="hover:text-white transition-colors"
                 >
                   Contact
-                </a>
+                </Link>
               </div>
             </div>
           </div>

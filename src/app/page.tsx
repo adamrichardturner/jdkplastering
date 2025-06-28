@@ -187,12 +187,18 @@ export default function Index() {
               </motion.h1>
 
               <motion.p
-                className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed"
+                className="text-lg md:text-xl text-gray-300 mb-4 leading-regular"
                 variants={fadeInUp}
               >
                 <strong className="text-white">Fix damp permanently.</strong>{' '}
                 Expert solutions for rising damp, penetrating damp &
                 condensation. <br className="hidden sm:block" />
+              </motion.p>
+
+              <motion.p
+                className="text-lg md:text-xl text-gray-300 mb-8 leading-regular"
+                variants={fadeInUp}
+              >
                 <strong className="text-blue-400">
                   Premium plastering & rendering services
                 </strong>{' '}
