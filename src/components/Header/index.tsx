@@ -90,6 +90,17 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                 )}
               </Link>
               <Link
+                href="/projects"
+                className={`text-gray-300 hover:text-white transition-colors font-medium relative ${
+                  isActivePage('/projects') ? 'text-white' : ''
+                }`}
+              >
+                Projects
+                {isActivePage('/projects') && (
+                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"></div>
+                )}
+              </Link>
+              <Link
                 href="/contact"
                 className={`text-gray-300 hover:text-white transition-colors font-medium relative ${
                   isActivePage('/contact') ? 'text-white' : ''
@@ -173,6 +184,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   { href: '/', label: 'Home' },
                   { href: '/about', label: 'About' },
                   { href: '/services', label: 'Services' },
+                  { href: '/projects', label: 'Projects' },
                   { href: '/contact', label: 'Contact' },
                 ].map((item, index) => (
                   <Link

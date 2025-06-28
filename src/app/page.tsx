@@ -163,126 +163,123 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container mx-auto relative px-4 py-10 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Content */}
-            <motion.div
-              className="text-left"
-              variants={staggerContainer}
-              initial="initial"
-              animate="animate"
+        <div className="container mx-auto relative px-4 py-4 md:py-10">
+          <motion.div
+            className="text-left max-w-2xl"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
+              variants={fadeInUp}
             >
-              <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
-                variants={fadeInUp}
-              >
-                <span className="text-white">London&apos;s Leading </span>
-                <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                  Damp Proofing
-                </span>
-                <span className="text-white"> & </span>
-                <span className="bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent">
-                  Expert Plastering
-                </span>
-                <span className="text-white"> Specialists</span>
-              </motion.h1>
+              <span className="text-white">London&apos;s Leading </span>
+              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                Damp Proofing
+              </span>
+              <span className="text-white"> & </span>
+              <span className="bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent">
+                Expert Plastering
+              </span>
+              <span className="text-white"> Specialists</span>
+            </motion.h1>
 
-              <motion.p
-                className="text-lg md:text-xl text-gray-300 mb-4 leading-regular"
-                variants={fadeInUp}
-              >
-                <strong className="text-white">Fix damp permanently.</strong>{' '}
-                Expert solutions for rising damp, penetrating damp &
-                condensation. <br className="hidden sm:block" />
-              </motion.p>
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 mb-4 leading-regular"
+              variants={fadeInUp}
+            >
+              <strong className="text-white">Fix damp permanently.</strong>{' '}
+              Expert solutions for rising damp, penetrating damp & condensation.{' '}
+              <br className="hidden sm:block" />
+            </motion.p>
 
-              <motion.p
-                className="text-lg md:text-xl text-gray-300 mb-8 leading-regular"
-                variants={fadeInUp}
-              >
-                <strong className="text-blue-400">
-                  Premium plastering & rendering services
-                </strong>{' '}
-                — from decorative finishes to external wall insulation across
-                the UK.
-              </motion.p>
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 mb-8 leading-regular"
+              variants={fadeInUp}
+            >
+              <strong className="text-blue-400">
+                Premium plastering & rendering services
+              </strong>{' '}
+              — from decorative finishes to external wall insulation across the
+              UK.
+            </motion.p>
 
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 mb-8"
+              variants={fadeInUp}
+            >
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Get Free Quote
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+              variants={staggerContainer}
+            >
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 mb-8"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
                 variants={fadeInUp}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
               >
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    Get Free Quote
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <Award className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Fully Qualified & Insured
+                </p>
+              </motion.div>
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <Users className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Trusted by Homeowners
+                </p>
               </motion.div>
 
               <motion.div
-                className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
-                variants={staggerContainer}
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
               >
-                <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
-                    <Award className="w-7 h-7 text-white" />
-                  </div>
-                  <p className="text-white text-sm font-semibold text-center leading-tight">
-                    Fully Qualified & Insured
-                  </p>
-                </motion.div>
-                <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
-                    <Users className="w-7 h-7 text-white" />
-                  </div>
-                  <p className="text-white text-sm font-semibold text-center leading-tight">
-                    Trusted by Homeowners
-                  </p>
-                </motion.div>
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <CheckCircle className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Free Site Surveys
+                </p>
+              </motion.div>
 
-                <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
-                    <CheckCircle className="w-7 h-7 text-white" />
-                  </div>
-                  <p className="text-white text-sm font-semibold text-center leading-tight">
-                    Free Site Surveys
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
-                    <Shield className="w-7 h-7 text-white" />
-                  </div>
-                  <p className="text-white text-sm font-semibold text-center leading-tight">
-                    Price Match Guaranteed
-                  </p>
-                </motion.div>
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                  <Shield className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Price Match Guaranteed
+                </p>
               </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
