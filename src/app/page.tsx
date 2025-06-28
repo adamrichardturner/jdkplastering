@@ -17,15 +17,7 @@ import {
   Home,
   Droplets,
   ThermometerSun,
-  Menu,
-  X,
 } from 'lucide-react'
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from 'react-icons/fa'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -38,6 +30,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Separator } from '@/components/ui/separator'
 import { useState, useEffect } from 'react'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -98,240 +92,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
-      {/* Top Bar - Hidden on Mobile */}
-      <div className="hidden md:block bg-white border-b border-gray-200 py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-            <div className="flex items-center space-x-6 mb-2 sm:mb-0">
-              <div className="flex items-center space-x-2 text-gray-600">
-                <MapPin className="w-4 h-4" />
-                <span>London, England</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Clock className="w-4 h-4" />
-                <span>Mon-Sat: 9am - 6pm</span>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-gray-600 font-medium">
-                <Phone className="w-4 h-4" />
-                <span>07943 51930</span>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaFacebookF className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaTwitter className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaLinkedinIn className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaInstagram className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 w-full bg-[#090909]/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Image
-                src="/logo/jdk-logo.svg"
-                alt="JDK Plastering & Damp Specialist Logo"
-                width={50}
-                height={50}
-                className="w-12 h-12 object-contain"
-              />
-              <div>
-                <div className="text-xl font-bold text-white">
-                  JDK PLASTERING
-                </div>
-                <div className="text-xs text-gray-300 uppercase tracking-wider">
-                  & DAMP SPECIALIST
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="hidden md:flex items-center space-x-8">
-              <a
-                href="#home"
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                About
-              </a>
-              <a
-                href="#services"
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                Contact
-              </a>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer">
-                <Phone className="w-4 h-4 mr-2" />
-                07943 51930
-              </Button>
-            </div>
-
-            <Button
-              size="sm"
-              variant="ghost"
-              className="md:hidden text-white hover:bg-gray-800"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </Button>
-          </div>
-
-          {/* Mobile Menu Overlay */}
-          {isMenuOpen && (
-            <motion.div
-              className="fixed inset-0 bg-black z-[60] md:hidden h-screen w-screen flex flex-col"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-            >
-              {/* Top Section - Logo with Close Button */}
-              <motion.div
-                className="flex justify-between items-center px-6 pt-12 pb-8"
-                initial={{ y: -30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-              >
-                {/* Logo */}
-                <div className="flex items-center space-x-3">
-                  <Image
-                    src="/logo/jdk-logo.svg"
-                    alt="JDK Plastering & Damp Specialist Logo"
-                    width={50}
-                    height={50}
-                    className="w-12 h-12 object-contain"
-                  />
-                  <div>
-                    <div className="text-xl font-bold text-white">
-                      JDK PLASTERING
-                    </div>
-                    <div className="text-xs text-gray-300 uppercase tracking-wider">
-                      & DAMP SPECIALIST
-                    </div>
-                  </div>
-                </div>
-
-                {/* Close Button */}
-                <motion.button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center text-white hover:bg-gray-700/50 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-6 h-6" />
-                </motion.button>
-              </motion.div>
-
-              {/* Center Section - Navigation Menu */}
-              <div className="flex-1 flex flex-col justify-center items-center px-8">
-                <motion.div
-                  className="flex flex-col space-y-12 text-center"
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
-                >
-                  <motion.a
-                    href="#home"
-                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Home
-                  </motion.a>
-                  <motion.a
-                    href="#about"
-                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    About
-                  </motion.a>
-                  <motion.a
-                    href="#services"
-                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Services
-                  </motion.a>
-                  <motion.a
-                    href="#contact"
-                    className="text-2xl font-bold text-white hover:text-blue-400 transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Contact
-                  </motion.a>
-
-                  <motion.div
-                    className="mt-8"
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  >
-                    <Button
-                      className="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-6 text-lg transition-colors duration-300"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Phone className="w-5 h-5 mr-2" />
-                      07943 51930
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </nav>
+      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section
@@ -431,8 +192,7 @@ export default function Index() {
               >
                 <strong className="text-white">Fix damp permanently.</strong>{' '}
                 Expert solutions for rising damp, penetrating damp &
-                condensation.
-                <br className="hidden sm:block" />
+                condensation. <br className="hidden sm:block" />
                 <strong className="text-blue-400">
                   Premium plastering & rendering services
                 </strong>{' '}
@@ -1117,131 +877,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#090909] text-white py-16 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <Image
-                  src="/logo/jdk-logo.svg"
-                  alt="JDK Plastering & Damp Specialist Logo"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 object-contain"
-                />
-                <div>
-                  <div className="text-lg font-bold">JDK PLASTERING</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">
-                    & DAMP SPECIALIST
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-400 mb-6 leading-relaxed">
-                Expert plastering, waterproofing, and energy-saving insulation
-                systems with over a decade of experience across London.
-              </p>
-              <div className="flex items-center space-x-2 text-gray-400 mb-4">
-                <Phone className="w-4 h-4" />
-                <span>07943 51930</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <FaFacebookF className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <FaTwitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <FaLinkedinIn className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <FaInstagram className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-              <div className="space-y-3 text-gray-400">
-                <div>
-                  <a
-                    href="#home"
-                    className="hover:text-white transition-colors"
-                  >
-                    Home
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#about"
-                    className="hover:text-white transition-colors"
-                  >
-                    About
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#services"
-                    className="hover:text-white transition-colors"
-                  >
-                    Services
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#contact"
-                    className="hover:text-white transition-colors"
-                  >
-                    Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-6">Our Services</h4>
-              <div className="space-y-3 text-gray-400">
-                <div>Plastering & Finishing</div>
-                <div>External Wall Insulation</div>
-                <div>Damp Proofing</div>
-                <div>Rendering Systems</div>
-                <div>Venetian Plastering</div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-6">Contact Info</h4>
-              <div className="space-y-3 text-gray-400">
-                <div>London, England</div>
-                <div>Mon-Sat: 9am - 6pm</div>
-                <div>info@jdkplastering.co.uk</div>
-                <div>07943 51930</div>
-              </div>
-            </div>
-          </div>
-
-          <Separator className="my-8 bg-gray-800" />
-
-          <div className="text-center text-gray-400">
-            <p>
-              &copy; 2024 JDK Plastering & Damp Solutions. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
