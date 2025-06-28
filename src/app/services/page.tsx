@@ -66,63 +66,87 @@ export default function Services() {
 
   const services = [
     {
-      icon: Palette,
-      title: 'Plastering Services',
-      description:
-        'Smooth and durable finishes for walls and ceilings. From traditional plastering to decorative Venetian styles, we ensure your surfaces are perfectly prepared and beautifully finished.',
-      features: [
-        'Traditional lime and gypsum plastering',
-        'Decorative Venetian finishes',
-        'Wall and ceiling preparation',
-        'Repair and restoration work',
-      ],
-    },
-    {
       icon: ShieldCheck,
-      title: 'Damp Proofing',
+      title: 'Rising Damp Treatment',
       description:
-        'We identify and treat rising damp, penetrating damp, and condensation. Our tailored solutions help safeguard your property from long-term structural and health issues.',
+        'Moisture traveling up through walls via capillary action. Common in Victorian/Edwardian properties with failed damp-proof courses. We diagnose the true cause and install new chemical DPC systems.',
       features: [
-        'Rising damp treatment',
-        'Penetrating damp solutions',
-        'Condensation control',
-        'Structural protection',
+        'PCA-compliant injection systems',
+        'Chemical damp-proof course installation',
+        'Salt-contaminated plaster treatment',
+        'Breathable re-plastering finishes',
       ],
     },
     {
       icon: Building,
-      title: 'Rendering (Internal & External)',
+      title: 'Penetrating Damp Solutions',
       description:
-        'Enhance the appearance and weatherproofing of your building. We apply professional renders to both interior and exterior surfaces, including coloured and insulated systems.',
+        'Lateral moisture entering through external defects—cracked mortar, damaged gutters, or roof leaks. We locate the source, repair defects, and apply breathable waterproof coatings.',
       features: [
-        'External weatherproofing renders',
-        'Internal decorative rendering',
-        'Coloured render systems',
-        'Insulated rendering solutions',
-      ],
-    },
-    {
-      icon: Zap,
-      title: 'Wall Insulation & Repairs',
-      description:
-        'Improve your energy efficiency and comfort with our internal wall insulation and repair services. Ideal for older properties or refurbishments.',
-      features: [
-        'Internal wall insulation',
-        'Energy efficiency improvements',
-        'Wall repair and restoration',
-        'Property refurbishment support',
+        'Repointing crumbling mortar joints',
+        'Breathable waterproof coatings',
+        'Internal membrane systems',
+        'Permanent leak prevention',
       ],
     },
     {
       icon: Wind,
-      title: 'Mould Removal & Prevention',
+      title: 'Waterproofing Systems',
       description:
-        'Targeted treatments to eliminate mould and prevent recurrence—creating healthier living environments, especially in damp-prone areas.',
+        'Comprehensive tanking and membrane solutions for basements, cellars, and below-ground areas. Including ACO drain installation and cavity wall membrane systems.',
       features: [
-        'Professional mould removal',
-        'Prevention strategies',
-        'Healthy living environments',
-        'Long-term protection',
+        'Tanking slurry applications',
+        'Cavity wall membrane (Type C)',
+        'ACO channel drain installation',
+        'Sump pump integration',
+      ],
+    },
+    {
+      icon: Palette,
+      title: 'Rendering & Coatings',
+      description:
+        'Modern silicone renders and waterproof sand-cement systems. Highly water-repellent, UV-stable finishes that shed rain while allowing walls to breathe naturally.',
+      features: [
+        'Silicone render systems',
+        'Waterproof sand-cement render',
+        'Breathable external coatings',
+        'Long-lasting, low-maintenance finishes',
+      ],
+    },
+    {
+      icon: Zap,
+      title: 'Isotherm Insulation',
+      description:
+        'Patented thin-wall insulation system (4-10mm) with integrated damp resistance. Vapour-permeable yet waterproof, preventing condensation and improving energy efficiency.',
+      features: [
+        'Minimal thickness installation',
+        'Improved wall U-values',
+        'Condensation prevention',
+        'EWI insulation systems',
+      ],
+    },
+    {
+      icon: Star,
+      title: 'Venetian Plastering',
+      description:
+        'Premium decorative finishes combining traditional craftsmanship with modern techniques. From classic lime plasters to contemporary polished surfaces.',
+      features: [
+        'Traditional lime plastering',
+        'Polished Venetian finishes',
+        'Decorative surface treatments',
+        'Restoration work',
+      ],
+    },
+    {
+      icon: CheckCircle,
+      title: 'Microcement Applications',
+      description:
+        'Ultra-thin decorative coating (2-4mm) creating seamless, waterproof surfaces. Cost-effective alternative to natural stone with exceptional durability and design versatility.',
+      features: [
+        'Joint-free seamless finish',
+        'Applied over existing tiles/surfaces',
+        'Waterproof when sealed',
+        'Wide range of colors & textures',
       ],
     },
   ]
@@ -132,7 +156,7 @@ export default function Services() {
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-[#090909] text-white relative overflow-hidden">
+      <section className="pt-20 pb-20 bg-[#090909] text-white relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/logo/jdk-plastering-wall.png"
@@ -165,10 +189,11 @@ export default function Services() {
               className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed"
               variants={fadeInUp}
             >
-              At JDK Plastering & Damp, we offer a wide range of expert services
-              tailored to protect and perfect your property. Whether you&apos;re
-              dealing with damp issues or looking for a flawless plaster finish,
-              our experienced team is here to help—across all areas of London.
+              Over a decade of precision craftsmanship and reliable service
+              across the UK. We specialize in damp proofing, plastering,
+              rendering, EWI insulation, and Venetian plastering. We don&apos;t
+              just cover problems—we fix the root cause with proven techniques
+              and quality materials.
             </motion.p>
 
             <motion.div
@@ -206,13 +231,13 @@ export default function Services() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-              Comprehensive Plastering & Damp Solutions
+              Professional Damp & Plastering Solutions
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              From traditional plastering to advanced damp-proofing solutions,
-              we deliver exceptional workmanship across all areas of London.
-              Each service is tailored to meet your specific needs with
-              guaranteed results.
+              <strong>Fully qualified & insured</strong> specialists trusted by
+              homeowners, landlords, and contractors. We provide free site
+              surveys, transparent quotes, and proven methods backed by industry
+              guidance. Clean, courteous service with long-lasting results.
             </p>
           </motion.div>
 
@@ -268,6 +293,108 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Additional Services */}
+      <section className="py-20 bg-gradient-to-br from-slate-100 to-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Additional Specialist Services
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Complete property solutions from foundation to finish
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+            {[
+              {
+                title: 'Air Brick Installation',
+                description:
+                  'Ventilation systems for under-floor airflow, preventing moisture buildup and timber rot.',
+                features: [
+                  'Sub-floor ventilation',
+                  'Cavity wall airflow',
+                  'Moisture prevention',
+                ],
+              },
+              {
+                title: 'Repointing Services',
+                description:
+                  'Renewing eroded mortar joints with breathable materials, restoring water resistance.',
+                features: [
+                  'Lime mortar pointing',
+                  'Victorian/Edwardian restoration',
+                  'Weatherproofing',
+                ],
+              },
+              {
+                title: 'Basement Conversions',
+                description:
+                  'Complete waterproofing for basement and cellar conversions with BS 8102 compliance.',
+                features: [
+                  'Type C waterproofing',
+                  'Membrane systems',
+                  'Pump installations',
+                ],
+              },
+              {
+                title: 'EWI Systems',
+                description:
+                  'External Wall Insulation with integrated render systems for energy efficiency.',
+                features: [
+                  'Thermal performance',
+                  'Weatherproof finish',
+                  'Energy savings',
+                ],
+              },
+              {
+                title: 'Microcement Specialist Applications',
+                description:
+                  'Ultra-modern decorative coating for seamless, waterproof surfaces. Perfect for floors, walls, bathrooms, and kitchens.',
+                features: [
+                  '2-4mm thickness application',
+                  'Over 40 color options',
+                  'Cost-effective stone alternative',
+                ],
+              },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold text-slate-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+                  {service.description}
+                </p>
+                <ul className="space-y-2">
+                  {service.features.map((feature, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center space-x-2 text-sm text-slate-600"
+                    >
+                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Our Services */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
@@ -279,13 +406,13 @@ export default function Services() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Why Choose JDK for Your Property Needs?
+                Why Choose JDK Plastering & Damp Specialist?
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                With over 10 years of experience serving London properties, we
-                combine traditional craftsmanship with modern techniques to
-                deliver lasting solutions that protect and enhance your home or
-                business.
+                Over a decade of hands-on experience across UK properties—from
+                London terraces to country cottages. We understand UK property
+                types and tailor solutions accordingly, using only proven
+                methods and quality materials.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -295,10 +422,10 @@ export default function Services() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 mb-2">
-                      Guaranteed Work
+                      Fully Qualified & Insured
                     </h3>
                     <p className="text-slate-600 text-sm">
-                      All services backed by comprehensive warranties
+                      PCA-compliant systems with comprehensive warranties
                     </p>
                   </div>
                 </div>
@@ -309,10 +436,10 @@ export default function Services() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 mb-2">
-                      Expert Team
+                      Trusted Professionals
                     </h3>
                     <p className="text-slate-600 text-sm">
-                      Skilled professionals with decade of experience
+                      Homeowners, landlords & contractors rely on us
                     </p>
                   </div>
                 </div>
@@ -323,10 +450,10 @@ export default function Services() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 mb-2">
-                      Quality Materials
+                      Proven Methods
                     </h3>
                     <p className="text-slate-600 text-sm">
-                      Premium products for long-lasting results
+                      Industry-backed techniques with quality materials
                     </p>
                   </div>
                 </div>
@@ -337,10 +464,10 @@ export default function Services() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 mb-2">
-                      5-Star Service
+                      Free Site Surveys
                     </h3>
                     <p className="text-slate-600 text-sm">
-                      Exceptional customer satisfaction ratings
+                      Transparent quotes with clear communication
                     </p>
                   </div>
                 </div>
@@ -381,9 +508,9 @@ export default function Services() {
               Ready to Transform Your Property?
             </h2>
             <p className="text-xl mb-8 leading-relaxed">
-              Get expert advice and a free, no-obligation quote for any of our
-              services. Our team is ready to help protect and perfect your
-              London property.
+              Get expert advice and a free, no-obligation site survey. Our
+              friendly team provides reliable solutions to keep UK homes and
+              buildings dry and healthy—from diagnosis to completion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

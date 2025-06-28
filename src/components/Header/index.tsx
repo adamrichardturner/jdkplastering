@@ -1,17 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Phone, MapPin, Clock, Menu, X } from 'lucide-react'
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from 'react-icons/fa'
+import { Phone, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
 
 interface HeaderProps {
   isMenuOpen: boolean
@@ -30,68 +25,18 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
   return (
     <>
-      {/* Top Bar - Hidden on Mobile */}
-      <div className="hidden md:block bg-white border-b border-gray-200 py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-            <div className="flex items-center space-x-6 mb-2 sm:mb-0">
-              <div className="flex items-center space-x-2 text-gray-600">
-                <MapPin className="w-4 h-4" />
-                <span>London, England</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Clock className="w-4 h-4" />
-                <span>Mon-Sat: 9am - 6pm</span>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-gray-600 font-medium">
-                <Phone className="w-4 h-4" />
-                <span>07943 51930</span>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaFacebookF className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaTwitter className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaLinkedinIn className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-600 transition-colors"
-                >
-                  <FaInstagram className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* Navigation - Always fixed to top */}
+      <nav className="fixed top-0 left-0 right-0 w-full bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl z-[100] border-b border-white/10 overflow-hidden">
+        {/* Subtle background pattern for desktop */}
+        <div className="absolute inset-0 opacity-3 pointer-events-none">
+          <div className="absolute top-2 right-20 w-16 h-16 border border-white/10 rounded-full"></div>
+          <div className="absolute top-3 left-32 w-12 h-12 border border-blue-400/10 rounded-full"></div>
+          <div className="absolute bottom-2 right-40 w-14 h-14 border border-slate-400/10 rounded-full"></div>
         </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 w-full bg-[#090909]/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-4 relative">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <motion.div
-                className="flex items-center space-x-3"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="flex items-center space-x-3">
                 <Image
                   src="/logo/jdk-logo.svg"
                   alt="JDK Plastering & Damp Specialist Logo"
@@ -107,7 +52,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                     & DAMP SPECIALIST
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </Link>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -155,7 +100,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"></div>
                 )}
               </Link>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer">
+              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border border-blue-400/20 transition-all duration-300">
                 <Phone className="w-4 h-4 mr-2" />
                 07943 51930
               </Button>
@@ -164,7 +109,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Button
               size="sm"
               variant="ghost"
-              className="md:hidden text-white hover:bg-gray-800"
+              className="md:hidden text-white hover:bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -174,163 +119,147 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               )}
             </Button>
           </div>
-
-          {/* Mobile Menu Overlay */}
-          {isMenuOpen && (
-            <motion.div
-              className="fixed inset-0 bg-black z-[60] md:hidden h-screen w-screen flex flex-col"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-            >
-              {/* Top Section - Close Button */}
-              <motion.div
-                className="flex justify-end items-center px-6 pt-12 pb-8"
-                initial={{ y: -30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-              >
-                {/* Close Button */}
-                <motion.button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center text-white hover:bg-gray-700/50 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-6 h-6" />
-                </motion.button>
-              </motion.div>
-
-              {/* Center Section - Navigation Menu */}
-              <div className="flex-1 flex flex-col justify-center items-center px-8">
-                <motion.div
-                  className="flex flex-col space-y-12 text-center"
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Link
-                      href="/"
-                      className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/')
-                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
-                          : 'text-white'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Home
-                      {isActivePage('/') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
-                      )}
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Link
-                      href="/about"
-                      className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/about')
-                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
-                          : 'text-white'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      About
-                      {isActivePage('/about') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
-                      )}
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Link
-                      href="/services"
-                      className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/services')
-                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
-                          : 'text-white'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Services
-                      {isActivePage('/services') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
-                      )}
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Link
-                      href="/contact"
-                      className={`text-2xl font-bold hover:text-blue-400 transition-all duration-300 relative ${
-                        isActivePage('/contact')
-                          ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
-                          : 'text-white'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Contact
-                      {isActivePage('/contact') && (
-                        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-slate-300 to-blue-400 rounded-full"></div>
-                      )}
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    className="mt-8"
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  >
-                    <Button
-                      className="bg-white text-black hover:bg-gray-100 font-semibold px-12 py-8 text-lg transition-colors duration-300"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Phone className="w-5 h-5 mr-2" />
-                      07943 51930
-                    </Button>
-                  </motion.div>
-
-                  {/* Logo Section */}
-                  <motion.div
-                    className="mt-12 flex items-center justify-center space-x-3"
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                  >
-                    <Image
-                      src="/logo/jdk-logo.svg"
-                      alt="JDK Plastering & Damp Specialist Logo"
-                      width={50}
-                      height={50}
-                      className="w-12 h-12 object-contain"
-                    />
-                    <div>
-                      <div className="text-xl font-bold text-white">
-                        JDK PLASTERING
-                      </div>
-                      <div className="text-xs text-gray-300 uppercase tracking-wider">
-                        & DAMP SPECIALIST
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
         </div>
       </nav>
+
+      {/* Spacer to account for fixed navigation */}
+      <div className="h-[80px]"></div>
+
+      {/* Mobile Menu Overlay - Outside navigation for proper positioning */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-slate-900 z-[9999] md:hidden h-screen w-screen flex flex-col"
+            style={{ pointerEvents: 'auto' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none">
+              <div className="absolute top-20 left-10 w-32 h-32 border border-white/20 rounded-full"></div>
+              <div className="absolute top-40 right-16 w-24 h-24 border border-blue-400/20 rounded-full"></div>
+              <div className="absolute bottom-32 left-20 w-40 h-40 border border-slate-400/20 rounded-full"></div>
+              <div className="absolute bottom-20 right-8 w-20 h-20 border border-indigo-400/20 rounded-full"></div>
+            </div>
+
+            {/* Top Section - Close Button */}
+            <motion.div
+              className="flex justify-end items-center px-8 pt-16 pb-8"
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
+            >
+              <motion.button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/15 transition-all duration-300 border border-white/20 shadow-2xl hover:shadow-white/20 hover:border-white/40"
+                whileHover={{ scale: 1.05, rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <X className="w-6 h-6" />
+              </motion.button>
+            </motion.div>
+
+            {/* Navigation Menu */}
+            <div className="flex-1 flex flex-col justify-center px-8">
+              <motion.div
+                className="space-y-8"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
+              >
+                {[
+                  { href: '/', label: 'Home' },
+                  { href: '/about', label: 'About' },
+                  { href: '/services', label: 'Services' },
+                  { href: '/contact', label: 'Contact' },
+                ].map((item, index) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group flex items-center justify-between py-6 border-b border-white/10 hover:border-white/30 transition-all duration-300 hover:translate-x-2 w-full block cursor-pointer relative z-10"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      // Let navigation happen first, then close menu with delay
+                      setTimeout(() => {
+                        setIsMenuOpen(false)
+                      }, 100)
+                    }}
+                  >
+                    <motion.div
+                      className="flex items-center justify-between w-full"
+                      initial={{ x: -50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{
+                        delay: 0.3 + index * 0.1,
+                        duration: 0.5,
+                        ease: 'easeOut',
+                      }}
+                    >
+                      <span
+                        className={`text-3xl font-bold transition-all duration-300 ${
+                          isActivePage(item.href)
+                            ? 'bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent'
+                            : 'text-white group-hover:text-blue-400'
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                      <div className="text-gray-400 group-hover:text-white transition-all duration-300 group-hover:translate-x-1">
+                        →
+                      </div>
+                    </motion.div>
+                  </Link>
+                ))}
+              </motion.div>
+
+              {/* Call to Action Section */}
+              <motion.div
+                className="mt-16 space-y-6"
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.6, ease: 'easeOut' }}
+              >
+                <div className="text-sm text-gray-400 font-medium">
+                  GET IN TOUCH
+                </div>
+
+                <motion.a
+                  href="tel:07943519301"
+                  className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 group"
+                  onClick={() => {
+                    // Let phone action happen first, then close menu
+                    setTimeout(() => {
+                      setIsMenuOpen(false)
+                    }, 100)
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-lg">
+                        Call Now
+                      </div>
+                      <div className="text-blue-100 text-sm">07943 51930</div>
+                    </div>
+                  </div>
+                  <motion.div
+                    className="text-white/80 group-hover:text-white transition-colors duration-300"
+                    whileHover={{ x: 5 }}
+                  >
+                    →
+                  </motion.div>
+                </motion.a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

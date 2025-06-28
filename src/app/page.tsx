@@ -172,7 +172,7 @@ export default function Index() {
               animate="animate"
             >
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
                 variants={fadeInUp}
               >
                 <span className="text-white">London&apos;s Leading </span>

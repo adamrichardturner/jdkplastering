@@ -127,7 +127,7 @@ export default function Contact() {
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-[#090909] text-white relative overflow-hidden">
+      <section className="pt-20 pb-20 bg-[#090909] text-white relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/logo/jdk-plastering-wall.png"
