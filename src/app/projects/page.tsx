@@ -18,10 +18,7 @@ import {
   Share,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-} from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -205,7 +202,7 @@ export default function Projects() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/80 to-[#090909]/60"></div>
         </div>
 
-        <div className="container mx-auto px-4 py-10 relative">
+        <div className="container mx-auto px-4 py-40 md:py-40 relative">
           <motion.div
             className="max-w-4xl mx-auto text-center"
             variants={staggerContainer}
@@ -244,14 +241,6 @@ export default function Projects() {
                   Get Free Quote
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-black bg-white hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
-              >
-                <Camera className="w-5 h-5 mr-2" />
-                View Process
-              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -306,7 +295,7 @@ export default function Projects() {
 
           {/* Category Filter */}
           <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-12"
+            className="flex flex-wrap justify-start md:justify-center gap-3 mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -344,43 +333,50 @@ export default function Projects() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white">
+                <Card className="overflow-hidden border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl hover:shadow-3xl hover:bg-white/90 transition-all duration-700 ease-out hover:scale-[1.02] hover:border-white/30 relative group">
+                  {/* Subtle Background Pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
                   {/* Image Container */}
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-square overflow-hidden rounded-t-xl">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
 
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Enhanced Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center justify-between text-white mb-2">
+                        <div className="flex items-center justify-between text-white mb-3">
                           <div className="flex items-center space-x-4">
-                            <button className="flex items-center space-x-1 hover:scale-110 transition-transform">
-                              <Heart className="w-5 h-5" />
-                              <span className="text-sm">{project.likes}</span>
+                            <button className="flex items-center space-x-2 bg-white/20 backdrop-blur-md rounded-full px-3 py-1.5 hover:bg-white/30 transition-all duration-300 hover:scale-105">
+                              <Heart className="w-4 h-4 fill-red-400 text-red-400" />
+                              <span className="text-sm font-medium">
+                                {project.likes}
+                              </span>
                             </button>
-                            <button className="hover:scale-110 transition-transform">
-                              <MessageCircle className="w-5 h-5" />
+                            <button className="p-2 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105 hover:rotate-12">
+                              <MessageCircle className="w-4 h-4" />
                             </button>
-                            <button className="hover:scale-110 transition-transform">
-                              <Share className="w-5 h-5" />
+                            <button className="p-2 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105">
+                              <Share className="w-4 h-4" />
                             </button>
                           </div>
-                          <div className="flex items-center space-x-1 text-sm">
-                            <MapPin className="w-4 h-4" />
-                            <span>{project.location}</span>
+                          <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
+                            <MapPin className="w-3 h-3" />
+                            <span className="text-xs font-medium">
+                              {project.location}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Category Badge */}
+                    {/* Enhanced Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="bg-black/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
+                      <span className="bg-gradient-to-r from-blue-600 to-indigo-600 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-semibold shadow-lg border border-white/20">
                         {
                           categories.find((cat) => cat.id === project.category)
                             ?.label
@@ -389,46 +385,50 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-bold text-slate-900 text-lg leading-tight">
+                  {/* Enhanced Content */}
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="font-bold text-slate-900 text-xl leading-tight flex-1 mr-4">
                         {project.title}
                       </h3>
-                      <div className="flex items-center text-slate-500 text-sm">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {project.date}
+                      <div className="flex items-center text-slate-500 text-sm bg-slate-100/80 backdrop-blur-sm rounded-full px-3 py-1.5 border border-slate-200/50">
+                        <Calendar className="w-3 h-3 mr-1.5" />
+                        <span className="font-medium">{project.date}</span>
                       </div>
                     </div>
 
-                    <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                    <p className="text-slate-600 text-sm mb-5 leading-relaxed line-clamp-3">
                       {project.description}
                     </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    {/* Enhanced Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="bg-slate-100 text-slate-600 px-2 py-1 rounded-md text-xs font-medium"
+                          className="bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200/50 hover:border-blue-200 hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-300"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    {/* Bottom Actions */}
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                      <div className="flex items-center space-x-1 text-slate-500">
-                        <Heart className="w-4 h-4" />
-                        <span className="text-sm">{project.likes} likes</span>
+                    {/* Enhanced Bottom Actions */}
+                    <div className="flex items-center justify-between pt-4 border-t border-slate-200/50">
+                      <div className="flex items-center space-x-2 text-slate-500">
+                        <div className="w-8 h-8 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center">
+                          <Heart className="w-4 h-4 text-red-500" />
+                        </div>
+                        <span className="text-sm font-medium">
+                          {project.likes} likes
+                        </span>
                       </div>
                       <Button
                         size="sm"
-                        variant="outline"
-                        className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white border-0 px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                       >
                         View Details
+                        <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </div>
                   </CardContent>
@@ -447,8 +447,7 @@ export default function Projects() {
           >
             <Button
               size="lg"
-              variant="outline"
-              className="border-slate-300 text-slate-600 hover:bg-slate-50 px-10 py-4"
+              className="bg-white/80 backdrop-blur-xl border border-white/30 text-slate-700 hover:bg-white/90 hover:border-white/40 hover:text-slate-900 px-12 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               Load More Projects
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -513,22 +512,24 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                className="text-center group"
               >
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-xl">
-                    <item.icon className="w-8 h-8 text-white" />
+                <div className="bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:border-white/40">
+                  <div className="relative mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
+                      <item.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg border-2 border-white">
+                      {item.step}
+                    </div>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                    {item.step}
-                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
               </motion.div>
             ))}
           </div>

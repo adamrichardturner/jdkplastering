@@ -225,12 +225,12 @@ export default function Index() {
               variants={staggerContainer}
             >
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
                   <Award className="w-7 h-7 text-white" />
                 </div>
                 <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -238,12 +238,12 @@ export default function Index() {
                 </p>
               </motion.div>
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
                   <Users className="w-7 h-7 text-white" />
                 </div>
                 <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -252,12 +252,12 @@ export default function Index() {
               </motion.div>
 
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
                   <CheckCircle className="w-7 h-7 text-white" />
                 </div>
                 <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -266,12 +266,12 @@ export default function Index() {
               </motion.div>
 
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 shadow-lg border border-white/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
                   <Shield className="w-7 h-7 text-white" />
                 </div>
                 <p className="text-white text-sm font-semibold text-center leading-tight">
@@ -283,19 +283,16 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Mobile Gradient Transition */}
-      <div className="h-20 bg-gradient-to-b from-[#090909] via-slate-800 to-slate-200 md:hidden"></div>
-
-      {/* Mobile Trust Indicators - Glass Morphism Cards */}
-      <section className="py-12 bg-gradient-to-br from-slate-200 to-slate-100 md:hidden relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-indigo-50/30"></div>
+      {/* Mobile Trust Indicators - Optimized for Smooth Scrolling */}
+      <section className="py-16 bg-gradient-to-br from-slate-200 to-slate-100 md:hidden relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-indigo-50/20"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div
-            className="text-center mb-6"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-2">
               Why Choose JDK Plastering?
@@ -305,7 +302,13 @@ export default function Index() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-4 max-w-sm mx-auto">
+          <motion.div
+            className="grid grid-cols-1 gap-4 max-w-sm mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
+          >
             {[
               {
                 icon: Award,
@@ -331,12 +334,15 @@ export default function Index() {
             ].map((item, index) => (
               <motion.div
                 key={item.title}
-                className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/70 hover:border-white/60 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ scale: 1.02, y: -3 }}
+                className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/75 transition-all duration-500 ease-out"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.4 + index * 0.1,
+                  ease: 'easeOut',
+                }}
               >
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-white/80 to-white/60 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-white/50">
@@ -353,19 +359,19 @@ export default function Index() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <motion.div
-            className="text-center mt-6"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            className="text-center mt-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
           >
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm transition-all duration-300"
               >
                 <Phone className="w-4 h-4 mr-2" />
                 Get Free Quote
@@ -376,14 +382,14 @@ export default function Index() {
       </section>
 
       {/* Featured Work Section */}
-      <section className="py-10 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Our Work Speaks for Itself
@@ -396,10 +402,10 @@ export default function Index() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 1, ease: 'easeOut' }}
             >
               <div className="overflow-hidden rounded-2xl shadow-2xl">
                 <Image
@@ -414,10 +420,10 @@ export default function Index() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
               className="space-y-6"
             >
               <div>
@@ -524,14 +530,14 @@ export default function Index() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-10 md:py-24 px-4">
+      <section id="services" className="py-16 md:py-24 px-4">
         <div className="container mx-auto">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               What We Can Help You With
@@ -551,9 +557,9 @@ export default function Index() {
             viewport={{ once: true }}
           >
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group">
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 ease-out group">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-500">
                     <Hammer className="w-10 h-10 text-blue-600" />
                   </div>
                   <CardTitle className="text-xl font-bold">
@@ -571,9 +577,9 @@ export default function Index() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group">
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 ease-out group">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-500">
                     <ThermometerSun className="w-10 h-10 text-green-600" />
                   </div>
                   <CardTitle className="text-xl font-bold">
@@ -590,9 +596,9 @@ export default function Index() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group">
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 ease-out group">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-500">
                     <Home className="w-10 h-10 text-purple-600" />
                   </div>
                   <CardTitle className="text-xl font-bold">
@@ -609,9 +615,9 @@ export default function Index() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 group">
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 ease-out group">
                 <CardHeader className="text-center pb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-500">
                     <Droplets className="w-10 h-10 text-red-600" />
                   </div>
                   <CardTitle className="text-xl font-bold">
