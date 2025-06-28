@@ -57,23 +57,15 @@ const slideInRight = {
 
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentBgImage, setCurrentBgImage] = useState(0)
 
-  // Sample placeholder images for carousel
-  const carouselImages = [
-    { id: 1, title: "Damp Survey", color: "bg-blue-100" },
-    { id: 2, title: "Damp Proofing", color: "bg-green-100" },
-    { id: 3, title: "Plastering Work", color: "bg-purple-100" },
-    { id: 4, title: "External Rendering", color: "bg-orange-100" },
-  ]
-
-  // Auto-advance carousel
+  // Auto-advance background slider (2 images total)
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-    }, 4000)
+      setCurrentBgImage((prev) => (prev + 1) % 2)
+    }, 5000) // 5 seconds between transitions
     return () => clearInterval(timer)
-  }, [carouselImages.length])
+  }, [])
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -90,7 +82,7 @@ export default function Index() {
   }, [isMenuOpen])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
       {/* Top Bar - Hidden on Mobile */}
       <div className="hidden md:block bg-white border-b border-gray-200 py-2">
         <div className="container mx-auto px-4">
@@ -132,12 +124,7 @@ export default function Index() {
       </div>
 
       {/* Navigation */}
-      <motion.nav 
-        className="sticky top-0 w-full bg-[#090909]/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-800"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+      <nav className="fixed top-0 left-0 right-0 w-full bg-[#090909]/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -146,7 +133,7 @@ export default function Index() {
               transition={{ duration: 0.2 }}
             >
               <Image 
-                src="/logo/jdk-logo.png" 
+                src="/logo/jdk-logo.svg" 
                 alt="JDK Plastering & Damp Specialist Logo" 
                 width={50} 
                 height={50}
@@ -163,7 +150,7 @@ export default function Index() {
               <a href="#about" className="text-gray-300 hover:text-white transition-colors font-medium">About</a>
               <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium">Services</a>
               <a href="#contact" className="text-gray-300 hover:text-white transition-colors font-medium">Contact</a>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-black hover:from-blue-700 hover:to-indigo-700 font-semibold">
+              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer">
                 <Phone className="w-4 h-4 mr-2" />
                 07943 51930
               </Button>
@@ -182,7 +169,7 @@ export default function Index() {
           {/* Mobile Menu Overlay */}
           {isMenuOpen && (
             <motion.div 
-              className="fixed inset-0 bg-black z-[60] md:hidden h-screen w-screen flex flex-col"
+              className="fixed inset-0 bg-black z-[60] md:hidden h-full w-full flex flex-col"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -198,7 +185,7 @@ export default function Index() {
                 {/* Logo */}
                 <div className="flex items-center space-x-3">
                   <Image 
-                    src="/logo/jdk-logo.png" 
+                    src="/logo/jdk-logo.svg" 
                     alt="JDK Plastering & Damp Specialist Logo" 
                     width={50} 
                     height={50}
@@ -273,7 +260,7 @@ export default function Index() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   >
                     <Button 
-                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold px-8 py-6 text-lg"
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white hover:to-indigo-700 font-semibold px-8 py-6 text-lg"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Phone className="w-5 h-5 mr-2" />
@@ -285,23 +272,74 @@ export default function Index() {
             </motion.div>
           )}
         </div>
-      </motion.nav>
+              </nav>
 
       {/* Hero Section */}
-      <section id="home" className="h-screen bg-[#090909] text-white relative overflow-hidden flex items-center">
-        {/* Background Image */}
+      <section id="home" className="min-h-screen py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center">
+        {/* Background Image Slider */}
         <div className="absolute inset-0">
-          <Image 
-            src="/logo/jdk-plastering-wall.png" 
-            alt="JDK Plastering work showcase" 
-            fill
-            className="object-cover opacity-100"
-            priority
-          />
+          {/* Mobile Background Images */}
+          <div className="md:hidden">
+            <div
+              className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+                currentBgImage === 0 ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image 
+                src="/images/hero-bg-mobile-1.jpg"
+                alt="JDK Plastering mobile showcase 1"
+                fill
+                className="object-cover object-right"
+                priority
+              />
+            </div>
+            <div
+              className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+                currentBgImage === 1 ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image 
+                src="/images/hero-bg-mobile-2.jpg"
+                alt="JDK Plastering mobile showcase 2"
+                fill
+                className="object-cover object-right"
+              />
+            </div>
+          </div>
+
+          {/* Desktop Background Images */}
+          <div className="hidden md:block">
+            <div
+              className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+                currentBgImage === 0 ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image 
+                src="/images/hero-bg-1.jpg"
+                alt="JDK Plastering desktop showcase 1"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+            <div
+              className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+                currentBgImage === 1 ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image 
+                src="/images/hero-bg-2.jpg"
+                alt="JDK Plastering desktop showcase 2"
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
         
-        <div className="container mx-auto relative px-4">
+        <div className="container mx-auto relative px-4 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
             <motion.div 
@@ -318,27 +356,21 @@ export default function Index() {
                 <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                   Damp Proofing
                 </span>
-                <span className="text-white"> & Plastering Specialists</span>
+                <span className="text-white"> & </span>
+                <span className="bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent">
+                  Expert Plastering
+                </span>
+                <span className="text-white"> Specialists</span>
               </motion.h1>
-              
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6"
-                variants={fadeInUp}
-              >
-                <Badge className="bg-gradient-to-r from-purple-800 to-purple-900 text-white border-purple-700 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 w-fit">
-                  🏆 We Beat Any Damp Company Price in the UK
-                </Badge>
-                <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-500 px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300 w-fit">
-                  <Shield className="w-4 h-4 mr-2" />
-                  25-Year Workmanship Guarantee
-                </Badge>
-              </motion.div>
+            
               
               <motion.p 
                 className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed"
                 variants={fadeInUp}
               >
-                <strong className="text-white">Fix damp permanently.</strong> Expert solutions for rising damp, penetrating damp & condensation. Professional plastering & rendering across the UK.
+                <strong className="text-white">Fix damp permanently.</strong> Expert solutions for rising damp, penetrating damp & condensation. 
+                <br className="hidden sm:block" />
+                <strong className="text-blue-400">Premium plastering & rendering services</strong> — from decorative finishes to external wall insulation across the UK.
               </motion.p>
               
               <motion.div 
@@ -347,110 +379,65 @@ export default function Index() {
               >
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   Get Free Quote
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="relative px-8 py-6 text-lg font-semibold border-2 border-white text-black bg-white overflow-hidden group transition-all duration-300 hover:border-blue-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform -translate-x-full skew-x-12 group-hover:translate-x-0 transition-transform duration-700 ease-out origin-left"></div>
-                  <div className="relative z-10 flex items-center group-hover:text-white transition-colors duration-400">
-                    <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="group-hover:tracking-wide transition-all duration-300">07943 51930</span>
-                  </div>
-                </Button>
               </motion.div>
 
               <motion.div 
-                className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
                 variants={staggerContainer}
               >
-                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
-                  <Award className="w-6 h-6 text-blue-400 mx-auto sm:mx-0 mb-2" />
-                  <p className="text-gray-300 text-sm font-medium">Fully Qualified & Insured</p>
+                <motion.div 
+                  className="flex flex-col items-center sm:items-start group"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
+                    <Award className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white text-base font-semibold text-center sm:text-left">Fully Qualified & Insured</p>
                 </motion.div>
-                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
-                  <Users className="w-6 h-6 text-indigo-400 mx-auto sm:mx-0 mb-2" />
-                  <p className="text-gray-300 text-sm font-medium">Trusted by Homeowners</p>
+                
+                <motion.div 
+                  className="flex flex-col items-center sm:items-start group"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white text-base font-semibold text-center sm:text-left">Trusted by Homeowners</p>
                 </motion.div>
-                <motion.div className="text-center sm:text-left" variants={fadeInUp}>
-                  <CheckCircle className="w-6 h-6 text-green-400 mx-auto sm:mx-0 mb-2" />
-                  <p className="text-gray-300 text-sm font-medium">Free Site Surveys</p>
+                
+                <motion.div 
+                  className="flex flex-col items-center sm:items-start group"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white text-base font-semibold text-center sm:text-left">Free Site Surveys</p>
+                </motion.div>
+
+                <motion.div 
+                  className="flex flex-col items-center sm:items-start group"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-all duration-300">
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white text-base font-semibold text-center sm:text-left">Price Match Guaranteed</p>
                 </motion.div>
               </motion.div>
-            </motion.div>
-
-            {/* Right Side - Image Carousel (Desktop Only) */}
-            <motion.div 
-              className="hidden lg:block"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm ml-auto">
-                <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
-                  Our Work Gallery
-                </h3>
-                
-                {/* Carousel Container */}
-                <div className="relative overflow-hidden rounded-lg">
-                  <div 
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                  >
-                    {carouselImages.map((image) => (
-                      <div key={image.id} className="w-full flex-shrink-0">
-                        <div className={`aspect-video ${image.color} flex items-center justify-center border-2 border-slate-200 rounded-lg`}>
-                          <div className="text-center p-4">
-                            <div className="w-16 h-16 bg-slate-300 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                              <span className="text-slate-600 text-xs font-medium">IMG</span>
-                            </div>
-                            <span className="text-slate-700 font-medium text-sm">{image.title}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Carousel Indicators */}
-                <div className="flex justify-center space-x-2 mt-4">
-                  {carouselImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
-                        index === currentSlide ? 'bg-blue-600' : 'bg-slate-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-                
-                {/* Navigation Arrows */}
-                <div className="flex justify-between items-center mt-4">
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)}
-                    className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
-                  >
-                    <ArrowRight className="w-4 h-4 text-slate-600 rotate-180" />
-                  </button>
-                  
-                  <span className="text-sm text-slate-500">
-                    {currentSlide + 1} / {carouselImages.length}
-                  </span>
-                  
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev + 1) % carouselImages.length)}
-                    className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
-                  >
-                    <ArrowRight className="w-4 h-4 text-slate-600" />
-                  </button>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -955,7 +942,7 @@ export default function Index() {
             <div>
               <div className="flex items-center space-x-3 mb-6">
                 <Image 
-                  src="/logo/jdk-logo.png" 
+                  src="/logo/jdk-logo.svg" 
                   alt="JDK Plastering & Damp Specialist Logo" 
                   width={40} 
                   height={40}
