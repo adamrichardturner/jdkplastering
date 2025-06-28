@@ -164,7 +164,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             {/* Navigation Menu */}
             <div className="flex-1 flex flex-col justify-center px-8">
               <motion.div
-                className="space-y-8"
+                className="space-y-3"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
@@ -178,7 +178,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex items-center justify-between py-6 border-b border-white/10 hover:border-white/30 transition-all duration-300 hover:translate-x-2 w-full block cursor-pointer relative z-10"
+                    className="group flex items-center justify-between py-3 border-b border-white/10 hover:border-white/30 transition-all duration-300 hover:translate-x-2 w-full block cursor-pointer relative z-10"
                     onClick={(e) => {
                       e.stopPropagation()
                       // Let navigation happen first, then close menu with delay
@@ -216,7 +216,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
               {/* Call to Action Section */}
               <motion.div
-                className="mt-16 space-y-6"
+                className="mt-16 space-y-3"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.6, ease: 'easeOut' }}

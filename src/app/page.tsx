@@ -97,7 +97,7 @@ export default function Index() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
+        className="min-h-screen py-4 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
       >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
@@ -162,7 +162,7 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container mx-auto relative px-4 py-20">
+        <div className="container mx-auto relative px-4 py-10 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
             <motion.div
