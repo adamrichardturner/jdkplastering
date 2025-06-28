@@ -285,7 +285,7 @@ export default function Index() {
       </section>
 
       {/* Featured Work Section */}
-      <section className="py-24 bg-white">
+      <section className="py-10 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -433,7 +433,7 @@ export default function Index() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 px-4">
+      <section id="services" className="py-10 md:py-24 px-4">
         <div className="container mx-auto">
           <motion.div
             className="text-center mb-20"
@@ -540,7 +540,7 @@ export default function Index() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-[#090909] text-white">
+      <section id="about" className="py-10 md:py-24 bg-[#090909] text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -629,7 +629,7 @@ export default function Index() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-10 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-20"
@@ -726,7 +726,10 @@ export default function Index() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 bg-[#090909] text-white">
+      <section
+        id="contact"
+        className="py-10 md:py-24 px-4 bg-[#090909] text-white"
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="text-center mb-20"
@@ -744,7 +747,7 @@ export default function Index() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
