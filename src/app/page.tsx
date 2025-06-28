@@ -502,7 +502,7 @@ export default function Index() {
                 With over a decade of experience, we specialize in plastering, rendering, and tailored damp-proofing solutions. Our expert team uses premium materials — from lime and acrylic to insulated renders — to deliver high-performance finishes built to last.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                Whether you're tackling rising damp or boosting energy efficiency, we work clean, quick, and professionally on every job across London and surrounding areas.
+                Whether you&apos;re tackling rising damp or boosting energy efficiency, we work clean, quick, and professionally on every job across London and surrounding areas.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
@@ -562,8 +562,8 @@ export default function Index() {
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               What Our Clients Say
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Don't just take our word for it - hear from our satisfied customers
+                          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Don&apos;t just take our word for it - hear from our satisfied customers
             </p>
           </motion.div>
 
@@ -583,7 +583,7 @@ export default function Index() {
                     ))}
                   </div>
                   <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    "JDK sorted our rising damp quickly. Clean, professional, and no mess left behind — highly recommended."
+                    &quot;JDK sorted our rising damp quickly. Clean, professional, and no mess left behind — highly recommended.&quot;
                   </p>
                   <p className="font-semibold text-slate-900 text-lg">Sarah T.</p>
                 </CardContent>
@@ -599,7 +599,7 @@ export default function Index() {
                     ))}
                   </div>
                   <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    "From the initial survey to final render, their team were prompt and reliable throughout."
+                    &quot;From the initial survey to final render, their team were prompt and reliable throughout.&quot;
                   </p>
                   <p className="font-semibold text-slate-900 text-lg">Mark T.</p>
                 </CardContent>
@@ -615,7 +615,7 @@ export default function Index() {
                     ))}
                   </div>
                   <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    "Excellent service, competitive pricing and customer support. Thoroughly refreshing to get such personal service."
+                    &quot;Excellent service, competitive pricing and customer support. Thoroughly refreshing to get such personal service.&quot;
                   </p>
                   <p className="font-semibold text-slate-900 text-lg">Shirley Smith</p>
                 </CardContent>
@@ -653,7 +653,7 @@ export default function Index() {
               <Card className="border border-gray-700 bg-gray-800/50 backdrop-blur-sm shadow-2xl">
                 <CardHeader>
                   <CardTitle className="text-2xl text-white">Send us a message</CardTitle>
-                  <CardDescription className="text-gray-300">We'll get back to you within 24 hours</CardDescription>
+                  <CardDescription className="text-gray-300">We&apos;ll get back to you within 24 hours</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
