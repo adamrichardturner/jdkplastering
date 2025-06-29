@@ -12,6 +12,7 @@
     "format:staged": "prettier --write"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "babel-plugin-react-compiler": "^19.1.0-rc.2",

@@ -28,6 +28,13 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Separator } from '@/components/ui/separator'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -841,6 +848,147 @@ export default function Index() {
                     type="tel"
                     className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
                   />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Select>
+                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                        <SelectValue placeholder="Service Required" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-800 border-gray-600">
+                        <SelectItem
+                          value="damp-proofing"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Damp Proofing
+                        </SelectItem>
+                        <SelectItem
+                          value="plastering"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Plastering
+                        </SelectItem>
+                        <SelectItem
+                          value="rendering"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Rendering
+                        </SelectItem>
+                        <SelectItem
+                          value="external-wall-insulation"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          External Wall Insulation
+                        </SelectItem>
+                        <SelectItem
+                          value="venetian-plastering"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Venetian Plastering
+                        </SelectItem>
+                        <SelectItem
+                          value="waterproofing"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Waterproofing
+                        </SelectItem>
+                        <SelectItem
+                          value="multiple-services"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Multiple Services
+                        </SelectItem>
+                        <SelectItem
+                          value="not-sure"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Not Sure - Need Advice
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <Select>
+                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                        <SelectValue placeholder="Property Type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-800 border-gray-600">
+                        <SelectItem
+                          value="house"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          House
+                        </SelectItem>
+                        <SelectItem
+                          value="flat-apartment"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Flat/Apartment
+                        </SelectItem>
+                        <SelectItem
+                          value="commercial"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Commercial Property
+                        </SelectItem>
+                        <SelectItem
+                          value="heritage-listed"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Heritage/Listed Building
+                        </SelectItem>
+                        <SelectItem
+                          value="new-build"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          New Build
+                        </SelectItem>
+                        <SelectItem
+                          value="other"
+                          className="text-white hover:bg-gray-700"
+                        >
+                          Other
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Select>
+                    <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                      <SelectValue placeholder="Project Timeline" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-gray-800 border-gray-600">
+                      <SelectItem
+                        value="urgent"
+                        className="text-white hover:bg-gray-700"
+                      >
+                        Urgent - Within 1 week
+                      </SelectItem>
+                      <SelectItem
+                        value="asap"
+                        className="text-white hover:bg-gray-700"
+                      >
+                        ASAP - Within 2-4 weeks
+                      </SelectItem>
+                      <SelectItem
+                        value="flexible"
+                        className="text-white hover:bg-gray-700"
+                      >
+                        Flexible - Within 1-3 months
+                      </SelectItem>
+                      <SelectItem
+                        value="planning"
+                        className="text-white hover:bg-gray-700"
+                      >
+                        Planning - 3+ months
+                      </SelectItem>
+                      <SelectItem
+                        value="quote-only"
+                        className="text-white hover:bg-gray-700"
+                      >
+                        Quote Only - No Timeline Yet
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+
                   <Textarea
                     placeholder="Tell us about your project..."
                     className="min-h-32 bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
