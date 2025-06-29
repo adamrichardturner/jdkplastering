@@ -170,7 +170,7 @@ export default function Projects() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/80 to-[#090909]/60"></div>
         </div>
 
-        <div className="container mx-auto px-4 py-40 md:py-40 relative">
+        <div className="container mx-auto md:h-[670px] h-[600px] py-20 md:py-40 px-4 relative">
           <motion.div
             className="max-w-4xl mx-auto text-center"
             variants={staggerContainer}
