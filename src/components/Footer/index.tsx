@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Phone } from 'lucide-react'
 import {
   FaFacebookF,
@@ -10,7 +11,12 @@ import {
 import { Separator } from '@/components/ui/separator'
 
 export default function Footer() {
+  const pathname = usePathname()
   const year = new Date().getFullYear()
+
+  const isActive = (path: string) => {
+    return pathname === path
+  }
   return (
     <footer className="bg-[#090909] text-white py-16 border-t border-gray-800">
       <div className="container mx-auto px-4">
@@ -73,14 +79,25 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <div className="space-y-3 text-gray-400">
               <div>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link
+                  href="/"
+                  className={`hover:text-white transition-colors ${
+                    isActive('/')
+                      ? 'text-white underline underline-offset-2'
+                      : ''
+                  }`}
+                >
                   Home
                 </Link>
               </div>
               <div>
                 <Link
                   href="/about"
-                  className="hover:text-white transition-colors"
+                  className={`hover:text-white transition-colors ${
+                    isActive('/about')
+                      ? 'text-white underline underline-offset-2'
+                      : ''
+                  }`}
                 >
                   About
                 </Link>
@@ -88,7 +105,11 @@ export default function Footer() {
               <div>
                 <Link
                   href="/services"
-                  className="hover:text-white transition-colors"
+                  className={`hover:text-white transition-colors ${
+                    isActive('/services')
+                      ? 'text-white underline underline-offset-2'
+                      : ''
+                  }`}
                 >
                   Services
                 </Link>
@@ -96,7 +117,11 @@ export default function Footer() {
               <div>
                 <Link
                   href="/projects"
-                  className="hover:text-white transition-colors"
+                  className={`hover:text-white transition-colors ${
+                    isActive('/projects')
+                      ? 'text-white underline underline-offset-2'
+                      : ''
+                  }`}
                 >
                   Projects
                 </Link>
@@ -104,7 +129,11 @@ export default function Footer() {
               <div>
                 <Link
                   href="/contact"
-                  className="hover:text-white transition-colors"
+                  className={`hover:text-white transition-colors ${
+                    isActive('/contact')
+                      ? 'text-white underline underline-offset-2'
+                      : ''
+                  }`}
                 >
                   Contact
                 </Link>
