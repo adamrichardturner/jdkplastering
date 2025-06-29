@@ -25,6 +25,7 @@ import {
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import TrustIndicators from '@/components/TrustIndicators'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -233,69 +234,11 @@ export default function Services() {
                 Get Free Quote
               </StandardButton>
             </motion.div>
-
-            <motion.div
-              className="hidden md:grid grid-rows-1 md:grid-cols-4 gap-6 mt-8"
-              variants={staggerContainer}
-            >
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Award className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Fully Qualified & Insured
-                </p>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Users className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Trusted by Homeowners
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <CheckCircle className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Free Site Surveys
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Shield className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Price Match Guaranteed
-                </p>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      <TrustIndicators />
 
       {/* Services Section */}
       <section className="py-24 bg-white">

@@ -36,8 +36,10 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useState, useEffect } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import TrustIndicators from '@/components/TrustIndicators'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -68,6 +70,23 @@ const slideInRight = {
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentBgImage, setCurrentBgImage] = useState(0)
+  const [state, handleSubmit] = useForm('mvgrloed')
+  const [formData, setFormData] = useState({
+    service: '',
+    propertyType: '',
+    timeline: '',
+  })
+
+  // Reset form data when submission is successful
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormData({
+        service: '',
+        propertyType: '',
+        timeline: '',
+      })
+    }
+  }, [state.succeeded])
 
   // Auto-advance background slider (2 images total)
   useEffect(() => {
@@ -222,135 +241,11 @@ export default function Index() {
                 Get Free Quote
               </StandardButton>
             </motion.div>
-
-            <motion.div
-              className="hidden md:grid grid-rows-1 md:grid-cols-4 gap-6 mt-8"
-              variants={staggerContainer}
-            >
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Award className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Fully Qualified & Insured
-                </p>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Users className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Trusted by Homeowners
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <CheckCircle className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Free Site Surveys
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Shield className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Price Match Guaranteed
-                </p>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Mobile Trust Indicators - No Animations for Smooth Scrolling */}
-      <section className="py-16 bg-gradient-to-br from-slate-200 to-slate-100 md:hidden relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-indigo-50/20"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">
-              Why Choose JDK Plastering?
-            </h2>
-            <p className="text-slate-600">
-              Trusted professionals across London
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 max-w-sm mx-auto">
-            {[
-              {
-                icon: Award,
-                title: 'Fully Qualified & Insured',
-                description:
-                  'PCA-compliant systems with comprehensive warranties',
-              },
-              {
-                icon: Users,
-                title: 'Trusted by Homeowners',
-                description: 'Homeowners, landlords & contractors rely on us',
-              },
-              {
-                icon: CheckCircle,
-                title: 'Free Site Surveys',
-                description: 'Transparent quotes with clear communication',
-              },
-              {
-                icon: Shield,
-                title: 'Price Match Guaranteed',
-                description: 'Competitive pricing with quality guarantees',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="p-5 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl hover:bg-white/75 transition-all duration-500 ease-out"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-white/80 to-white/60 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-white/50">
-                    <item.icon className="w-6 h-6 text-slate-700" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-slate-900 mb-1 text-sm">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600 text-xs leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <StandardButton variant="primary" href="/contact" icon="phone">
-              Get Free Quote
-            </StandardButton>
-          </div>
-        </div>
-      </section>
+      <TrustIndicators />
 
       {/* Featured Work Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -827,180 +722,314 @@ export default function Index() {
                     We&apos;ll get back to you within 24 hours
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      placeholder="First Name"
-                      className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
-                    />
-                    <Input
-                      placeholder="Last Name"
-                      className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
-                    />
-                  </div>
-                  <Input
-                    placeholder="Email Address"
-                    type="email"
-                    className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
-                  />
-                  <Input
-                    placeholder="Phone Number"
-                    type="tel"
-                    className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
-                  />
+                <CardContent>
+                  {state.succeeded ? (
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        Thank you for your message!
+                      </h3>
+                      <p className="text-gray-300">
+                        We&apos;ll get back to you within 24 hours with your
+                        free quote.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Input
+                            name="firstName"
+                            placeholder="First Name"
+                            className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
+                            required
+                          />
+                          <ValidationError
+                            prefix="First Name"
+                            field="firstName"
+                            errors={state.errors}
+                            className="text-red-400 text-sm mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            name="lastName"
+                            placeholder="Last Name"
+                            className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
+                            required
+                          />
+                          <ValidationError
+                            prefix="Last Name"
+                            field="lastName"
+                            errors={state.errors}
+                            className="text-red-400 text-sm mt-1"
+                          />
+                        </div>
+                      </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Select>
-                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
-                        <SelectValue placeholder="Service Required" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-gray-800 border-gray-600">
-                        <SelectItem
-                          value="damp-proofing"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Damp Proofing
-                        </SelectItem>
-                        <SelectItem
-                          value="plastering"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Plastering
-                        </SelectItem>
-                        <SelectItem
-                          value="rendering"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Rendering
-                        </SelectItem>
-                        <SelectItem
-                          value="external-wall-insulation"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          External Wall Insulation
-                        </SelectItem>
-                        <SelectItem
-                          value="venetian-plastering"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Venetian Plastering
-                        </SelectItem>
-                        <SelectItem
-                          value="waterproofing"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Waterproofing
-                        </SelectItem>
-                        <SelectItem
-                          value="multiple-services"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Multiple Services
-                        </SelectItem>
-                        <SelectItem
-                          value="not-sure"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Not Sure - Need Advice
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                      <div>
+                        <Input
+                          name="email"
+                          placeholder="Email Address"
+                          type="email"
+                          className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
+                          required
+                        />
+                        <ValidationError
+                          prefix="Email"
+                          field="email"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
 
-                    <Select>
-                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
-                        <SelectValue placeholder="Property Type" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-gray-800 border-gray-600">
-                        <SelectItem
-                          value="house"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          House
-                        </SelectItem>
-                        <SelectItem
-                          value="flat-apartment"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Flat/Apartment
-                        </SelectItem>
-                        <SelectItem
-                          value="commercial"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Commercial Property
-                        </SelectItem>
-                        <SelectItem
-                          value="heritage-listed"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Heritage/Listed Building
-                        </SelectItem>
-                        <SelectItem
-                          value="new-build"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          New Build
-                        </SelectItem>
-                        <SelectItem
-                          value="other"
-                          className="text-white hover:bg-gray-700"
-                        >
-                          Other
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                      <div>
+                        <Input
+                          name="phone"
+                          placeholder="Phone Number"
+                          type="tel"
+                          className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
+                        />
+                        <ValidationError
+                          prefix="Phone"
+                          field="phone"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
 
-                  <Select>
-                    <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
-                      <SelectValue placeholder="Project Timeline" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-800 border-gray-600">
-                      <SelectItem
-                        value="urgent"
-                        className="text-white hover:bg-gray-700"
-                      >
-                        Urgent - Within 1 week
-                      </SelectItem>
-                      <SelectItem
-                        value="asap"
-                        className="text-white hover:bg-gray-700"
-                      >
-                        ASAP - Within 2-4 weeks
-                      </SelectItem>
-                      <SelectItem
-                        value="flexible"
-                        className="text-white hover:bg-gray-700"
-                      >
-                        Flexible - Within 1-3 months
-                      </SelectItem>
-                      <SelectItem
-                        value="planning"
-                        className="text-white hover:bg-gray-700"
-                      >
-                        Planning - 3+ months
-                      </SelectItem>
-                      <SelectItem
-                        value="quote-only"
-                        className="text-white hover:bg-gray-700"
-                      >
-                        Quote Only - No Timeline Yet
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                      {/* Hidden inputs for Formspree */}
+                      <input
+                        type="hidden"
+                        name="service"
+                        value={formData.service}
+                      />
+                      <input
+                        type="hidden"
+                        name="propertyType"
+                        value={formData.propertyType}
+                      />
+                      <input
+                        type="hidden"
+                        name="timeline"
+                        value={formData.timeline}
+                      />
 
-                  <Textarea
-                    placeholder="Tell us about your project..."
-                    className="min-h-32 bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
-                  />
-                  <StandardButton
-                    variant="primary"
-                    href="/contact"
-                    icon="send"
-                    fullWidth={true}
-                  >
-                    Send Message
-                  </StandardButton>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Select
+                            value={formData.service}
+                            onValueChange={(value) =>
+                              setFormData({ ...formData, service: value })
+                            }
+                          >
+                            <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                              <SelectValue placeholder="Service Required" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-800 border-gray-600">
+                              <SelectItem
+                                value="damp-proofing"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Damp Proofing
+                              </SelectItem>
+                              <SelectItem
+                                value="plastering"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Plastering
+                              </SelectItem>
+                              <SelectItem
+                                value="rendering"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Rendering
+                              </SelectItem>
+                              <SelectItem
+                                value="external-wall-insulation"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                External Wall Insulation
+                              </SelectItem>
+                              <SelectItem
+                                value="venetian-plastering"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Venetian Plastering
+                              </SelectItem>
+                              <SelectItem
+                                value="waterproofing"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Waterproofing
+                              </SelectItem>
+                              <SelectItem
+                                value="multiple-services"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Multiple Services
+                              </SelectItem>
+                              <SelectItem
+                                value="not-sure"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Not Sure - Need Advice
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <ValidationError
+                            prefix="Service"
+                            field="service"
+                            errors={state.errors}
+                            className="text-red-400 text-sm mt-1"
+                          />
+                        </div>
+
+                        <div>
+                          <Select
+                            value={formData.propertyType}
+                            onValueChange={(value) =>
+                              setFormData({ ...formData, propertyType: value })
+                            }
+                          >
+                            <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                              <SelectValue placeholder="Property Type" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-800 border-gray-600">
+                              <SelectItem
+                                value="house"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                House
+                              </SelectItem>
+                              <SelectItem
+                                value="flat-apartment"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Flat/Apartment
+                              </SelectItem>
+                              <SelectItem
+                                value="commercial"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Commercial Property
+                              </SelectItem>
+                              <SelectItem
+                                value="heritage-listed"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Heritage/Listed Building
+                              </SelectItem>
+                              <SelectItem
+                                value="new-build"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                New Build
+                              </SelectItem>
+                              <SelectItem
+                                value="other"
+                                className="text-white hover:bg-gray-700"
+                              >
+                                Other
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <ValidationError
+                            prefix="Property Type"
+                            field="propertyType"
+                            errors={state.errors}
+                            className="text-red-400 text-sm mt-1"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <Select
+                          value={formData.timeline}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, timeline: value })
+                          }
+                        >
+                          <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+                            <SelectValue placeholder="Project Timeline" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-gray-800 border-gray-600">
+                            <SelectItem
+                              value="urgent"
+                              className="text-white hover:bg-gray-700"
+                            >
+                              Urgent - Within 1 week
+                            </SelectItem>
+                            <SelectItem
+                              value="asap"
+                              className="text-white hover:bg-gray-700"
+                            >
+                              ASAP - Within 2-4 weeks
+                            </SelectItem>
+                            <SelectItem
+                              value="flexible"
+                              className="text-white hover:bg-gray-700"
+                            >
+                              Flexible - Within 1-3 months
+                            </SelectItem>
+                            <SelectItem
+                              value="planning"
+                              className="text-white hover:bg-gray-700"
+                            >
+                              Planning - 3+ months
+                            </SelectItem>
+                            <SelectItem
+                              value="quote-only"
+                              className="text-white hover:bg-gray-700"
+                            >
+                              Quote Only - No Timeline Yet
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <ValidationError
+                          prefix="Timeline"
+                          field="timeline"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
+
+                      <div>
+                        <Textarea
+                          name="message"
+                          placeholder="Tell us about your project..."
+                          className="min-h-32 bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
+                          required
+                        />
+                        <ValidationError
+                          prefix="Message"
+                          field="message"
+                          errors={state.errors}
+                          className="text-red-400 text-sm mt-1"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={state.submitting}
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2"
+                      >
+                        {state.submitting ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Mail className="w-4 h-4" />
+                            <span>Send Message</span>
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

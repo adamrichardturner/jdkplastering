@@ -24,8 +24,17 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useState, useEffect } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import TrustIndicators from '@/components/TrustIndicators'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -43,8 +52,19 @@ const staggerContainer = {
 
 export default function Contact() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [state, handleSubmit] = useForm('mvgrloed')
+  const [formData, setFormData] = useState({
+    service: '',
+  })
+
+  // Reset form data when submission is successful
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormData({
+        service: '',
+      })
+    }
+  }, [state.succeeded])
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -64,33 +84,6 @@ export default function Contact() {
       document.body.style.width = ''
     }
   }, [isMenuOpen])
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    const form = e.currentTarget
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-
-      if (response.ok) {
-        setIsSubmitted(true)
-        form.reset()
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   const contactInfo = [
     {
@@ -213,69 +206,11 @@ export default function Contact() {
                 Get Free Quote
               </StandardButton>
             </motion.div>
-
-            <motion.div
-              className="hidden md:grid grid-rows-1 md:grid-cols-4 gap-6 mt-8"
-              variants={staggerContainer}
-            >
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Award className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Fully Qualified & Insured
-                </p>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Users className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Trusted by Homeowners
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <CheckCircle className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Free Site Surveys
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
-                  <Shield className="w-7 h-7 text-white" />
-                </div>
-                <p className="text-white text-sm font-semibold text-center leading-tight">
-                  Price Match Guaranteed
-                </p>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      <TrustIndicators />
 
       {/* Contact Information */}
       <section className="py-24 bg-white">
@@ -420,7 +355,7 @@ export default function Contact() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isSubmitted ? (
+                  {state.succeeded ? (
                     <motion.div
                       className="text-center py-12"
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -456,6 +391,12 @@ export default function Contact() {
                             className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="John"
                           />
+                          <ValidationError
+                            prefix="First Name"
+                            field="firstName"
+                            errors={state.errors}
+                            className="text-red-500 text-sm mt-1"
+                          />
                         </div>
                         <div>
                           <label
@@ -471,6 +412,12 @@ export default function Contact() {
                             required
                             className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Smith"
+                          />
+                          <ValidationError
+                            prefix="Last Name"
+                            field="lastName"
+                            errors={state.errors}
+                            className="text-red-500 text-sm mt-1"
                           />
                         </div>
                       </div>
@@ -490,6 +437,12 @@ export default function Contact() {
                           className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="john.smith@example.com"
                         />
+                        <ValidationError
+                          prefix="Email"
+                          field="email"
+                          errors={state.errors}
+                          className="text-red-500 text-sm mt-1"
+                        />
                       </div>
 
                       <div>
@@ -505,6 +458,12 @@ export default function Contact() {
                           type="tel"
                           className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="07xxx xxxxxx"
+                        />
+                        <ValidationError
+                          prefix="Phone"
+                          field="phone"
+                          errors={state.errors}
+                          className="text-red-500 text-sm mt-1"
                         />
                       </div>
 
@@ -523,6 +482,12 @@ export default function Contact() {
                           className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="e.g. Camden, North London"
                         />
+                        <ValidationError
+                          prefix="Location"
+                          field="location"
+                          errors={state.errors}
+                          className="text-red-500 text-sm mt-1"
+                        />
                       </div>
 
                       <div>
@@ -532,30 +497,47 @@ export default function Contact() {
                         >
                           Service Required *
                         </label>
-                        <select
-                          id="service"
+                        <input
+                          type="hidden"
                           name="service"
-                          required
-                          className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          value={formData.service}
+                        />
+                        <Select
+                          value={formData.service}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, service: value })
+                          }
                         >
-                          <option value="">Select a service</option>
-                          <option value="plastering">
-                            Plastering Services
-                          </option>
-                          <option value="damp-proofing">Damp Proofing</option>
-                          <option value="rendering">
-                            Rendering (Internal & External)
-                          </option>
-                          <option value="insulation">
-                            Wall Insulation & Repairs
-                          </option>
-                          <option value="mould-removal">
-                            Mould Removal & Prevention
-                          </option>
-                          <option value="multiple">
-                            Multiple Services Required
-                          </option>
-                        </select>
+                          <SelectTrigger className="w-full border-slate-300 focus:border-blue-500 focus:ring-blue-500">
+                            <SelectValue placeholder="Select a service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="plastering">
+                              Plastering Services
+                            </SelectItem>
+                            <SelectItem value="damp-proofing">
+                              Damp Proofing
+                            </SelectItem>
+                            <SelectItem value="rendering">
+                              Rendering (Internal & External)
+                            </SelectItem>
+                            <SelectItem value="insulation">
+                              Wall Insulation & Repairs
+                            </SelectItem>
+                            <SelectItem value="mould-removal">
+                              Mould Removal & Prevention
+                            </SelectItem>
+                            <SelectItem value="multiple">
+                              Multiple Services Required
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <ValidationError
+                          prefix="Service"
+                          field="service"
+                          errors={state.errors}
+                          className="text-red-500 text-sm mt-1"
+                        />
                       </div>
 
                       <div>
@@ -573,17 +555,31 @@ export default function Contact() {
                           className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="Please describe your project, including the size of the area, timeline, and any specific requirements..."
                         />
+                        <ValidationError
+                          prefix="Message"
+                          field="message"
+                          errors={state.errors}
+                          className="text-red-500 text-sm mt-1"
+                        />
                       </div>
 
-                      <StandardButton
+                      <button
                         type="submit"
-                        variant="primary"
-                        disabled={isSubmitting}
-                        icon={isSubmitting ? 'none' : 'send'}
-                        fullWidth={true}
+                        disabled={state.submitting}
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2"
                       >
-                        {isSubmitting ? 'Sending Message...' : 'Send Message'}
-                      </StandardButton>
+                        {state.submitting ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Mail className="w-4 h-4" />
+                            <span>Send Message</span>
+                          </>
+                        )}
+                      </button>
 
                       <p className="text-xs text-slate-500 text-center">
                         By submitting this form, you agree to be contacted about
