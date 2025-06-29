@@ -15,6 +15,7 @@ import {
   HeartHandshake,
   Wrench,
   Clock,
+  CheckCircle,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 import {
@@ -69,27 +70,49 @@ export default function About() {
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
-      <section className="pt-16 pb-12 md:pt-24 md:pb-20 bg-[#090909] text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/logo/jdk-plastering-wall.png"
-            alt="JDK Plastering professional work showcase"
-            fill
-            className="object-cover object-center opacity-30"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/80 to-[#090909]/60"></div>
+      <section
+        className="h-screen flex flex-col justify-center items-center px-3 md:pt-0 bg-[#090909] text-white relative overflow-hidden touch-manipulation"
+        style={{ touchAction: 'manipulation' }}
+      >
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 touch-manipulation"
+          style={{ touchAction: 'manipulation' }}
+        >
+          {/* Mobile Background Image */}
+          <div className="md:hidden">
+            <Image
+              src="/images/about-hero-bg-mobile.jpg"
+              alt="JDK Plastering about showcase mobile"
+              fill
+              className="object-cover object-right"
+              priority
+            />
+          </div>
+
+          {/* Desktop Background Image */}
+          <div className="hidden md:block">
+            <Image
+              src="/images/about-hero-bg-desktop.jpg"
+              alt="JDK Plastering about showcase desktop"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container mx-auto md:h-[670px] h-[600px] py-20 md:py-40 px-4 relative">
+        <div className="container h-full flex items-center mx-auto relative px-4 py-4 md:py-10">
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="text-left max-w-2xl"
             variants={staggerContainer}
             initial="initial"
             animate="animate"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl leading-tight md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
               variants={fadeInUp}
             >
               <span className="text-white">About </span>
@@ -99,23 +122,94 @@ export default function About() {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-gray-300 mb-4 leading-regular"
               variants={fadeInUp}
             >
-              London&apos;s trusted plastering and damp-proofing specialists
-              with over 10 years of industry excellence
+              <strong className="text-white">
+                London&apos;s trusted specialists.
+              </strong>{' '}
+              Over 10 years of proven expertise in damp-proofing, plastering &
+              external wall insulation. <br className="hidden sm:block" />
+            </motion.p>
+
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 mb-8 leading-regular"
+              variants={fadeInUp}
+            >
+              <strong className="text-blue-400">
+                Professional craftsmanship, exceptional service
+              </strong>{' '}
+              — trusted by homeowners, contractors & property developers across
+              London.
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 mb-8"
               variants={fadeInUp}
             >
               <StandardButton variant="primary" href="/contact" icon="arrow">
                 Get Free Quote
               </StandardButton>
-              <StandardButton variant="white" href="/projects" icon="arrow">
-                View Our Work
-              </StandardButton>
+            </motion.div>
+
+            <motion.div
+              className="hidden md:grid grid-rows-1 md:grid-cols-4 gap-6 mt-8"
+              variants={staggerContainer}
+            >
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
+                  <Award className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Fully Qualified & Insured
+                </p>
+              </motion.div>
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
+                  <Users className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Trusted by Homeowners
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
+                  <CheckCircle className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Free Site Surveys
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center mb-4 group-hover:from-white/30 group-hover:to-white/20 transition-all duration-500 shadow-lg border border-white/20">
+                  <Shield className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-white text-sm font-semibold text-center leading-tight">
+                  Price Match Guaranteed
+                </p>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
