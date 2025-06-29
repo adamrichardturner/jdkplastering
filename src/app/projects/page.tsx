@@ -2,21 +2,19 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
   Shield,
   Award,
   CheckCircle,
   Star,
-  ArrowRight,
   MapPin,
   Calendar,
-  Phone,
   Heart,
   MessageCircle,
   Share,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { StandardButton } from '@/components/ui/standard-button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useState } from 'react'
 import Header from '@/components/Header'
@@ -212,15 +210,9 @@ export default function Projects() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeInUp}
             >
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Get Free Quote
-                </Button>
-              </Link>
+              <StandardButton variant="primary" href="/contact" icon="phone">
+                Get Free Quote
+              </StandardButton>
             </motion.div>
           </motion.div>
         </div>
@@ -282,17 +274,17 @@ export default function Projects() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {categories.map((category) => (
-              <button
+              <Button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full cursor-pointer font-medium transition-all duration-300 ${
                   selectedCategory === category.id
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 {category.label}
-              </button>
+              </Button>
             ))}
           </motion.div>
 
@@ -403,13 +395,15 @@ export default function Projects() {
                           {project.likes} likes
                         </span>
                       </div>
-                      <Button
+                      <StandardButton
+                        variant="primary"
+                        href="/contact"
+                        icon="arrow"
                         size="sm"
-                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white border-0 px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                        className="rounded-full"
                       >
-                        View Details
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        Get Quote
+                      </StandardButton>
                     </div>
                   </CardContent>
                 </Card>
@@ -425,13 +419,13 @@ export default function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Button
-              size="lg"
-              className="bg-white/80 backdrop-blur-xl border border-white/30 text-slate-700 hover:bg-white/90 hover:border-white/40 hover:text-slate-900 px-12 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            <StandardButton
+              variant="secondary"
+              icon="arrow"
+              className="rounded-full bg-white/80 backdrop-blur-xl border border-white/30 text-slate-700 hover:bg-white/90 hover:border-white/40 hover:text-slate-900"
             >
               Load More Projects
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            </StandardButton>
           </motion.div>
         </div>
       </section>
@@ -534,24 +528,16 @@ export default function Projects() {
               consultation and detailed quote today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Get Free Quote
-                </Button>
-              </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-10 py-6 text-lg font-semibold"
+              <StandardButton variant="secondary" href="/contact" icon="phone">
+                Get Free Quote
+              </StandardButton>
+              <StandardButton
+                variant="outline-white"
                 onClick={() => (window.location.href = 'tel:07943519301')}
+                icon="arrow"
               >
                 Call 07943 51930
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              </StandardButton>
             </div>
           </motion.div>
         </div>

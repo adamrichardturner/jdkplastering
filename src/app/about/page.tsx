@@ -2,13 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
   Shield,
   Award,
   Users,
   Star,
-  ArrowRight,
   Hammer,
   Home,
   Droplets,
@@ -18,7 +16,7 @@ import {
   Wrench,
   Clock,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { StandardButton } from '@/components/ui/standard-button'
 import {
   Card,
   CardContent,
@@ -112,22 +110,12 @@ export default function About() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeInUp}
             >
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
-                >
-                  Get Free Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-black bg-white hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
-              >
+              <StandardButton variant="primary" href="/contact" icon="arrow">
+                Get Free Quote
+              </StandardButton>
+              <StandardButton variant="white" href="/projects" icon="arrow">
                 View Our Work
-              </Button>
+              </StandardButton>
             </motion.div>
           </motion.div>
         </div>
@@ -489,13 +477,9 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-12 py-6 text-lg font-semibold"
-            >
+            <StandardButton variant="primary" href="/contact" icon="arrow">
               Start Your Project Today
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            </StandardButton>
           </motion.div>
         </div>
       </section>

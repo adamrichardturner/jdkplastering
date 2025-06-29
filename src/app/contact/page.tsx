@@ -7,12 +7,10 @@ import {
   Mail,
   MapPin,
   Clock,
-  Send,
   CheckCircle,
-  ArrowRight,
   MessageSquare,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { StandardButton } from '@/components/ui/standard-button'
 import {
   Card,
   CardContent,
@@ -169,26 +167,24 @@ export default function Contact() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeInUp}
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
+              <StandardButton
+                variant="primary"
                 onClick={() =>
                   document
                     .getElementById('contact-form')
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }
+                icon="message"
               >
-                <MessageSquare className="w-5 h-5 mr-2" />
                 Get Free Quote
-              </Button>
-              <Button
-                size="lg"
-                className="border-white text-black bg-white hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
+              </StandardButton>
+              <StandardButton
+                variant="white"
                 onClick={() => (window.location.href = 'tel:07943519301')}
+                icon="phone"
               >
-                <Phone className="w-5 h-5 mr-2" />
                 Call Now
-              </Button>
+              </StandardButton>
             </motion.div>
           </motion.div>
         </div>
@@ -239,15 +235,14 @@ export default function Contact() {
                       {info.description}
                     </p>
                     {info.action && (
-                      <Button
-                        variant="outline"
+                      <StandardButton
+                        variant="outline-white"
                         size="sm"
-                        className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                         onClick={() => (window.location.href = info.action)}
+                        icon="arrow"
                       >
                         Contact
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                      </StandardButton>
                     )}
                   </CardContent>
                 </Card>
@@ -493,21 +488,15 @@ export default function Contact() {
                         />
                       </div>
 
-                      <Button
+                      <StandardButton
                         type="submit"
-                        size="lg"
+                        variant="primary"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold"
+                        icon={isSubmitting ? 'none' : 'send'}
+                        fullWidth={true}
                       >
-                        {isSubmitting ? (
-                          'Sending Message...'
-                        ) : (
-                          <>
-                            <Send className="w-5 h-5 mr-2" />
-                            Send Message
-                          </>
-                        )}
-                      </Button>
+                        {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                      </StandardButton>
 
                       <p className="text-xs text-slate-500 text-center">
                         By submitting this form, you agree to be contacted about
@@ -541,14 +530,13 @@ export default function Contact() {
               directly. We provide emergency callouts across London.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
+              <StandardButton
+                variant="secondary"
                 onClick={() => (window.location.href = 'tel:07943519301')}
+                icon="phone"
               >
-                <Phone className="w-5 h-5 mr-2" />
                 Emergency: 07943 51930
-              </Button>
+              </StandardButton>
             </div>
           </motion.div>
         </div>

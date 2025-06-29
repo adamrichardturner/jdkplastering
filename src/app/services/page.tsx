@@ -2,22 +2,19 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
   Shield,
   Award,
   Users,
   CheckCircle,
   Star,
-  ArrowRight,
   Palette,
   ShieldCheck,
   Building,
   Zap,
   Wind,
-  Phone,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { StandardButton } from '@/components/ui/standard-button'
 import {
   Card,
   CardContent,
@@ -201,23 +198,12 @@ export default function Services() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeInUp}
             >
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-6 text-lg font-semibold"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Get Free Quote
-                </Button>
-              </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-black bg-white hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
-              >
+              <StandardButton variant="primary" href="/contact" icon="phone">
+                Get Free Quote
+              </StandardButton>
+              <StandardButton variant="white" href="/projects" icon="arrow">
                 View Our Work
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              </StandardButton>
             </motion.div>
           </motion.div>
         </div>
@@ -280,13 +266,15 @@ export default function Services() {
                       ))}
                     </ul>
                     <div className="mt-6">
-                      <Button
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold"
+                      <StandardButton
+                        variant="primary"
+                        href="/contact"
+                        icon="arrow"
+                        fullWidth={true}
                         size="sm"
                       >
-                        Learn More
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        Get Quote
+                      </StandardButton>
                     </div>
                   </CardContent>
                 </Card>
@@ -516,23 +504,20 @@ export default function Services() {
               buildings dry and healthy—from diagnosis to completion.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-6 text-lg font-semibold"
+              <StandardButton
+                variant="secondary"
+                onClick={() => (window.location.href = 'tel:07943519301')}
+                icon="phone"
               >
-                <Phone className="w-5 h-5 mr-2" />
                 Call 07943 51930
-              </Button>
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 px-10 py-6 text-lg font-semibold"
-                >
-                  Get Free Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+              </StandardButton>
+              <StandardButton
+                variant="outline-white"
+                href="/contact"
+                icon="arrow"
+              >
+                Get Free Quote
+              </StandardButton>
             </div>
           </motion.div>
         </div>

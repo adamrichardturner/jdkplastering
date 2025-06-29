@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
   Phone,
   Mail,
@@ -13,13 +12,12 @@ import {
   Users,
   CheckCircle,
   Star,
-  ArrowRight,
   Hammer,
   Home,
   Droplets,
   ThermometerSun,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { StandardButton } from '@/components/ui/standard-button'
 import {
   Card,
   CardContent,
@@ -209,15 +207,9 @@ export default function Index() {
               className="flex flex-col sm:flex-row gap-4 mb-8"
               variants={fadeInUp}
             >
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-10 py-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                >
-                  Get Free Quote
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+              <StandardButton variant="primary" href="/contact" icon="arrow">
+                Get Free Quote
+              </StandardButton>
             </motion.div>
 
             <motion.div
@@ -342,15 +334,9 @@ export default function Index() {
           </div>
 
           <div className="text-center mt-8">
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 text-base font-semibold shadow-xl backdrop-blur-sm transition-all duration-300"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                Get Free Quote
-              </Button>
-            </Link>
+            <StandardButton variant="primary" href="/contact" icon="phone">
+              Get Free Quote
+            </StandardButton>
           </div>
         </div>
       </section>
@@ -456,13 +442,9 @@ export default function Index() {
               </div>
 
               <div className="pt-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-6 text-lg font-semibold"
-                >
+                <StandardButton variant="primary" href="/projects" icon="arrow">
                   View More Projects
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                </StandardButton>
               </div>
             </motion.div>
           </div>
@@ -690,9 +672,9 @@ export default function Index() {
                 <p className="text-gray-300 mb-4">
                   Let us inspect the problem.
                 </p>
-                <Button className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700">
+                <StandardButton variant="purple" href="/contact" icon="arrow">
                   Book Free Site Visit
-                </Button>
+                </StandardButton>
               </div>
             </motion.div>
           </div>
@@ -859,10 +841,14 @@ export default function Index() {
                     placeholder="Tell us about your project..."
                     className="min-h-32 bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
                   />
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-6 text-lg font-semibold">
+                  <StandardButton
+                    variant="primary"
+                    href="/contact"
+                    icon="send"
+                    fullWidth={true}
+                  >
                     Send Message
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
+                  </StandardButton>
                 </CardContent>
               </Card>
             </motion.div>
