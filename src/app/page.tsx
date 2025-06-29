@@ -96,7 +96,7 @@ export default function Index() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
+        className="md:min-h-screen py-20 min-h-[600px] flex flex-col justify-center items-center px-3 md:pt-0 bg-[#090909] text-white relative overflow-hidden"
       >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
@@ -213,7 +213,7 @@ export default function Index() {
             </motion.div>
 
             <motion.div
-              className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+              className="hidden md:grid grid-rows-1 md:grid-cols-4 gap-6 mt-8"
               variants={staggerContainer}
             >
               <motion.div
