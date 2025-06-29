@@ -96,7 +96,7 @@ export default function Index() {
       {/* Hero Section */}
       <section
         id="home"
-        className="py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
+        className="min-h-screen py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
       >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
@@ -161,7 +161,7 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container mx-auto relative px-4 py-4 md:py-10">
+        <div className="container min-h-screen flex items-center mx-auto relative px-4 py-4 md:py-10">
           <motion.div
             className="text-left max-w-2xl"
             variants={staggerContainer}

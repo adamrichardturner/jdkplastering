@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Phone, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface HeaderProps {
   isMenuOpen: boolean
@@ -15,6 +15,17 @@ interface HeaderProps {
 
 export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
   const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      setIsScrolled(scrollPosition > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const isActivePage = (path: string) => {
     if (path === '/' && pathname === '/') {
@@ -26,9 +37,19 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
   return (
     <>
       {/* Navigation - Always fixed to top */}
-      <nav className="fixed top-0 left-0 right-0 w-full bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl z-[100] border-b border-white/10 overflow-hidden">
-        {/* Subtle background pattern for desktop */}
-        <div className="absolute inset-0 opacity-3 pointer-events-none">
+      <nav
+        className={`fixed top-0 left-0 right-0 w-full z-[100] overflow-hidden transition-all duration-500 ease-out ${
+          isScrolled
+            ? 'bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl border-b border-white/10'
+            : 'bg-transparent backdrop-blur-none shadow-none border-b border-transparent'
+        }`}
+      >
+        {/* Subtle background pattern for desktop - only visible when scrolled */}
+        <div
+          className={`absolute inset-0 opacity-3 pointer-events-none transition-opacity duration-500 ${
+            isScrolled ? 'opacity-3' : 'opacity-0'
+          }`}
+        >
           <div className="absolute top-2 right-20 w-16 h-16 border border-white/10 rounded-full"></div>
           <div className="absolute top-3 left-32 w-12 h-12 border border-blue-400/10 rounded-full"></div>
           <div className="absolute bottom-2 right-40 w-14 h-14 border border-slate-400/10 rounded-full"></div>
@@ -111,7 +132,13 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"></div>
                 )}
               </Link>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border border-blue-400/20 transition-all duration-300">
+              <Button
+                className={`bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
+                  isScrolled
+                    ? 'border-blue-400/20'
+                    : 'border-blue-400/40 shadow-2xl'
+                }`}
+              >
                 <Phone className="w-4 h-4 mr-2" />
                 07943 51930
               </Button>
@@ -120,7 +147,9 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Button
               size="sm"
               variant="ghost"
-              className="md:hidden text-white hover:bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className={`md:hidden text-white hover:bg-white/10 backdrop-blur-sm border rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                isScrolled ? 'border-white/20' : 'border-white/40 bg-black/20'
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -132,9 +161,6 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
           </div>
         </div>
       </nav>
-
-      {/* Spacer to account for fixed navigation */}
-      <div className="h-[80px]"></div>
 
       {/* Mobile Menu Overlay - Outside navigation for proper positioning */}
       <AnimatePresence>

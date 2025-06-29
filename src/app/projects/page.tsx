@@ -158,7 +158,7 @@ export default function Projects() {
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-20 bg-[#090909] text-white relative overflow-hidden">
+      <section className="pt-16 pb-12 md:pt-24 md:pb-20 bg-[#090909] text-white relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/logo/jdk-plastering-wall.png"
