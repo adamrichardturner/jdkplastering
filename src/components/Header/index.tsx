@@ -54,7 +54,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
           <div className="absolute top-3 left-32 w-12 h-12 border border-blue-400/10 rounded-full"></div>
           <div className="absolute bottom-2 right-40 w-14 h-14 border border-slate-400/10 rounded-full"></div>
         </div>
-        <div className="container mx-auto px-4 py-4 relative">
+        <div className="md:container mx-auto px-4 py-4 relative">
           <div className="flex items-center justify-between">
             <Link href="/">
               <div className="flex items-center space-x-3">
@@ -76,7 +76,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               </div>
             </Link>
 
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-4 md:space-x-8">
               <Link
                 href="/"
                 className={`text-gray-300 hover:text-white transition-colors font-medium relative ${
@@ -133,7 +133,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                 )}
               </Link>
               <Button
-                className={`bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
+                className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
                   isScrolled
                     ? 'border-blue-400/20'
                     : 'border-blue-400/40 shadow-2xl'

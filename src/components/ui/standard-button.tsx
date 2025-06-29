@@ -58,9 +58,9 @@ export function StandardButton({
       case 'sm':
         return 'px-6 py-3 text-sm'
       case 'lg':
-        return 'px-10 py-6 text-lg'
+        return 'px-14 py-6 text-lg'
       default:
-        return 'px-10 py-6 text-lg'
+        return 'px-20 py-6 text-lg'
     }
   }
 
@@ -85,7 +85,7 @@ export function StandardButton({
     ${getVariantClasses()}
     ${getSizeClasses()}
     ${fullWidth ? 'w-full' : ''}
-    font-semibold cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105
+    font-semibold cursor-pointer shadow-lg min-w-[220px] min-h-[60px] hover:shadow-xl transition-all duration-300 hover:scale-105
     ${className}
   `.trim()
 

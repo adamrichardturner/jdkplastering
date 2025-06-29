@@ -96,10 +96,14 @@ export default function Index() {
       {/* Hero Section */}
       <section
         id="home"
-        className="md:min-h-screen py-20 min-h-[600px] flex flex-col justify-center items-center px-3 md:pt-0 bg-[#090909] text-white relative overflow-hidden"
+        className="h-screen flex flex-col justify-center items-center px-3 md:pt-0 bg-[#090909] text-white relative overflow-hidden touch-manipulation"
+        style={{ touchAction: 'manipulation' }}
       >
         {/* Background Image Slider */}
-        <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 touch-manipulation"
+          style={{ touchAction: 'manipulation' }}
+        >
           {/* Mobile Background Images */}
           <div className="md:hidden">
             <div
@@ -161,7 +165,7 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container min-h-screen flex items-center mx-auto relative px-4 py-4 md:py-10">
+        <div className="container h-full flex items-center mx-auto relative px-4 py-4 md:py-10">
           <motion.div
             className="text-left max-w-2xl"
             variants={staggerContainer}
@@ -217,7 +221,7 @@ export default function Index() {
               variants={staggerContainer}
             >
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -230,7 +234,7 @@ export default function Index() {
                 </p>
               </motion.div>
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -244,7 +248,7 @@ export default function Index() {
               </motion.div>
 
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -258,7 +262,7 @@ export default function Index() {
               </motion.div>
 
               <motion.div
-                className="flex flex-col items-center sm:items-center group p-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
+                className="flex flex-col items-center sm:items-center group p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
