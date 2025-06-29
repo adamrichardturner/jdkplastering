@@ -175,7 +175,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             {/* Navigation Menu */}
             <div className="flex-1 flex flex-col justify-center px-8">
               <motion.div
-                className="space-y-3"
+                className=""
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
