@@ -9,7 +9,6 @@ import {
   Star,
   MapPin,
   Calendar,
-  Heart,
   MessageCircle,
   Share,
 } from 'lucide-react'
@@ -55,7 +54,6 @@ export default function Projects() {
       location: 'Clapham, London',
       date: '2024',
       image: '/logo/jdk-media-wall.png',
-      likes: 45,
       description:
         'Complete rising damp treatment with chemical DPC injection and breathable replastering.',
       tags: ['Rising Damp', 'Chemical DPC', 'Replastering'],
@@ -67,7 +65,6 @@ export default function Projects() {
       location: 'Canary Wharf, London',
       date: '2024',
       image: '/logo/jdk-plastering-wall.png',
-      likes: 78,
       description:
         'Luxury Venetian plaster finish in contemporary apartment living space.',
       tags: ['Venetian Plaster', 'Interior Design', 'Luxury'],
@@ -79,7 +76,6 @@ export default function Projects() {
       location: 'Greenwich, London',
       date: '2024',
       image: '/logo/jdk-media-wall.png',
-      likes: 62,
       description:
         'Complete EWI system with silicone render finish for improved thermal efficiency.',
       tags: ['EWI', 'Thermal Efficiency', 'Silicone Render'],
@@ -91,7 +87,6 @@ export default function Projects() {
       location: 'Westminster, London',
       date: '2024',
       image: '/logo/jdk-plastering-wall.png',
-      likes: 91,
       description:
         'Traditional lime plastering restoration on Grade II listed property.',
       tags: ['Lime Plaster', 'Heritage', 'Restoration'],
@@ -103,7 +98,6 @@ export default function Projects() {
       location: 'Islington, London',
       date: '2024',
       image: '/logo/jdk-media-wall.png',
-      likes: 34,
       description:
         'Type C waterproofing system with cavity drainage and sump pump installation.',
       tags: ['Waterproofing', 'Basement', 'Cavity Drainage'],
@@ -115,7 +109,6 @@ export default function Projects() {
       location: 'Hackney, London',
       date: '2024',
       image: '/logo/jdk-plastering-wall.png',
-      likes: 56,
       description:
         'Smooth sand and cement render with weatherproof coating system.',
       tags: ['Sand Cement', 'Weatherproof', 'Modern'],
@@ -127,7 +120,6 @@ export default function Projects() {
       location: 'Shoreditch, London',
       date: '2024',
       image: '/logo/jdk-media-wall.png',
-      likes: 103,
       description:
         'Seamless microcement application creating waterproof bathroom surfaces.',
       tags: ['Microcement', 'Bathroom', 'Waterproof'],
@@ -139,7 +131,6 @@ export default function Projects() {
       location: 'Richmond, London',
       date: '2024',
       image: '/logo/jdk-plastering-wall.png',
-      likes: 42,
       description:
         'Breathable lime mortar repointing on Victorian mansion exterior.',
       tags: ['Repointing', 'Lime Mortar', 'Victorian'],
@@ -151,7 +142,6 @@ export default function Projects() {
       location: 'Wimbledon, London',
       date: '2024',
       image: '/logo/jdk-media-wall.png',
-      likes: 67,
       description:
         'Weather-resistant acrylic render system with 25-year guarantee.',
       tags: ['Acrylic Render', 'Weather Resistant', 'Long Lasting'],
@@ -288,51 +278,40 @@ export default function Projects() {
             ))}
           </motion.div>
 
-          {/* Instagram Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
-            layout
-          >
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: 'easeOut',
+                }}
                 className="group"
               >
-                <Card className="overflow-hidden border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl hover:shadow-3xl hover:bg-white/90 transition-all duration-700 ease-out hover:scale-[1.02] hover:border-white/30 relative group">
-                  {/* Subtle Background Pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
+                <Card className="overflow-hidden py-0 bg-white border-0 shadow-lg min-h-[700px] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group">
                   {/* Image Container */}
-                  <div className="relative aspect-square overflow-hidden rounded-t-xl">
+                  <div className="relative aspect-square overflow-hidden">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
 
-                    {/* Enhanced Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center justify-between text-white mb-3">
-                          <div className="flex items-center space-x-4">
-                            <button className="flex items-center space-x-2 bg-white/20 backdrop-blur-md rounded-full px-3 py-1.5 hover:bg-white/30 transition-all duration-300 hover:scale-105">
-                              <Heart className="w-4 h-4 fill-red-400 text-red-400" />
-                              <span className="text-sm font-medium">
-                                {project.likes}
-                              </span>
-                            </button>
-                            <button className="p-2 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105 hover:rotate-12">
+                        <div className="flex items-center justify-between text-white">
+                          <div className="flex items-center space-x-3">
+                            <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-200">
                               <MessageCircle className="w-4 h-4" />
                             </button>
-                            <button className="p-2 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105">
+                            <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-200">
                               <Share className="w-4 h-4" />
                             </button>
                           </div>
@@ -346,9 +325,9 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    {/* Enhanced Category Badge */}
+                    {/* Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="bg-gradient-to-r from-blue-600 to-indigo-600 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-semibold shadow-lg border border-white/20">
+                      <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
                         {
                           categories.find((cat) => cat.id === project.category)
                             ?.label
@@ -357,72 +336,69 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Enhanced Content */}
-                  <CardContent className="p-6 relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="font-bold text-slate-900 text-xl leading-tight flex-1 mr-4">
+                  {/* Content */}
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="font-bold text-slate-900 text-lg leading-tight flex-1 mr-3">
                         {project.title}
                       </h3>
-                      <div className="flex items-center text-slate-500 text-sm bg-slate-100/80 backdrop-blur-sm rounded-full px-3 py-1.5 border border-slate-200/50">
-                        <Calendar className="w-3 h-3 mr-1.5" />
+                      <div className="flex items-center text-slate-500 text-xs bg-slate-100 rounded-full px-2.5 py-1">
+                        <Calendar className="w-3 h-3 mr-1" />
                         <span className="font-medium">{project.date}</span>
                       </div>
                     </div>
 
-                    <p className="text-slate-600 text-sm mb-5 leading-relaxed line-clamp-3">
+                    <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
 
-                    {/* Enhanced Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag, tagIndex) => (
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200/50 hover:border-blue-200 hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-300"
+                          className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full text-xs font-medium"
                         >
                           {tag}
                         </span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full text-xs">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Enhanced Bottom Actions */}
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-200/50">
-                      <div className="flex items-center space-x-2 text-slate-500">
-                        <div className="w-8 h-8 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center">
-                          <Heart className="w-4 h-4 text-red-500" />
-                        </div>
-                        <span className="text-sm font-medium">
-                          {project.likes} likes
-                        </span>
-                      </div>
+                    {/* Bottom Action */}
+                    <div className="pt-4 border-t border-slate-100">
                       <StandardButton
                         variant="primary"
                         href="/contact"
                         icon="arrow"
                         size="sm"
-                        className="rounded-full"
+                        className="w-full"
                       >
-                        Get Quote
+                        Get Quote for This Project
                       </StandardButton>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Load More Button */}
           <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
             <StandardButton
               variant="secondary"
               icon="arrow"
-              className="rounded-full bg-white/80 backdrop-blur-xl border border-white/30 text-slate-700 hover:bg-white/90 hover:border-white/40 hover:text-slate-900"
+              className="bg-white shadow-lg hover:shadow-xl"
             >
               Load More Projects
             </StandardButton>
@@ -482,13 +458,17 @@ export default function Projects() {
             ].map((item, index) => (
               <motion.div
                 key={item.step}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: 'easeOut',
+                }}
                 className="text-center group"
               >
-                <div className="bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:border-white/40">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                   <div className="relative mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
                       <item.icon className="w-8 h-8 text-white" />
