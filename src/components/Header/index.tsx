@@ -140,7 +140,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-slate-900 z-[9999] md:hidden h-screen w-screen flex flex-col"
+            className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-slate-900 z-[9999] md:hidden w-screen flex flex-col"
             style={{ pointerEvents: 'auto' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -157,7 +157,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
             {/* Top Section - Close Button */}
             <motion.div
-              className="flex justify-end items-center px-8 pt-16 pb-8"
+              className="flex justify-end items-center px-8 pt-8 pb-4"
               initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
