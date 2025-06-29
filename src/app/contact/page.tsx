@@ -9,9 +9,6 @@ import {
   Clock,
   CheckCircle,
   MessageSquare,
-  Award,
-  Users,
-  Shield,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 import {

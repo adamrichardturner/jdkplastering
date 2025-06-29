@@ -9,7 +9,6 @@ import {
   Clock,
   Shield,
   Award,
-  Users,
   CheckCircle,
   Star,
   Hammer,

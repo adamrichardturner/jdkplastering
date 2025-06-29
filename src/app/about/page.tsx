@@ -15,7 +15,6 @@ import {
   HeartHandshake,
   Wrench,
   Clock,
-  CheckCircle,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 import {

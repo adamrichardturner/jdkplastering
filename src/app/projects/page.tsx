@@ -11,7 +11,6 @@ import {
   Calendar,
   MessageCircle,
   Share,
-  Users,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { StandardButton } from '@/components/ui/standard-button'
