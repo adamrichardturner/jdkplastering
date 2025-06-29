@@ -90,13 +90,13 @@ export default function Index() {
   }, [isMenuOpen])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
+    <div className="bg-gradient-to-br from-slate-50 to-slate-100 overflow-x-hidden">
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
+        className="py-4 px-3 md:py-20 md:pt-0 bg-[#090909] text-white relative overflow-hidden flex items-center"
       >
         {/* Background Image Slider */}
         <div className="absolute inset-0">
