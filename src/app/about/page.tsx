@@ -27,7 +27,6 @@ import {
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import TrustIndicators from '@/components/TrustIndicators'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -154,8 +153,6 @@ export default function About() {
           </motion.div>
         </div>
       </section>
-
-      <TrustIndicators />
 
       {/* Company Overview */}
       <section className="py-24 bg-white">

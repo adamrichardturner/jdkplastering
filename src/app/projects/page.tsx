@@ -18,7 +18,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import TrustIndicators from '@/components/TrustIndicators'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -241,8 +240,6 @@ export default function Projects() {
           </motion.div>
         </div>
       </section>
-
-      <TrustIndicators />
 
       {/* Filter Section */}
       <section className="py-16 bg-white">

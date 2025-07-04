@@ -24,7 +24,6 @@ import { useState, useEffect } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import TrustIndicators from '@/components/TrustIndicators'
 import {
   Select,
   SelectContent,
@@ -206,9 +205,6 @@ export default function Contact() {
           </motion.div>
         </div>
       </section>
-
-      <TrustIndicators />
-
       {/* Contact Information */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">

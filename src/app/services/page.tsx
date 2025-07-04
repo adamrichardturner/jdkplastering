@@ -238,8 +238,6 @@ export default function Services() {
         </div>
       </section>
 
-      <TrustIndicators />
-
       {/* Services Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
