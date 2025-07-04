@@ -45,7 +45,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel'
-import InstagramGrid from '@/components/InstagramGrid'
+
 // Auto-play component for carousel
 function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
   const [api, setApi] = React.useState<CarouselApi | null>(null)
