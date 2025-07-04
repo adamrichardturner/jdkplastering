@@ -36,7 +36,7 @@ export default function TrustIndicators() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Why Choose JDK Plastering?
@@ -96,24 +96,11 @@ export default function TrustIndicators() {
                 {/* Icon with animated background */}
                 <motion.div
                   className={`w-16 h-16 bg-gradient-to-br ${item.bg} rounded-2xl flex items-center justify-center mb-6 mx-auto relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.8, ease: 'easeInOut' }}
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
                   ></div>
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, -5, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                      ease: 'easeInOut',
-                    }}
-                  >
+                  <motion.div>
                     <item.icon className="w-8 h-8 text-white relative z-10" />
                   </motion.div>
                 </motion.div>
