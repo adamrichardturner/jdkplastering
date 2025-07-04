@@ -7,14 +7,14 @@ import {
   Mail,
   MapPin,
   Clock,
-  Shield,
-  Award,
   CheckCircle,
   Star,
   Hammer,
   Home,
   Droplets,
   ThermometerSun,
+  Shield,
+  Award,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 import {
@@ -45,7 +45,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel'
-
+import InstagramGrid from '@/components/InstagramGrid'
 // Auto-play component for carousel
 function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
   const [api, setApi] = React.useState<CarouselApi | null>(null)
@@ -385,22 +385,6 @@ export default function Index() {
       {/* Featured Work Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Our Work Speaks for Itself
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Professional plastering and external wall insulation projects
-              completed across London
-            </p>
-          </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0 }}
