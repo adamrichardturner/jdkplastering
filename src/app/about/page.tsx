@@ -6,14 +6,10 @@ import {
   Shield,
   Award,
   Users,
-  Star,
   Hammer,
-  Home,
-  Droplets,
   ThermometerSun,
   Target,
   HeartHandshake,
-  Wrench,
   Clock,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
@@ -166,7 +162,7 @@ export default function About() {
             >
               <div className="overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                  src="/logo/jdk-media-wall.png"
+                  src="/images/about-bathroom.jpg"
                   alt="JDK Plastering team at work showcasing professional craftsmanship"
                   width={600}
                   height={400}
@@ -221,7 +217,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Director's Journey */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <motion.div
@@ -232,94 +228,106 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Our Specialist Services
+              Built on Experience & Excellence
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              From traditional plastering to modern insulation systems, we
-              deliver excellence across every service
+              From construction labourer to London&apos;s trusted plastering
+              specialist
             </p>
           </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                icon: Hammer,
-                title: 'Sand & Cement Rendering',
-                description:
-                  'Traditional, durable rendering for lasting protection',
-                color: 'from-blue-500 to-blue-600',
-              },
-              {
-                icon: Star,
-                title: 'Venetian Plastering',
-                description: 'Luxurious decorative finishes for premium spaces',
-                color: 'from-purple-500 to-purple-600',
-              },
-              {
-                icon: ThermometerSun,
-                title: 'Insulated Rendering',
-                description: 'Energy-efficient solutions reducing heat loss',
-                color: 'from-green-500 to-green-600',
-              },
-              {
-                icon: Droplets,
-                title: 'Damp Proofing',
-                description: 'Complete moisture control and prevention systems',
-                color: 'from-red-500 to-red-600',
-              },
-              {
-                icon: Home,
-                title: 'Lime Rendering',
-                description:
-                  'Breathable systems perfect for heritage properties',
-                color: 'from-orange-500 to-orange-600',
-              },
-              {
-                icon: Shield,
-                title: 'Acrylic Rendering',
-                description: 'Weather-resistant modern finish systems',
-                color: 'from-indigo-500 to-indigo-600',
-              },
-              {
-                icon: Wrench,
-                title: 'Pitted Effect Plastering',
-                description: 'Textured finishes for unique aesthetic appeal',
-                color: 'from-teal-500 to-teal-600',
-              },
-              {
-                icon: Award,
-                title: 'External Wall Insulation',
-                description: 'Complete EWI systems with 25-year guarantees',
-                color: 'from-pink-500 to-pink-600',
-              },
-            ].map((service) => (
-              <motion.div key={service.title} variants={fadeInUp}>
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-                  <CardHeader className="text-center pb-4">
-                    <div
-                      className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <service.icon className="w-8 h-8 text-white" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                A Foundation Built on Hard Work
+              </h3>
+              <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                Our Director began as a construction labourer on London building
+                sites, where he developed a deep appreciation for skilled
+                plastering work. Recognizing the craft&apos;s potential, he
+                dedicated years to mastering both traditional lime rendering
+                techniques and modern insulation systems.
+              </p>
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Today, JDK operates as a family business serving residential and
+                commercial clients across London. Our approach combines
+                technical expertise with the personal service that only comes
+                from treating every project as if it were our own property.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="grid grid-cols-2 gap-6"
+            >
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Hammer className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-bold text-slate-800 mb-2">
+                    Traditional Skills
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Heritage lime rendering and restoration techniques
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <ThermometerSun className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="font-bold text-slate-800 mb-2">
+                    Modern Systems
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    EWI and insulated rendering solutions
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-lg col-span-2">
+                <CardContent className="p-6">
+                  <div className="text-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-6 h-6 text-white" />
                     </div>
-                    <CardTitle className="text-lg font-bold">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-center text-slate-600">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                    <h4 className="font-bold text-slate-800 mb-2">
+                      Proven Track Record
+                    </h4>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-blue-600">
+                        500+
+                      </div>
+                      <div className="text-sm text-slate-600">
+                        Projects Completed
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-green-600">
+                        95%
+                      </div>
+                      <div className="text-sm text-slate-600">
+                        Client Retention
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </section>
 

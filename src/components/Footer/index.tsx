@@ -43,10 +43,12 @@ export default function Footer() {
               Expert plastering, waterproofing, and energy-saving insulation
               systems with over a decade of experience across London.
             </p>
-            <div className="flex items-center space-x-2 text-gray-400 mb-4">
-              <Phone className="w-4 h-4" />
-              <span>07943 51930</span>
-            </div>
+            <Link href="tel:079468179671">
+              <div className="flex items-center space-x-2 text-gray-400 mb-4 text-white">
+                <Phone className="w-4 h-4" />
+                <span>07946 817967</span>
+              </div>
+            </Link>
             <div className="flex items-center space-x-4">
               <a
                 href="#"
@@ -158,7 +160,7 @@ export default function Footer() {
               <div>London, England</div>
               <div>Mon-Sat: 9am - 6pm</div>
               <div>info@jdkplastering.co.uk</div>
-              <div>07943 51930</div>
+              <div>07946 817967</div>
             </div>
           </div>
         </div>

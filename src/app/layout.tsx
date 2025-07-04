@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title:
     "JDK Plastering & Damp Specialist - London's Leading Damp Proofing & Plastering Specialists",
   description:
-    'JDK Plastering provides expert damp proofing, plastering, rendering & external wall insulation across London. 10+ years experience, fully insured, free quotes. Call 07943 51930',
+    'JDK Plastering provides expert damp proofing, plastering, rendering & external wall insulation across London. 10+ years experience, fully insured, free quotes. Call 07946 817967',
   keywords: [
     'JDK Plastering',
     'plastering London',
@@ -94,7 +94,7 @@ export default function RootLayout({
         description:
           'Expert plastering, damp proofing, rendering & external wall insulation services across London. Over 10 years experience with fully qualified & insured professionals.',
         url: 'https://jdkplastering.com',
-        telephone: '07943 51930',
+        telephone: '07946 817967',
         email: 'info@jdkplastering.com',
         address: {
           '@type': 'PostalAddress',
@@ -181,7 +181,7 @@ export default function RootLayout({
         },
         contactPoint: {
           '@type': 'ContactPoint',
-          telephone: '07943 51930',
+          telephone: '07946 817967',
           contactType: 'customer service',
           areaServed: 'GB',
           availableLanguage: 'English',

@@ -132,7 +132,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"></div>
                 )}
               </Link>
-              <Link href="tel:07943519301">
+              <Link href="tel:079468179671">
                 <Button
                   className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
                     isScrolled
@@ -141,7 +141,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   }`}
                 >
                   <Phone className="w-4 h-4 mr-2" />
-                  07943 51930
+                  07946 817967
                 </Button>
               </Link>
             </div>
@@ -266,7 +266,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                 </div>
 
                 <motion.a
-                  href="tel:07943519301"
+                  href="tel:079468179671"
                   className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 group"
                   onClick={() => {
                     // Let phone action happen first, then close menu
@@ -285,7 +285,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                       <div className="text-white font-semibold text-lg">
                         Call Now
                       </div>
-                      <div className="text-blue-100 text-sm">07943 51930</div>
+                      <div className="text-blue-100 text-sm">07946 817967</div>
                     </div>
                   </div>
                   <motion.div

@@ -25,7 +25,6 @@ import {
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import TrustIndicators from '@/components/TrustIndicators'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -502,7 +501,7 @@ export default function Services() {
             >
               <div className="overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                  src="/logo/jdk-media-wall.png"
+                  src="/images/services-plastering.jpg"
                   alt="JDK Plastering professional service showcase"
                   width={600}
                   height={400}
@@ -535,10 +534,10 @@ export default function Services() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <StandardButton
                 variant="secondary"
-                onClick={() => (window.location.href = 'tel:07943519301')}
+                onClick={() => (window.location.href = 'tel:079468179671')}
                 icon="phone"
               >
-                Call 07943 51930
+                Call 07946 817967
               </StandardButton>
               <StandardButton
                 variant="outline-white"

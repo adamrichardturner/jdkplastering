@@ -34,11 +34,139 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import TrustIndicators from '@/components/TrustIndicators'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from '@/components/ui/carousel'
+
+// Auto-play component for carousel
+function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
+  const [api, setApi] = React.useState<CarouselApi | null>(null)
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) return
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  React.useEffect(() => {
+    if (!api) return
+
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [api])
+
+  return (
+    <div className="relative">
+      <Carousel
+        opts={{
+          align: 'start',
+          loop: true,
+        }}
+        setApi={setApi}
+        className="w-full"
+      >
+        {children}
+      </Carousel>
+
+      {/* Pagination dots */}
+      <div className="flex justify-center space-x-2 mt-6">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index + 1 === current
+                ? 'bg-blue-600 scale-125'
+                : 'bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Auto-play testimonial carousel component
+function AutoPlayTestimonialCarousel({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [api, setApi] = React.useState<CarouselApi | null>(null)
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) return
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  React.useEffect(() => {
+    if (!api) return
+
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 4000) // Slightly slower for testimonials
+
+    return () => clearInterval(interval)
+  }, [api])
+
+  return (
+    <div className="relative px-2 md:px-4">
+      <Carousel
+        opts={{
+          align: 'start',
+          loop: true,
+        }}
+        setApi={setApi}
+        className="w-full"
+      >
+        {children}
+      </Carousel>
+
+      {/* Pagination dots */}
+      <div className="flex justify-center space-x-2 mt-8">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index + 1 === current
+                ? 'bg-blue-600 scale-125'
+                : 'bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label={`Go to testimonial ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -280,16 +408,66 @@ export default function Index() {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
-              <div className="overflow-hidden rounded-2xl shadow-2xl">
-                <Image
-                  src="/logo/jdk-media-wall.png"
-                  alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
-                  width={1920}
-                  height={1080}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
+              <AutoPlayCarousel>
+                <CarouselContent>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src="/images/home-gallery/gallery-1.jpg"
+                        alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto object-cover"
+                        priority
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src="/images/home-gallery/gallery-2.jpg"
+                        alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src="/images/home-gallery/gallery-3.jpg"
+                        alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src="/images/home-gallery/gallery-4.jpg"
+                        alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                      <Image
+                        src="/images/home-gallery/gallery-5.jpg"
+                        alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+              </AutoPlayCarousel>
             </motion.div>
 
             <motion.div
@@ -320,7 +498,7 @@ export default function Index() {
                       Quality Materials
                     </h4>
                     <p className="text-slate-600">
-                      Premium K Rend, Wetherby, and breathable render systems
+                      Premium Silicon, Wetherby, and breathable render systems
                     </p>
                   </div>
                 </div>
@@ -503,6 +681,11 @@ export default function Index() {
             </motion.div>
           </motion.div>
         </div>
+        <div className="text-center pt-8">
+          <StandardButton variant="primary" href="/services" icon="arrow">
+            View All Services
+          </StandardButton>
+        </div>
       </section>
 
       {/* About Section */}
@@ -614,79 +797,212 @@ export default function Index() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-            variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
           >
-            <motion.div variants={fadeInUp}>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                <CardContent className="p-8">
-                  <div className="flex mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    &quot;JDK sorted our rising damp quickly. Clean,
-                    professional, and no mess left behind — highly
-                    recommended.&quot;
-                  </p>
-                  <p className="font-semibold text-slate-900 text-lg">
-                    Sarah T.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <AutoPlayTestimonialCarousel>
+              <CarouselContent className="-ml-2 md:-ml-4 py-4 items-stretch">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;JDK sorted our rising damp quickly. Clean,
+                          professional, and no mess left behind — highly
+                          recommended.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Sarah T.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
 
-            <motion.div variants={fadeInUp}>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                <CardContent className="p-8">
-                  <div className="flex mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    &quot;From the initial survey to final render, their team
-                    were prompt and reliable throughout.&quot;
-                  </p>
-                  <p className="font-semibold text-slate-900 text-lg">
-                    Mark T.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;From the initial survey to final render, their
+                          team were prompt and reliable throughout.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Mark T.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
 
-            <motion.div variants={fadeInUp}>
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                <CardContent className="p-8">
-                  <div className="flex mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
-                    &quot;Excellent service, competitive pricing and customer
-                    support. Thoroughly refreshing to get such personal
-                    service.&quot;
-                  </p>
-                  <p className="font-semibold text-slate-900 text-lg">
-                    Shirley Smith
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Excellent service, competitive pricing and
+                          customer support. Thoroughly refreshing to get such
+                          personal service.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Shirley Smith
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Outstanding external wall insulation work. Our
+                          heating bills have dropped dramatically and the house
+                          looks fantastic.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        James Wilson
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Professional venetian plastering job that
+                          transformed our living room. The finish is absolutely
+                          stunning.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Emma Thompson
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Fixed our persistent damp issues permanently. No
+                          more mold or musty smells. Highly recommend JDK.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        David Clark
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Fantastic rendering job on our Victorian
+                          terrace. The team was tidy, punctual, and the results
+                          exceeded expectations.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Lisa Roberts
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                    <CardContent className="p-8 flex flex-col justify-between h-full w-full">
+                      <div>
+                        <div className="flex mb-6">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <p className="text-slate-600 mb-6 italic text-lg leading-relaxed">
+                          &quot;Competitive pricing and excellent workmanship.
+                          The plastering work was completed on time and within
+                          budget.&quot;
+                        </p>
+                      </div>
+                      <p className="font-semibold text-slate-900 text-lg">
+                        Michael Brown
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              </CarouselContent>
+            </AutoPlayTestimonialCarousel>
           </motion.div>
         </div>
       </section>
@@ -1057,7 +1373,7 @@ export default function Index() {
                     </div>
                     <div>
                       <p className="font-semibold text-white">Phone</p>
-                      <p className="text-gray-300">07943 51930</p>
+                      <p className="text-gray-300">07946 817967</p>
                     </div>
                   </div>
 

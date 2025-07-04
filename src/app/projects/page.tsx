@@ -470,9 +470,9 @@ export default function Projects() {
                   delay: index * 0.05,
                   ease: 'easeOut',
                 }}
-                className="text-center group"
+                className="text-center group min-h-[300px]"
               >
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <div className="bg-white h-full rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                   <div className="relative mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
                       <item.icon className="w-8 h-8 text-white" />
@@ -517,10 +517,10 @@ export default function Projects() {
               </StandardButton>
               <StandardButton
                 variant="outline-white"
-                onClick={() => (window.location.href = 'tel:07943519301')}
+                onClick={() => (window.location.href = 'tel:079468179671')}
                 icon="arrow"
               >
-                Call 07943 51930
+                Call 07946 817967
               </StandardButton>
             </div>
           </motion.div>

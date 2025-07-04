@@ -85,9 +85,9 @@ export default function Contact() {
     {
       icon: Phone,
       title: 'Phone',
-      details: '07943 51930',
+      details: '07946 817967',
       description: 'Call us for immediate assistance',
-      action: 'tel:07943519301',
+      action: 'tel:079468179671',
     },
     {
       icon: Mail,
@@ -608,10 +608,10 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <StandardButton
                 variant="secondary"
-                onClick={() => (window.location.href = 'tel:07943519301')}
+                onClick={() => (window.location.href = 'tel:079468179671')}
                 icon="phone"
               >
-                Emergency: 07943 51930
+                Emergency: 07946 817967
               </StandardButton>
             </div>
           </motion.div>
