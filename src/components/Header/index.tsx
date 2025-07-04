@@ -132,16 +132,18 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                   <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"></div>
                 )}
               </Link>
-              <Button
-                className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
-                  isScrolled
-                    ? 'border-blue-400/20'
-                    : 'border-blue-400/40 shadow-2xl'
-                }`}
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                07943 51930
-              </Button>
+              <Link href="tel:07943519301">
+                <Button
+                  className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
+                    isScrolled
+                      ? 'border-blue-400/20'
+                      : 'border-blue-400/40 shadow-2xl'
+                  }`}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  07943 51930
+                </Button>
+              </Link>
             </div>
 
             <Button

@@ -197,19 +197,27 @@ export default function Index() {
             initial="initial"
             animate="animate"
           >
+            <motion.div
+              className="relative inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-4 rounded-3xl text-md md:text-2xl font-bold shadow-2xl mb-6 overflow-hidden before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-t-transparent before:border-b-transparent before:border-r-white/10 after:content-[''] after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:animate-[shine_2s_ease-in-out_0.5s_2]"
+              variants={fadeInUp}
+            >
+              <span className="text-yellow-300">£</span>
+              <span>Lowest Price Guaranteed</span>
+            </motion.div>
+
             <motion.h1
               className="text-3xl leading-tight md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
               variants={fadeInUp}
             >
-              <span className="text-white">London&apos;s Leading </span>
+              <span className="text-white">Experienced</span>{' '}
               <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                 Damp Proofing
               </span>
               <span className="text-white"> & </span>
               <span className="bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent">
-                Expert Plastering
+                Plastering Experts
               </span>
-              <span className="text-white"> Specialists</span>
+              <span className="text-white"> in London</span>
             </motion.h1>
 
             <motion.p
