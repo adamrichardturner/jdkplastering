@@ -38,15 +38,18 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
     <>
       {/* Navigation - Always fixed to top */}
       <nav
-        className={`fixed top-0 left-0 right-0 w-full z-[100] overflow-hidden transition-all duration-500 ease-out ${
-          isScrolled
-            ? 'bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl border-b border-white/10'
-            : 'bg-transparent backdrop-blur-none shadow-none border-b border-transparent'
+        className={`fixed top-0 left-0 right-0 w-full z-[99999] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          // Mobile: always solid background
+          'bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl border-b border-white/10 ' +
+          // Desktop: conditional background based on scroll
+          (isScrolled
+            ? 'md:bg-gradient-to-r md:from-black/95 md:via-gray-900/95 md:to-slate-900/95 md:backdrop-blur-md md:shadow-2xl md:border-b md:border-white/10'
+            : 'md:bg-transparent md:backdrop-blur-none md:shadow-none md:border-b md:border-transparent')
         }`}
       >
         {/* Subtle background pattern for desktop - only visible when scrolled */}
         <div
-          className={`absolute inset-0 opacity-3 pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 opacity-3 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             isScrolled ? 'opacity-3' : 'opacity-0'
           }`}
         >
@@ -134,7 +137,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               </Link>
               <Link href="tel:079468179671">
                 <Button
-                  className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-300 ${
+                  className={`bg-gradient-to-r hidden lg:flex from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-semibold cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
                     isScrolled
                       ? 'border-blue-400/20'
                       : 'border-blue-400/40 shadow-2xl'
@@ -149,8 +152,11 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Button
               size="sm"
               variant="ghost"
-              className={`md:hidden text-white hover:bg-white/10 backdrop-blur-sm border rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${
-                isScrolled ? 'border-white/20' : 'border-white/40 bg-black/20'
+              className={`md:hidden text-white hover:bg-white/10 backdrop-blur-sm border rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] border-white/20 ${
+                // Desktop: conditional styling based on scroll
+                isScrolled
+                  ? 'md:border-white/20'
+                  : 'md:border-white/40 md:bg-black/20'
               }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -173,7 +179,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5 pointer-events-none">
@@ -188,7 +194,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               className="flex justify-end items-center px-8 pt-8 pb-4"
               initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
+              transition={{ delay: 0.05, duration: 0.25, ease: 'easeOut' }}
             >
               <motion.button
                 onClick={() => setIsMenuOpen(false)}
@@ -206,7 +212,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                 className=""
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
+                transition={{ delay: 0.1, duration: 0.3, ease: 'easeOut' }}
               >
                 {[
                   { href: '/', label: 'Home' },
@@ -232,8 +238,8 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                       initial={{ x: -50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{
-                        delay: 0.3 + index * 0.1,
-                        duration: 0.5,
+                        delay: 0.15 + index * 0.05,
+                        duration: 0.25,
                         ease: 'easeOut',
                       }}
                     >
@@ -259,7 +265,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
                 className="mt-6 space-y-3"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.6, ease: 'easeOut' }}
+                transition={{ delay: 0.35, duration: 0.3, ease: 'easeOut' }}
               >
                 <div className="text-sm text-gray-400 font-medium">
                   GET IN TOUCH

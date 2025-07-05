@@ -2,12 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Phone } from 'lucide-react'
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from 'react-icons/fa'
+import { FaLinkedinIn, FaInstagram } from 'react-icons/fa'
 import { Separator } from '@/components/ui/separator'
 
 export default function Footer() {
@@ -50,30 +45,22 @@ export default function Footer() {
               </div>
             </Link>
             <div className="flex items-center space-x-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaFacebookF className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaTwitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaLinkedinIn className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
+              <Link
+                href="https://www.instagram.com/jdkplastering"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <FaInstagram className="w-5 h-5" />
-              </a>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/dean-aldridge-7a1259363/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaLinkedinIn className="w-5 h-5" />
+              </Link>
             </div>
           </div>
 
@@ -159,8 +146,16 @@ export default function Footer() {
             <div className="space-y-3 text-gray-400">
               <div>London, England</div>
               <div>Mon-Sat: 9am - 6pm</div>
-              <div>info@jdkplastering.co.uk</div>
-              <div>07946 817967</div>
+              <Link href="mailto:info@jdkplastering.co.uk">
+                <div className="text-white transition-colors">
+                  info@jdkplastering.co.uk
+                </div>
+              </Link>
+              <Link href="tel:079468179671">
+                <div className="text-white transition-colors pt-3">
+                  07946 817967
+                </div>
+              </Link>
             </div>
           </div>
         </div>

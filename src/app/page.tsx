@@ -349,7 +349,7 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/60 to-[#090909]/20"></div>
         </div>
 
-        <div className="container h-full flex items-center mx-auto relative px-4 py-4 my-20 md:py-10">
+        <div className="container h-full flex items-center mx-auto relative px-0 py-4 my-24 md:py-10">
           <motion.div
             className="text-left max-w-2xl"
             variants={staggerContainer}
@@ -357,7 +357,7 @@ export default function Index() {
             animate="animate"
           >
             <motion.div
-              className="relative inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 text-white px-4 py-2 md:px-6 md:py-3 rounded-3xl text-md md:text-2xl font-bold shadow-2xl mb-4 md:mb-6 overflow-hidden before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-t-transparent before:border-b-transparent before:border-r-white/10 after:content-[''] after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:animate-[shine_2s_ease-in-out_0.5s_2]"
+              className="relative inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 text-white px-4 py-2 md:px-6 md:py-2 rounded-3xl text-md md:text-2xl font-semibold shadow-2xl mb-4 md:mb-6 overflow-hidden before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-t-transparent before:border-b-transparent before:border-r-white/10 after:content-[''] after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:animate-[shine_2s_ease-in-out_0.5s_2]"
               variants={fadeInUp}
             >
               <span className="text-yellow-300">£</span>
@@ -550,7 +550,7 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 text-center md:text-left">
                 <StandardButton variant="primary" href="/projects" icon="arrow">
                   View More Projects
                 </StandardButton>
@@ -823,7 +823,7 @@ export default function Index() {
             <AutoPlayTestimonialCarousel>
               <CarouselContent className="-ml-2 md:-ml-4 py-4 min-h-[400px] items-stretch">
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -848,7 +848,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -872,7 +872,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -897,7 +897,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -922,7 +922,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -947,7 +947,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -971,7 +971,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -996,7 +996,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
+                  <Card className="border-0 min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">

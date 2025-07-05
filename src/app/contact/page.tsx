@@ -151,7 +151,7 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/80 to-[#090909]/40"></div>
         </div>
 
-        <div className="container h-full flex items-center mx-auto relative px-4 py-4 my-20 md:py-10">
+        <div className="container h-full flex items-center mx-auto relative px-0 py-4 my-24 md:py-10">
           <motion.div
             className="text-left max-w-2xl"
             variants={staggerContainer}

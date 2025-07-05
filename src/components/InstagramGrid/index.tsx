@@ -11,32 +11,137 @@ interface InstagramGridProps {
 
 const InstagramGrid: React.FC<InstagramGridProps> = ({ className = '' }) => {
   useEffect(() => {
-    // Function to remove the specific Elfsight branding link
-    const removeBrandingLink = () => {
+    // Function to completely remove the Elfsight branding button from DOM
+    const removeBrandingButton = () => {
       const targetUrl =
-        'https://elfsight.com/instagram-feed-instashow/?utm_source=websites&utm_medium=clients&utm_content=instashow&utm_term=localhost&utm_campaign=free-widget'
-      const links = document.querySelectorAll('a[href="' + targetUrl + '"]')
+        'https://elfsight.com/instagram-feed-instashow/?utm_source=websites&utm_medium=clients&utm_content=instashow&utm_term=www.jdkplastering.com&utm_campaign=free-widget'
 
-      links.forEach((link) => {
+      // Target by exact href and remove from DOM
+      const linksByHref = document.querySelectorAll(
+        'a[href="' + targetUrl + '"]'
+      )
+      linksByHref.forEach((link) => {
+        console.log('Removing Elfsight branding button by href:', link)
         link.remove()
       })
+
+      // Also target by the specific style content and remove from DOM
+      const allLinks = document.querySelectorAll('a')
+      allLinks.forEach((link) => {
+        const style = link.getAttribute('style')
+        if (
+          style &&
+          style.includes(
+            'animation:none!important;background-color:rgba(238,238,238,0.9)!important'
+          )
+        ) {
+          console.log('Removing Elfsight branding button by style:', link)
+          link.remove()
+        }
+      })
+
+      // Target by href containing elfsight branding patterns
+      const brandingLinks = document.querySelectorAll(
+        'a[href*="elfsight.com/instagram-feed-instashow"][href*="utm_campaign=free-widget"]'
+      )
+      brandingLinks.forEach((link) => {
+        console.log('Removing Elfsight branding button by pattern:', link)
+        link.remove()
+      })
+
+      // Add CSS as a backup to hide any that slip through
+      const styleId = 'hide-elfsight-branding'
+      if (!document.getElementById(styleId)) {
+        const style = document.createElement('style')
+        style.id = styleId
+        style.textContent = `
+          a[href*="elfsight.com/instagram-feed-instashow"][href*="utm_campaign=free-widget"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+          }
+          
+          a[style*="animation:none!important;background-color:rgba(238,238,238,0.9)!important"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+          }
+        `
+        document.head.appendChild(style)
+      }
     }
 
-    // Try to remove the branding link multiple times as the widget loads asynchronously
-    const intervals = [500, 1000, 2000, 3000, 5000]
+    // Try to remove the branding button multiple times as the widget loads asynchronously
+    const intervals = [500, 1000, 2000, 3000, 5000, 7000, 10000]
     intervals.forEach((delay) => {
-      setTimeout(removeBrandingLink, delay)
+      setTimeout(removeBrandingButton, delay)
     })
 
-    // Also set up a mutation observer to catch dynamic content changes
-    const observer = new MutationObserver(() => {
-      removeBrandingLink()
+    // Set up a mutation observer to catch dynamic content changes
+    const observer = new MutationObserver((mutations) => {
+      let shouldRemove = false
+
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          // Check if the added node is an element
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as Element
+
+            // Check if it's the branding link or contains one
+            if (element.tagName === 'A') {
+              const href = element.getAttribute('href')
+              const style = element.getAttribute('style')
+
+              if (
+                (href &&
+                  href.includes('elfsight.com/instagram-feed-instashow') &&
+                  href.includes('utm_campaign=free-widget')) ||
+                (style &&
+                  style.includes(
+                    'animation:none!important;background-color:rgba(238,238,238,0.9)!important'
+                  ))
+              ) {
+                shouldRemove = true
+              }
+            } else {
+              // Check if the element contains branding links
+              const brandingLinks = element.querySelectorAll(
+                'a[href*="elfsight.com/instagram-feed-instashow"][href*="utm_campaign=free-widget"]'
+              )
+              const styledLinks = element.querySelectorAll(
+                'a[style*="animation:none!important;background-color:rgba(238,238,238,0.9)!important"]'
+              )
+
+              if (brandingLinks.length > 0 || styledLinks.length > 0) {
+                shouldRemove = true
+              }
+            }
+          }
+        })
+      })
+
+      if (shouldRemove) {
+        removeBrandingButton()
+      }
     })
 
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     })
+
+    // Run immediately
+    removeBrandingButton()
 
     // Cleanup function
     return () => {
