@@ -5,15 +5,15 @@ import { Award, Users, CheckCircle, Shield } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
+  initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
 }
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
 }
@@ -33,10 +33,10 @@ export default function TrustIndicators() {
       <div className="container mx-auto px-4 relative">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Why Choose JDK Plastering?
@@ -89,16 +89,18 @@ export default function TrustIndicators() {
               className="group"
               variants={fadeInUp}
               custom={index}
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
+              whileHover={{ scale: 1.03, y: -3 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              style={{ willChange: 'transform' }}
             >
-              <div className="relative p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 ease-out h-full">
+              <div className="relative p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-200 ease-out h-full">
                 {/* Icon with animated background */}
                 <motion.div
-                  className={`w-16 h-16 bg-gradient-to-br ${item.bg} rounded-2xl flex items-center justify-center mb-6 mx-auto relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}
+                  className={`w-16 h-16 bg-gradient-to-br ${item.bg} rounded-2xl flex items-center justify-center mb-6 mx-auto relative overflow-hidden group-hover:scale-105 transition-transform duration-200`}
+                  style={{ willChange: 'transform' }}
                 >
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-200`}
                   ></div>
                   <motion.div>
                     <item.icon className="w-8 h-8 text-white relative z-10" />
@@ -107,16 +109,16 @@ export default function TrustIndicators() {
 
                 {/* Content */}
                 <div className="text-center">
-                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-indigo-100 transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-indigo-100 transition-colors duration-150">
                     {item.title}
                   </h3>
-                  <p className="text-indigo-100 text-sm leading-relaxed group-hover:text-white transition-colors duration-300">
+                  <p className="text-indigo-100 text-sm leading-relaxed group-hover:text-white transition-colors duration-150">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
               </div>
             </motion.div>
           ))}
@@ -125,10 +127,14 @@ export default function TrustIndicators() {
         {/* Call to Action */}
         <motion.div
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.2,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           <StandardButton variant="primary" href="/contact" icon="phone">
             Get Free Quote Today
