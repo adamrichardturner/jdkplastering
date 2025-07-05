@@ -38,7 +38,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
     <>
       {/* Navigation - Always fixed to top */}
       <nav
-        className={`fixed top-0 left-0 right-0 w-full z-[99999] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+        className={`fixed top-0 left-0 right-0 w-full z-[500] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
           // Mobile: always solid background
           'bg-gradient-to-r from-black/95 via-gray-900/95 to-slate-900/95 backdrop-blur-md shadow-2xl border-b border-white/10 ' +
           // Desktop: conditional background based on scroll
@@ -174,7 +174,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-slate-900 z-[9999] md:hidden w-screen flex flex-col"
+            className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-slate-900 z-[1000] md:hidden w-screen flex flex-col"
             style={{ pointerEvents: 'auto' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
