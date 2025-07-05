@@ -18,8 +18,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title:
-    "JDK Plastering & Damp Specialist - London's Leading Damp Proofing & Plastering Specialists",
+  title: 'JDK Plastering & Damp Specialist',
   description:
     'JDK Plastering provides expert damp proofing, plastering, rendering & external wall insulation across London. 10+ years experience, fully insured, free quotes. Call 07946 817967',
   keywords: [
@@ -49,8 +48,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title:
-      "JDK Plastering and Damp Specialist - London's Leading Damp Proofing & Plastering Specialists",
+    title: 'JDK Plastering and Damp Specialist',
     description:
       'Expert plastering, damp proofing & rendering services across London. 10+ years experience, fully insured, free quotes.',
     url: 'https://jdkplastering.com',
@@ -68,8 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title:
-      "JDK Plastering & Damp Specialist - London's Leading Damp Proofing & Plastering Specialists",
+    title: 'JDK Plastering & Damp Specialist',
     description:
       'Expert plastering, damp proofing & rendering services across London. 10+ years experience, fully insured, free quotes.',
     images: ['/jdk-plastering-social.png'],
