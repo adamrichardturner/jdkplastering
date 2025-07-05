@@ -51,6 +51,7 @@ function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
   const [api, setApi] = React.useState<CarouselApi | null>(null)
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
+  const [isPaused, setIsPaused] = React.useState(false)
 
   React.useEffect(() => {
     if (!api) return
@@ -64,24 +65,38 @@ function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
   }, [api])
 
   React.useEffect(() => {
-    if (!api) return
+    if (!api || isPaused) return
 
     const interval = setInterval(() => {
       api.scrollNext()
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [api])
+  }, [api, isPaused])
+
+  const handleMouseEnter = () => setIsPaused(true)
+  const handleMouseLeave = () => setIsPaused(false)
+  const handleTouchStart = () => setIsPaused(true)
+  const handleTouchEnd = () => {
+    // Resume after a delay when touch ends
+    setTimeout(() => setIsPaused(false), 2000)
+  }
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <Carousel
         opts={{
           align: 'start',
           loop: true,
         }}
         setApi={setApi}
-        className="w-full"
+        className="w-full cursor-pointer"
       >
         {children}
       </Carousel>
@@ -92,7 +107,7 @@ function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
               index + 1 === current
                 ? 'bg-blue-600 scale-125'
                 : 'bg-gray-300 hover:bg-gray-400'
@@ -114,6 +129,7 @@ function AutoPlayTestimonialCarousel({
   const [api, setApi] = React.useState<CarouselApi | null>(null)
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
+  const [isPaused, setIsPaused] = React.useState(false)
 
   React.useEffect(() => {
     if (!api) return
@@ -127,24 +143,38 @@ function AutoPlayTestimonialCarousel({
   }, [api])
 
   React.useEffect(() => {
-    if (!api) return
+    if (!api || isPaused) return
 
     const interval = setInterval(() => {
       api.scrollNext()
     }, 4000) // Slightly slower for testimonials
 
     return () => clearInterval(interval)
-  }, [api])
+  }, [api, isPaused])
+
+  const handleMouseEnter = () => setIsPaused(true)
+  const handleMouseLeave = () => setIsPaused(false)
+  const handleTouchStart = () => setIsPaused(true)
+  const handleTouchEnd = () => {
+    // Resume after a delay when touch ends
+    setTimeout(() => setIsPaused(false), 2000)
+  }
 
   return (
-    <div className="relative px-2 md:px-4">
+    <div
+      className="relative px-2 md:px-4"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <Carousel
         opts={{
           align: 'start',
           loop: true,
         }}
         setApi={setApi}
-        className="w-full"
+        className="w-full cursor-pointer"
       >
         {children}
       </Carousel>
@@ -155,7 +185,7 @@ function AutoPlayTestimonialCarousel({
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
               index + 1 === current
                 ? 'bg-blue-600 scale-125'
                 : 'bg-gray-300 hover:bg-gray-400'
@@ -311,6 +341,7 @@ export default function Index() {
                 alt="JDK Plastering desktop showcase 2"
                 fill
                 className="object-cover object-center"
+                priority
               />
             </div>
           </div>
@@ -326,11 +357,13 @@ export default function Index() {
             animate="animate"
           >
             <motion.div
-              className="relative inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-4 rounded-3xl text-md md:text-2xl font-bold shadow-2xl mb-6 overflow-hidden before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-t-transparent before:border-b-transparent before:border-r-white/10 after:content-[''] after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:animate-[shine_2s_ease-in-out_0.5s_2]"
+              className="relative inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 text-white px-4 py-2 md:px-6 md:py-3 rounded-3xl text-md md:text-2xl font-bold shadow-2xl mb-4 md:mb-6 overflow-hidden before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-t-transparent before:border-b-transparent before:border-r-white/10 after:content-[''] after:absolute after:top-0 after:left-[-100%] after:w-full after:h-full after:bg-gradient-to-r after:from-transparent after:via-white/30 after:to-transparent after:animate-[shine_2s_ease-in-out_0.5s_2]"
               variants={fadeInUp}
             >
               <span className="text-yellow-300">£</span>
-              <span>Lowest Price Guaranteed</span>
+              <span className="bg-gradient-to-r from-slate-300 to-blue-400 bg-clip-text text-transparent">
+                Lowest Price Guaranteed
+              </span>
             </motion.div>
 
             <motion.h1
@@ -391,62 +424,63 @@ export default function Index() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 1, ease: 'easeOut' }}
+              className="rounded-2xl"
             >
               <AutoPlayCarousel>
-                <CarouselContent>
+                <CarouselContent className="bg-white rounded-2xl">
                   <CarouselItem>
-                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="overflow-hidden rounded-2xl cursor-pointer transition-shadow duration-300">
                       <Image
                         src="/images/home-gallery/gallery-1.jpg"
                         alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
                         width={1920}
                         height={1080}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto object-cover cursor-pointer"
                         priority
                       />
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="overflow-hidden rounded-2xl cursor-pointer transition-shadow duration-300">
                       <Image
                         src="/images/home-gallery/gallery-2.jpg"
                         alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
                         width={1920}
                         height={1080}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto object-cover cursor-pointer"
                       />
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="overflow-hidden rounded-2xl cursor-pointer transition-shadow duration-300">
                       <Image
                         src="/images/home-gallery/gallery-3.jpg"
                         alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
                         width={1920}
                         height={1080}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto object-cover cursor-pointer"
                       />
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="overflow-hidden rounded-2xl cursor-pointer transition-shadow duration-300">
                       <Image
                         src="/images/home-gallery/gallery-4.jpg"
                         alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
                         width={1920}
                         height={1080}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto object-cover cursor-pointer"
                       />
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="overflow-hidden rounded-2xl cursor-pointer transition-shadow duration-300">
                       <Image
                         src="/images/home-gallery/gallery-5.jpg"
                         alt="JDK Plastering - Professional work showcase featuring external wall insulation and rendering projects"
                         width={1920}
                         height={1080}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto object-cover cursor-pointer"
                       />
                     </div>
                   </CarouselItem>
@@ -788,8 +822,8 @@ export default function Index() {
           >
             <AutoPlayTestimonialCarousel>
               <CarouselContent className="-ml-2 md:-ml-4 py-4 min-h-[400px] items-stretch">
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -813,8 +847,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -837,8 +871,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -862,8 +896,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -887,8 +921,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -912,8 +946,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -936,8 +970,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -961,8 +995,8 @@ export default function Index() {
                   </Card>
                 </CarouselItem>
 
-                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
+                <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex cursor-pointer">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex cursor-pointer">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
