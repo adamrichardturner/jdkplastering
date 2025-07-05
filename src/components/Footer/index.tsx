@@ -146,9 +146,9 @@ export default function Footer() {
             <div className="space-y-3 text-gray-400">
               <div>London, England</div>
               <div>Mon-Sat: 9am - 6pm</div>
-              <Link href="mailto:info@jdkplastering.co.uk">
+              <Link href="mailto:info@jdkplastering.com">
                 <div className="text-white transition-colors">
-                  info@jdkplastering.co.uk
+                  info@jdkplastering.com
                 </div>
               </Link>
               <Link href="tel:079468179671">

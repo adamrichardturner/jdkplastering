@@ -1401,7 +1401,7 @@ export default function Index() {
                     </div>
                     <div>
                       <p className="font-semibold text-white">Email</p>
-                      <p className="text-gray-300">info@jdkplastering.co.uk</p>
+                      <p className="text-gray-300">info@jdkplastering.com</p>
                     </div>
                   </div>
 

@@ -92,9 +92,9 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      details: 'info@jdkplastering.co.uk',
+      details: 'info@jdkplastering.com',
       description: 'Send us your enquiry anytime',
-      action: 'mailto:info@jdkplastering.co.uk',
+      action: 'mailto:info@jdkplastering.com',
     },
     {
       icon: MapPin,
