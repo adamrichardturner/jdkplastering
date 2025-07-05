@@ -167,6 +167,27 @@ export default function Footer() {
             &copy; {year} JDK Plastering & Damp Solutions. All rights reserved.
           </p>
         </div>
+        <div className="text-center text-gray-400 space-y-2">
+          <div>
+            <Link
+              href="/terms"
+              className="text-gray-400 hover:text-white transition-colors underline underline-offset-2"
+            >
+              Terms & Conditions
+            </Link>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                localStorage.removeItem('cookie-consent')
+                window.location.reload()
+              }}
+              className="text-gray-400 hover:text-white transition-colors underline underline-offset-2"
+            >
+              Manage Cookie Preferences
+            </button>
+          </div>
+        </div>
       </div>
     </footer>
   )

@@ -37,19 +37,19 @@ export function StandardButton({
   const getVariantClasses = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+        return 'bg-gradient-to-r min-w-[220px] font-semibold  min-h-[60px] from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
       case 'secondary':
-        return 'bg-white text-blue-600 hover:bg-gray-100'
+        return 'bg-white text-blue-600 min-w-[220px] font-semibold  min-h-[60px] hover:bg-gray-100'
       case 'white':
-        return 'bg-white text-black hover:bg-gray-100'
+        return 'bg-white text-black w-1/2 md:w-full hover:bg-gray-100'
       case 'purple':
-        return 'bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white'
+        return 'bg-gradient-to-r from-purple-600 font-semibold to-violet-600 min-w-[220px] font-semibold  min-h-[60px] hover:from-purple-700 hover:to-violet-700 text-white'
       case 'outline-white':
-        return 'border-white text-white hover:bg-white hover:text-blue-600 border'
+        return 'border-white text-white hover:bg-white font-semibold min-w-[220px] font-semibold  min-h-[60px] hover:text-blue-600 border'
       case 'outline-blue':
-        return 'border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white border'
+        return 'border-blue-600 text-blue-600 hover:bg-blue-600 font-semibold min-w-[220px] font-semibold  min-h-[60px] hover:text-white border'
       default:
-        return 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+        return 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 min-w-[220px] font-semibold  min-h-[60px] hover:to-indigo-700 text-white'
     }
   }
 
@@ -85,7 +85,7 @@ export function StandardButton({
     ${getVariantClasses()}
     ${getSizeClasses()}
     ${fullWidth ? 'w-full' : ''}
-    font-semibold cursor-pointer shadow-lg min-w-[220px] min-h-[60px] hover:shadow-xl transition-all duration-300 hover:scale-105
+    cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105
     ${className}
   `.trim()
 

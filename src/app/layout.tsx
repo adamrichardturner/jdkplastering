@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Lato, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
+import CookieConsentWrapper from '@/components/CookieConsentWrapper'
 
 const lato = Lato({
   variable: '--font-lato',
@@ -207,9 +208,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${lato.variable} ${poppins.variable} antialiased`}>
-        {/* Google Analytics */}
+        {/* Google Analytics - Consent Aware */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6YHLWT29MT"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -217,11 +218,25 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-6YHLWT29MT');
+            
+            // Set default consent mode - will be updated by cookie consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'granted',
+              personalization_storage: 'granted',
+              security_storage: 'granted',
+            });
+            
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+              send_page_view: false
+            });
           `}
         </Script>
 
         {children}
+
+        {/* Cookie Consent Banner */}
+        <CookieConsentWrapper />
       </body>
     </html>
   )
