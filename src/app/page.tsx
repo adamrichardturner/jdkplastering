@@ -787,9 +787,9 @@ export default function Index() {
             className="max-w-6xl mx-auto"
           >
             <AutoPlayTestimonialCarousel>
-              <CarouselContent className="-ml-2 md:-ml-4 py-4 items-stretch">
+              <CarouselContent className="-ml-2 md:-ml-4 py-4 min-h-[400px] items-stretch">
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -814,7 +814,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -838,11 +838,11 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
-                          {[...Array(5)].map((_, i) => (
+                          {[...Array(4)].map((_, i) => (
                             <Star
                               key={i}
                               className="w-5 h-5 fill-yellow-400 text-yellow-400"
@@ -863,7 +863,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -888,11 +888,11 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
-                          {[...Array(5)].map((_, i) => (
+                          {[...Array(4)].map((_, i) => (
                             <Star
                               key={i}
                               className="w-5 h-5 fill-yellow-400 text-yellow-400"
@@ -913,7 +913,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -937,7 +937,7 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
@@ -962,11 +962,11 @@ export default function Index() {
                 </CarouselItem>
 
                 <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 h-full flex">
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex">
+                  <Card className="border-0 shadow-lg hover:shadow-xl min-h-[326px] transition-all duration-300 h-full flex">
                     <CardContent className="p-8 flex flex-col justify-between h-full w-full">
                       <div>
                         <div className="flex mb-6">
-                          {[...Array(5)].map((_, i) => (
+                          {[...Array(4)].map((_, i) => (
                             <Star
                               key={i}
                               className="w-5 h-5 fill-yellow-400 text-yellow-400"
