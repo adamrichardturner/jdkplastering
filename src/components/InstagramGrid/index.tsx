@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Grid3X3, ExternalLink } from 'lucide-react'
+import { Grid3X3 } from 'lucide-react'
 import { ElfsightWidget } from 'react-elfsight-widget'
 
 interface InstagramGridProps {
