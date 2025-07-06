@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Grid3X3 } from 'lucide-react'
+import { Grid3X3, ExternalLink } from 'lucide-react'
 import { ElfsightWidget } from 'react-elfsight-widget'
 
 interface InstagramGridProps {
@@ -158,7 +158,7 @@ const InstagramGrid: React.FC<InstagramGridProps> = ({ className = '' }) => {
         transition={{ duration: 0.6 }}
       >
         <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 p-0.5">
+          <div className="w-12 h-12 rounded-full hidden md:block bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 p-0.5">
             <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
               <Grid3X3 className="w-6 h-6 text-gray-700" />
             </div>
@@ -198,17 +198,19 @@ const InstagramGrid: React.FC<InstagramGridProps> = ({ className = '' }) => {
           Want to see more of our work? Follow us on Instagram for daily
           updates!
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="https://www.instagram.com/jdkplastering"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-          >
-            <Grid3X3 className="w-5 h-5" />
-            Follow @jdkplastering
-          </a>
-        </div>
+        <a
+          href="https://www.instagram.com/jdkplastering"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block"
+        >
+          <div className="flex flex-col sm:flex-row w-full gap-4 justify-center text-center items-center">
+            <div className="inline-flex items-center min-w-[220px] font-semibold min-h-[60px] shadow-lg gap-2 px-6 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300">
+              <Grid3X3 className="w-5 h-5" />
+              Follow @jdkplastering
+            </div>
+          </div>
+        </a>
       </motion.div>
     </div>
   )

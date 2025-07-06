@@ -45,7 +45,7 @@ export function StandardButton({
       case 'purple':
         return 'bg-gradient-to-r from-purple-600 font-semibold to-violet-600 min-w-[220px] font-semibold  min-h-[60px] hover:from-purple-700 hover:to-violet-700 text-white'
       case 'outline-white':
-        return 'border-white text-white hover:bg-white font-semibold min-w-[220px] font-semibold  min-h-[60px] hover:text-blue-600 border'
+        return 'border-white text-white hover:bg-white font-semibold w-[220px] font-semibold  min-h-[60px] hover:text-blue-600 border'
       case 'outline-blue':
         return 'border-blue-600 text-blue-600 hover:bg-blue-600 font-semibold min-w-[220px] font-semibold  min-h-[60px] hover:text-white border'
       default:

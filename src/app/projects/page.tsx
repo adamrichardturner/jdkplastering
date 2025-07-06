@@ -222,7 +222,7 @@ export default function Projects() {
               Join hundreds of satisfied clients across London. Get your free
               consultation and detailed quote today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col w-full sm:flex-row gap-4 justify-center items-center">
               <StandardButton variant="secondary" href="/contact" icon="phone">
                 Get Free Quote
               </StandardButton>
