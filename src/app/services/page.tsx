@@ -226,7 +226,7 @@ export default function Services() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-8"
+              className="flex flex-col sm:flex-row gap-4 mb-8 w-full items-center"
               variants={fadeInUp}
             >
               <StandardButton variant="primary" href="/contact" icon="arrow">
@@ -540,7 +540,7 @@ export default function Services() {
                 Call 07946 817967
               </StandardButton>
               <StandardButton
-                variant="outline-white"
+                variant="outline-white-full"
                 href="/contact"
                 icon="arrow"
               >
