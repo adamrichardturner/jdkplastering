@@ -367,7 +367,7 @@ export default function Index() {
             </motion.div>
 
             <motion.h1
-              className="text-3xl leading-tight md:text-5xl lg:text-6xl font-bold mb-8 md:leading-[62px] leading-[42px]"
+              className="text-3xl leading-tight md:text-5xl lg:text-6xl font-bold mb-4 md:mb-8 md:leading-[62px] leading-[42px]"
               variants={fadeInUp}
             >
               <span className="text-white">Experienced</span>{' '}
