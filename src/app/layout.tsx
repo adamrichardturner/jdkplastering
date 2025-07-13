@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     images: ['/jdk-plastering-social.png'],
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'GfliHyGIHHf1NqdCXMOuffLmfpeG3CeTFoYvSXbn0hA',
   },
 }
 
