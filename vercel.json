@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "jdkplastering.vercel.app"
+        }
+      ],
+      "destination": "https://jdkplastering.com/:1",
+      "permanent": true
+    }
+  ]
+}
