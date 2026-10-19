@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Phone } from 'lucide-react'
 import { FaLinkedinIn, FaInstagram } from 'react-icons/fa'
 import { Separator } from '@/components/ui/separator'
+import SsipAccreditation from '@/components/SsipAccreditation'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -158,6 +159,10 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="mb-10 flex justify-center">
+          <SsipAccreditation variant="compact" />
         </div>
 
         <Separator className="my-8 bg-gray-800" />

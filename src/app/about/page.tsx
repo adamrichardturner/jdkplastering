@@ -11,6 +11,9 @@ import {
   Target,
   HeartHandshake,
   Clock,
+  ClipboardCheck,
+  House,
+  BadgeCheck,
 } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
 import {
@@ -431,6 +434,155 @@ export default function About() {
                       We stand behind our work with comprehensive guarantees.
                       Our commitment to quality ensures lasting results that
                       protect your investment for years to come.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SSIP Accreditation */}
+      <section className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky-600 mb-4">
+                SSIP Accredited
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                Health & Safety, Independently Assessed
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                The standard UK construction buyers use to confirm a contractor
+                manages health and safety properly
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <a
+                  href="https://ssip.org.uk/about/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center rounded-3xl bg-white px-8 py-10 shadow-xl transition-transform duration-200 hover:-translate-y-0.5"
+                >
+                  <Image
+                    src="/credentials/SSIP-Accreditation.png"
+                    alt="SSIP Accredited"
+                    width={670}
+                    height={450}
+                    className="h-36 w-auto sm:h-44"
+                  />
+                  <p className="mt-6 text-center text-sm font-medium text-slate-500">
+                    Safety Schemes in Procurement
+                  </p>
+                </a>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+              >
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                  What this means before we start work
+                </h3>
+                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                  SSIP, Safety Schemes in Procurement, is the UK framework that
+                  lets clients recognise a contractor&apos;s health and safety
+                  assessment. JDK has been assessed by an SSIP member scheme
+                  against the Core Criteria backed by the Health and Safety
+                  Executive.
+                </p>
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  That assessment covers our health and safety policy, training,
+                  competent advice, risk assessments, safe systems of work, and
+                  how we monitor jobs and report incidents. It is matched to the
+                  plastering, damp proofing, rendering and insulation work we
+                  actually carry out.
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              <motion.div variants={fadeInUp}>
+                <Card className="border-0 shadow-lg h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-sky-200 rounded-full flex items-center justify-center mb-4">
+                      <House className="w-6 h-6 text-sky-600" />
+                    </div>
+                    <CardTitle className="text-xl">
+                      Safer work in your home
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 leading-relaxed">
+                      Much of our work happens in occupied houses. The
+                      assessment checks how we control access, dust, materials
+                      and the people on site, so those risks are planned for
+                      before we arrive.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <Card className="border-0 shadow-lg h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-4">
+                      <ClipboardCheck className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <CardTitle className="text-xl">
+                      A standard buyers already use
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 leading-relaxed">
+                      Homeowners, landlords and main contractors use SSIP to
+                      confirm health and safety without repeating the same
+                      paperwork. Your project starts with a contractor who has
+                      already met that threshold.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <Card className="border-0 shadow-lg h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full flex items-center justify-center mb-4">
+                      <BadgeCheck className="w-6 h-6 text-indigo-600" />
+                    </div>
+                    <CardTitle className="text-xl">
+                      Checked, then applied to your property
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-slate-600 leading-relaxed">
+                      The accreditation shows our company systems meet the
+                      national criteria. We still survey each building and plan
+                      the work around that property, so both the assessment and
+                      the job itself protect you.
                     </CardDescription>
                   </CardContent>
                 </Card>

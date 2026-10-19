@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Award, Users, CheckCircle, Shield } from 'lucide-react'
 import { StandardButton } from '@/components/ui/standard-button'
+import SsipAccreditation from '@/components/SsipAccreditation'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -124,9 +125,19 @@ export default function TrustIndicators() {
           ))}
         </motion.div>
 
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <SsipAccreditation variant="feature" />
+        </motion.div>
+
         {/* Call to Action */}
         <motion.div
-          className="text-center mt-16"
+          className="text-center mt-12"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
