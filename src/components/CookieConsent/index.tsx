@@ -28,12 +28,17 @@ export default function CookieConsent({
 
   useEffect(() => {
     const savedPreferences = getCookiePreferences()
-    if (!localStorage.getItem('cookie-consent')) {
-      setShowBanner(true)
-    } else {
+    const hasConsent = Boolean(localStorage.getItem('cookie-consent'))
+
+    queueMicrotask(() => {
+      if (!hasConsent) {
+        setShowBanner(true)
+        return
+      }
+
       setPreferences(savedPreferences)
       onPreferencesChange(savedPreferences)
-    }
+    })
   }, [onPreferencesChange])
 
   const handleAcceptAll = () => {

@@ -54,18 +54,27 @@ function AutoPlayCarousel({ children }: { children: React.ReactNode }) {
   const [isPaused, setIsPaused] = React.useState(false)
 
   React.useEffect(() => {
-    if (!api) return
+    if (!api) {
+      return
+    }
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
-
-    api.on('select', () => {
+    const syncPosition = () => {
+      setCount(api.scrollSnapList().length)
       setCurrent(api.selectedScrollSnap() + 1)
-    })
+    }
+
+    api.on('select', syncPosition)
+    queueMicrotask(syncPosition)
+
+    return () => {
+      api.off('select', syncPosition)
+    }
   }, [api])
 
   React.useEffect(() => {
-    if (!api || isPaused) return
+    if (!api || isPaused) {
+      return
+    }
 
     const interval = setInterval(() => {
       api.scrollNext()
@@ -132,18 +141,27 @@ function AutoPlayTestimonialCarousel({
   const [isPaused, setIsPaused] = React.useState(false)
 
   React.useEffect(() => {
-    if (!api) return
+    if (!api) {
+      return
+    }
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
-
-    api.on('select', () => {
+    const syncPosition = () => {
+      setCount(api.scrollSnapList().length)
       setCurrent(api.selectedScrollSnap() + 1)
-    })
+    }
+
+    api.on('select', syncPosition)
+    queueMicrotask(syncPosition)
+
+    return () => {
+      api.off('select', syncPosition)
+    }
   }, [api])
 
   React.useEffect(() => {
-    if (!api || isPaused) return
+    if (!api || isPaused) {
+      return
+    }
 
     const interval = setInterval(() => {
       api.scrollNext()
@@ -233,17 +251,21 @@ export default function Index() {
     propertyType: '',
     timeline: '',
   })
+  const [previousSucceeded, setPreviousSucceeded] = useState(state.succeeded)
+  const shouldResetForm =
+    state.succeeded && previousSucceeded !== state.succeeded
 
-  // Reset form data when submission is successful
-  useEffect(() => {
-    if (state.succeeded) {
-      setFormData({
-        service: '',
-        propertyType: '',
-        timeline: '',
-      })
-    }
-  }, [state.succeeded])
+  if (previousSucceeded !== state.succeeded) {
+    setPreviousSucceeded(state.succeeded)
+  }
+
+  if (shouldResetForm) {
+    setFormData({
+      service: '',
+      propertyType: '',
+      timeline: '',
+    })
+  }
 
   // Auto-advance background slider (2 images total)
   useEffect(() => {

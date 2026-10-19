@@ -52,15 +52,19 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     service: '',
   })
+  const [previousSucceeded, setPreviousSucceeded] = useState(state.succeeded)
+  const shouldResetForm =
+    state.succeeded && previousSucceeded !== state.succeeded
 
-  // Reset form data when submission is successful
-  useEffect(() => {
-    if (state.succeeded) {
-      setFormData({
-        service: '',
-      })
-    }
-  }, [state.succeeded])
+  if (previousSucceeded !== state.succeeded) {
+    setPreviousSucceeded(state.succeeded)
+  }
+
+  if (shouldResetForm) {
+    setFormData({
+      service: '',
+    })
+  }
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
