@@ -34,11 +34,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import QuoteCalculator from '@/components/QuoteCalculator'
+import {
+  QUOTE_FORM_ID,
+  readHomepageEstimateFromLocation,
+  scrollToQuoteForm,
+} from '@/lib/quote-rates'
+import type { HomepageEstimatePayload } from '@/lib/quote-rates'
 import TrustIndicators from '@/components/TrustIndicators'
 import {
   Carousel,
@@ -252,6 +258,8 @@ export default function Index() {
     propertyType: '',
     timeline: '',
   })
+  const [priceEstimate, setPriceEstimate] = useState('')
+  const [message, setMessage] = useState('')
   const [previousSucceeded, setPreviousSucceeded] = useState(state.succeeded)
   const shouldResetForm =
     state.succeeded && previousSucceeded !== state.succeeded
@@ -266,7 +274,49 @@ export default function Index() {
       propertyType: '',
       timeline: '',
     })
+    setPriceEstimate('')
+    setMessage('')
   }
+
+  const applyHomepageEstimate = useCallback(
+    (payload: HomepageEstimatePayload | null) => {
+      if (!payload) {
+        return
+      }
+
+      setFormData((current) => {
+        return { ...current, service: payload.service }
+      })
+      setPriceEstimate(payload.priceEstimate)
+      setMessage((current) => {
+        if (current.trim() !== '') {
+          return current
+        }
+
+        return payload.priceEstimate
+      })
+    },
+    []
+  )
+
+  useEffect(() => {
+    const payload = readHomepageEstimateFromLocation()
+    const quoteRequested = window.location.hash === `#${QUOTE_FORM_ID}`
+    if (payload) {
+      const timeoutId = window.setTimeout(() => {
+        applyHomepageEstimate(payload)
+        scrollToQuoteForm()
+      }, 0)
+
+      return () => {
+        window.clearTimeout(timeoutId)
+      }
+    }
+
+    if (quoteRequested) {
+      scrollToQuoteForm()
+    }
+  }, [applyHomepageEstimate])
 
   // Auto-advance background slider (2 images total)
   useEffect(() => {
@@ -1063,7 +1113,7 @@ export default function Index() {
         </div>
       </section>
 
-      <QuoteCalculator />
+      <QuoteCalculator onApplyQuote={applyHomepageEstimate} />
 
       {/* Contact Section */}
       <section
@@ -1094,7 +1144,10 @@ export default function Index() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="border border-gray-700 bg-gray-800/50 backdrop-blur-sm shadow-2xl">
+              <Card
+                id={QUOTE_FORM_ID}
+                className="scroll-mt-28 border border-gray-700 bg-gray-800/50 backdrop-blur-sm shadow-2xl"
+              >
                 <CardHeader>
                   <CardTitle className="text-2xl text-white">
                     Send us a message
@@ -1377,12 +1430,38 @@ export default function Index() {
                         />
                       </div>
 
+                      {priceEstimate !== '' ? (
+                        <div>
+                          <label
+                            htmlFor="priceEstimate"
+                            className="mb-2 block text-sm font-medium text-gray-300"
+                          >
+                            Price estimate
+                          </label>
+                          <Textarea
+                            id="priceEstimate"
+                            name="priceEstimate"
+                            readOnly
+                            rows={4}
+                            value={priceEstimate}
+                            className="resize-none border-gray-600 bg-gray-700/50 break-words text-white"
+                          />
+                          <p className="mt-2 text-xs text-gray-400">
+                            This estimate will be sent with your enquiry.
+                          </p>
+                        </div>
+                      ) : null}
+
                       <div>
                         <Textarea
                           name="message"
                           placeholder="Tell us about your project..."
                           className="min-h-32 bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
                           required
+                          value={message}
+                          onChange={(event) => {
+                            setMessage(event.target.value)
+                          }}
                         />
                         <ValidationError
                           prefix="Message"

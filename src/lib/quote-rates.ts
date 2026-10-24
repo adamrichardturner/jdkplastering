@@ -83,6 +83,21 @@ export type PriceEstimatePayload = {
   priceEstimate: string
 }
 
+export type HomepageService =
+  | 'damp-proofing'
+  | 'plastering'
+  | 'rendering'
+  | 'external-wall-insulation'
+  | 'venetian-plastering'
+  | 'waterproofing'
+  | 'multiple-services'
+  | 'not-sure'
+
+export type HomepageEstimatePayload = {
+  service: HomepageService
+  priceEstimate: string
+}
+
 export type EstimateFilterOption = {
   id: EstimateFilter
   label: string
@@ -96,6 +111,40 @@ const CONTACT_SERVICE_VALUES: readonly ContactService[] = [
   'mould-removal',
   'multiple',
 ]
+
+const HOMEPAGE_SERVICE_VALUES: readonly HomepageService[] = [
+  'damp-proofing',
+  'plastering',
+  'rendering',
+  'external-wall-insulation',
+  'venetian-plastering',
+  'waterproofing',
+  'multiple-services',
+  'not-sure',
+]
+
+const HOMEPAGE_SERVICE_BY_ID: Record<string, HomepageService> = {
+  skimming: 'plastering',
+  ceilings: 'plastering',
+  'full-replaster': 'plastering',
+  'plasterboard-skim': 'plastering',
+  'polished-plaster': 'plastering',
+  'feature-walls': 'plastering',
+  'lime-plaster': 'plastering',
+  microcement: 'plastering',
+  repairs: 'plastering',
+  rendering: 'rendering',
+  'silicone-k-rend': 'rendering',
+  'external-wall-insulation': 'external-wall-insulation',
+  'venetian-plaster': 'venetian-plastering',
+  'rising-damp': 'damp-proofing',
+  repointing: 'damp-proofing',
+  tanking: 'waterproofing',
+}
+
+export const QUOTE_FORM_ID = 'quote-form'
+
+export const HOMEPAGE_ESTIMATE_STORAGE_KEY = 'jdk-homepage-price-estimate'
 
 const gbpFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -602,6 +651,93 @@ export function buildPriceEstimatePayload(
   return { service, priceEstimate }
 }
 
+export function isHomepageService(value: string): value is HomepageService {
+  for (const service of HOMEPAGE_SERVICE_VALUES) {
+    if (service === value) {
+      return true
+    }
+  }
+
+  return false
+}
+
+export function homepageServiceForQuote(
+  service: QuoteService
+): HomepageService {
+  return HOMEPAGE_SERVICE_BY_ID[service.id] ?? 'plastering'
+}
+
+export function homepageServiceForSelection(
+  services: readonly QuoteService[]
+): HomepageService | null {
+  const first = services[0]
+  if (!first) {
+    return null
+  }
+
+  if (services.length === 1) {
+    return homepageServiceForQuote(first)
+  }
+
+  return 'multiple-services'
+}
+
+export function buildHomepageEstimatePayload(
+  lines: readonly SelectedLineInput[]
+): HomepageEstimatePayload | null {
+  const services: QuoteService[] = []
+  for (const line of lines) {
+    services.push(line.service)
+  }
+
+  const service = homepageServiceForSelection(services)
+  if (!service) {
+    return null
+  }
+
+  const priceEstimate = buildPriceEstimateText(lines)
+  if (priceEstimate === '') {
+    return null
+  }
+
+  return { service, priceEstimate }
+}
+
+export function buildHomepageQuoteHref(
+  payload: HomepageEstimatePayload | null
+): string {
+  if (!payload) {
+    return `/#${QUOTE_FORM_ID}`
+  }
+
+  const params = new URLSearchParams()
+  params.set('fromEstimate', '1')
+  params.set('service', payload.service)
+  params.set('priceEstimate', payload.priceEstimate)
+
+  return `/?${params.toString()}#${QUOTE_FORM_ID}`
+}
+
+export function scrollToQuoteForm(): void {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  const form = document.getElementById(QUOTE_FORM_ID)
+  if (!form) {
+    return
+  }
+
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+
+  form.scrollIntoView({
+    behavior: reduceMotion ? 'auto' : 'smooth',
+    block: 'start',
+  })
+}
+
 export function buildQuoteHref(payload: PriceEstimatePayload | null): string {
   if (!payload) {
     return '/contact#contact-form'
@@ -680,4 +816,105 @@ export function clearStoredPriceEstimate(): void {
   }
 
   window.sessionStorage.removeItem(PRICE_ESTIMATE_STORAGE_KEY)
+}
+
+export function parseHomepageEstimatePayload(
+  raw: string
+): HomepageEstimatePayload | null {
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(raw)
+  } catch {
+    return null
+  }
+
+  if (!isRecord(parsed)) {
+    return null
+  }
+
+  const service = parsed.service
+  const priceEstimate = parsed.priceEstimate
+  if (typeof service !== 'string') {
+    return null
+  }
+
+  if (typeof priceEstimate !== 'string') {
+    return null
+  }
+
+  if (!isHomepageService(service)) {
+    return null
+  }
+
+  return { service, priceEstimate }
+}
+
+export function storeHomepageEstimate(payload: HomepageEstimatePayload): void {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  window.sessionStorage.setItem(
+    HOMEPAGE_ESTIMATE_STORAGE_KEY,
+    JSON.stringify(payload)
+  )
+}
+
+export function readStoredHomepageEstimate(): HomepageEstimatePayload | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  const raw = window.sessionStorage.getItem(HOMEPAGE_ESTIMATE_STORAGE_KEY)
+  if (raw === null) {
+    return null
+  }
+
+  return parseHomepageEstimatePayload(raw)
+}
+
+export function clearStoredHomepageEstimate(): void {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  window.sessionStorage.removeItem(HOMEPAGE_ESTIMATE_STORAGE_KEY)
+}
+
+export function readHomepageEstimateFromLocation(): HomepageEstimatePayload | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('fromEstimate') !== '1') {
+    return null
+  }
+
+  const stored = readStoredHomepageEstimate()
+  const queryService = params.get('service') ?? ''
+  const queryEstimate = params.get('priceEstimate') ?? ''
+  let service: HomepageService | null = null
+  if (isHomepageService(queryService)) {
+    service = queryService
+  }
+
+  if (!service) {
+    service = stored?.service ?? null
+  }
+
+  let priceEstimate = queryEstimate
+  if (priceEstimate === '') {
+    priceEstimate = stored?.priceEstimate ?? ''
+  }
+
+  if (!service) {
+    return null
+  }
+
+  if (priceEstimate === '') {
+    return null
+  }
+
+  return { service, priceEstimate }
 }

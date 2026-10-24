@@ -38,10 +38,10 @@ import {
   ESTIMATE_GUIDE_INTRO,
   QUOTE_SERVICES,
   UNIT_CONFIG,
-  buildPriceEstimatePayload,
-  buildQuoteHref,
+  buildHomepageEstimatePayload,
+  buildHomepageQuoteHref,
   calculateEstimate,
-  clearStoredPriceEstimate,
+  clearStoredHomepageEstimate,
   combineEstimates,
   formatBreakdown,
   formatGbp,
@@ -49,11 +49,13 @@ import {
   formatQuantity,
   quantityForSlider,
   sanitizeQuantityInput,
+  scrollToQuoteForm,
   serviceMatchesFilter,
-  storePriceEstimate,
+  storeHomepageEstimate,
 } from '@/lib/quote-rates'
 import type {
   EstimateFilter,
+  HomepageEstimatePayload,
   QuoteService,
   SelectedLineInput,
   ServiceIconName,
@@ -265,11 +267,48 @@ function ResultShell({ live, children }: ResultShellProps) {
 
 type ExactQuoteLinkProps = {
   lines: readonly SelectedLineInput[]
+  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
 }
 
-function ExactQuoteLink({ lines }: ExactQuoteLinkProps) {
-  const payload = buildPriceEstimatePayload(lines)
-  const href = buildQuoteHref(payload)
+function persistHomepageEstimate(payload: HomepageEstimatePayload | null) {
+  if (!payload) {
+    clearStoredHomepageEstimate()
+    return
+  }
+
+  storeHomepageEstimate(payload)
+}
+
+function ExactQuoteLink({ lines, onApplyQuote }: ExactQuoteLinkProps) {
+  const payload = buildHomepageEstimatePayload(lines)
+  const href = buildHomepageQuoteHref(payload)
+
+  function handleClick() {
+    persistHomepageEstimate(payload)
+    if (!onApplyQuote) {
+      return
+    }
+
+    onApplyQuote(payload)
+    scrollToQuoteForm()
+  }
+
+  if (onApplyQuote) {
+    return (
+      <div className="mt-6 w-full [&>button]:w-full">
+        <StandardButton
+          variant="primary"
+          type="button"
+          icon="arrow"
+          fullWidth
+          className="!min-w-0 !px-6"
+          onClick={handleClick}
+        >
+          Get an Exact Quote
+        </StandardButton>
+      </div>
+    )
+  }
 
   return (
     <div className="mt-6 [&>a]:block [&>a]:w-full">
@@ -279,14 +318,7 @@ function ExactQuoteLink({ lines }: ExactQuoteLinkProps) {
         icon="arrow"
         fullWidth
         className="!min-w-0 !px-6"
-        onClick={() => {
-          if (!payload) {
-            clearStoredPriceEstimate()
-            return
-          }
-
-          storePriceEstimate(payload)
-        }}
+        onClick={handleClick}
       >
         Get an Exact Quote
       </StandardButton>
@@ -427,9 +459,15 @@ type ResultPanelProps = {
   lines: readonly SelectedLineInput[]
   onQuantityChange: (serviceId: string, value: string) => void
   onRemove: (service: QuoteService) => void
+  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
 }
 
-function ResultPanel({ lines, onQuantityChange, onRemove }: ResultPanelProps) {
+function ResultPanel({
+  lines,
+  onQuantityChange,
+  onRemove,
+  onApplyQuote,
+}: ResultPanelProps) {
   const live = formatLivePriceEstimate(lines)
   const combined = combineEstimates(lines)
 
@@ -446,7 +484,7 @@ function ResultPanel({ lines, onQuantityChange, onRemove }: ResultPanelProps) {
         <p className="mt-4 text-xs leading-relaxed text-gray-400">
           {ESTIMATE_DISCLAIMER}
         </p>
-        <ExactQuoteLink lines={lines} />
+        <ExactQuoteLink lines={lines} onApplyQuote={onApplyQuote} />
       </ResultShell>
     )
   }
@@ -516,12 +554,18 @@ function ResultPanel({ lines, onQuantityChange, onRemove }: ResultPanelProps) {
       <p className="mt-4 text-xs leading-relaxed text-gray-400">
         {ESTIMATE_DISCLAIMER}
       </p>
-      <ExactQuoteLink lines={lines} />
+      <ExactQuoteLink lines={lines} onApplyQuote={onApplyQuote} />
     </ResultShell>
   )
 }
 
-export default function QuoteCalculator() {
+type QuoteCalculatorProps = {
+  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
+}
+
+export default function QuoteCalculator({
+  onApplyQuote,
+}: QuoteCalculatorProps) {
   const [filter, setFilter] = useState<EstimateFilter>('all')
   const [selectedIds, setSelectedIds] = useState<string[]>([DEFAULT_SERVICE_ID])
   const [quantities, setQuantities] =
@@ -653,6 +697,7 @@ export default function QuoteCalculator() {
                   lines={selectedLines}
                   onQuantityChange={handleQuantityChange}
                   onRemove={handleToggleService}
+                  onApplyQuote={onApplyQuote}
                 />
               </div>
             </div>
