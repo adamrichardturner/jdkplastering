@@ -288,13 +288,6 @@ export default function Index() {
         return { ...current, service: payload.service }
       })
       setPriceEstimate(payload.priceEstimate)
-      setMessage((current) => {
-        if (current.trim() !== '') {
-          return current
-        }
-
-        return payload.priceEstimate
-      })
     },
     []
   )
