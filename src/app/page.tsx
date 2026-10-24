@@ -38,6 +38,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import QuoteCalculator from '@/components/QuoteCalculator'
 import TrustIndicators from '@/components/TrustIndicators'
 import {
   Carousel,
@@ -373,7 +374,7 @@ export default function Index() {
 
         <div className="container h-full flex items-center mx-auto relative px-0 py-4 my-24 md:py-10">
           <motion.div
-            className="text-left max-w-2xl"
+            className="w-full max-w-2xl text-left"
             variants={staggerContainer}
             initial="initial"
             animate="animate"
@@ -424,11 +425,26 @@ export default function Index() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-8"
+              className="mb-8 flex w-full flex-col gap-4 sm:flex-row"
               variants={fadeInUp}
             >
-              <StandardButton variant="primary" href="/contact" icon="arrow">
+              <StandardButton
+                variant="primary"
+                href="/contact"
+                icon="arrow"
+                linkClassName="block w-full sm:w-auto"
+                className="w-full min-w-0 px-6 hover:scale-100 sm:w-auto sm:min-w-[220px] sm:px-14 sm:hover:scale-105"
+              >
                 Get Free Quote
+              </StandardButton>
+              <StandardButton
+                variant="outline-white"
+                href="#estimate"
+                icon="none"
+                linkClassName="block w-full sm:w-auto"
+                className="w-full min-w-0 px-6 hover:scale-100 sm:w-[220px] sm:px-14 sm:hover:scale-105"
+              >
+                Price Estimate
               </StandardButton>
             </motion.div>
           </motion.div>
@@ -1046,6 +1062,8 @@ export default function Index() {
           </motion.div>
         </div>
       </section>
+
+      <QuoteCalculator />
 
       {/* Contact Section */}
       <section

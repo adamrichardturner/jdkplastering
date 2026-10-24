@@ -25,6 +25,7 @@ import {
 import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import QuoteCalculator from '@/components/QuoteCalculator'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -231,6 +232,13 @@ export default function Services() {
             >
               <StandardButton variant="primary" href="/contact" icon="arrow">
                 Get Free Quote
+              </StandardButton>
+              <StandardButton
+                variant="outline-white"
+                href="#estimate"
+                icon="none"
+              >
+                Price Estimate
               </StandardButton>
             </motion.div>
           </motion.div>
@@ -512,6 +520,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      <QuoteCalculator />
 
       {/* Call to Action */}
       <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
