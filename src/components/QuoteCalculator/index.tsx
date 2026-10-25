@@ -34,28 +34,26 @@ import {
   DEFAULT_SERVICE_ID,
   EMPTY_ESTIMATE_MESSAGE,
   ESTIMATE_DISCLAIMER,
+  ESTIMATE_ENQUIRY_ID,
   ESTIMATE_FILTERS,
-  ESTIMATE_GUIDE_INTRO,
   QUOTE_SERVICES,
   UNIT_CONFIG,
-  buildHomepageEstimatePayload,
-  buildHomepageQuoteHref,
+  buildPriceEstimatePayload,
+  buildSelectedLines,
   calculateEstimate,
-  clearStoredHomepageEstimate,
   combineEstimates,
+  createDefaultQuantities,
   formatBreakdown,
   formatGbp,
   formatLivePriceEstimate,
   formatQuantity,
   quantityForSlider,
   sanitizeQuantityInput,
-  scrollToQuoteForm,
   serviceMatchesFilter,
-  storeHomepageEstimate,
 } from '@/lib/quote-rates'
 import type {
   EstimateFilter,
-  HomepageEstimatePayload,
+  PriceEstimatePayload,
   QuoteService,
   SelectedLineInput,
   ServiceIconName,
@@ -226,16 +224,6 @@ function ServiceRow({ service, isSelected, onSelect }: ServiceRowProps) {
   )
 }
 
-function initialQuantities(): Record<string, string> {
-  const quantities: Record<string, string> = {}
-
-  for (const service of QUOTE_SERVICES) {
-    quantities[service.id] = String(UNIT_CONFIG[service.unit].defaultQuantity)
-  }
-
-  return quantities
-}
-
 type ResultShellProps = {
   live: string
   children: ReactNode
@@ -265,60 +253,32 @@ function ResultShell({ live, children }: ResultShellProps) {
   )
 }
 
-type ExactQuoteLinkProps = {
-  lines: readonly SelectedLineInput[]
-  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
-}
-
-function persistHomepageEstimate(payload: HomepageEstimatePayload | null) {
-  if (!payload) {
-    clearStoredHomepageEstimate()
+function scrollToEstimateEnquiry() {
+  const form = document.getElementById(ESTIMATE_ENQUIRY_ID)
+  if (!form) {
     return
   }
 
-  storeHomepageEstimate(payload)
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+
+  form.scrollIntoView({
+    behavior: reduceMotion ? 'auto' : 'smooth',
+    block: 'start',
+  })
 }
 
-function ExactQuoteLink({ lines, onApplyQuote }: ExactQuoteLinkProps) {
-  const payload = buildHomepageEstimatePayload(lines)
-  const href = buildHomepageQuoteHref(payload)
-
-  function handleClick() {
-    persistHomepageEstimate(payload)
-    if (!onApplyQuote) {
-      return
-    }
-
-    onApplyQuote(payload)
-    scrollToQuoteForm()
-  }
-
-  if (onApplyQuote) {
-    return (
-      <div className="mt-6 w-full [&>button]:w-full">
-        <StandardButton
-          variant="primary"
-          type="button"
-          icon="arrow"
-          fullWidth
-          className="!min-w-0 !px-6"
-          onClick={handleClick}
-        >
-          Get an Exact Quote
-        </StandardButton>
-      </div>
-    )
-  }
-
+function ExactQuoteButton() {
   return (
-    <div className="mt-6 [&>a]:block [&>a]:w-full">
+    <div className="mt-6 w-full [&>button]:w-full">
       <StandardButton
         variant="primary"
-        href={href}
+        type="button"
         icon="arrow"
         fullWidth
         className="!min-w-0 !px-6"
-        onClick={handleClick}
+        onClick={scrollToEstimateEnquiry}
       >
         Get an Exact Quote
       </StandardButton>
@@ -459,15 +419,9 @@ type ResultPanelProps = {
   lines: readonly SelectedLineInput[]
   onQuantityChange: (serviceId: string, value: string) => void
   onRemove: (service: QuoteService) => void
-  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
 }
 
-function ResultPanel({
-  lines,
-  onQuantityChange,
-  onRemove,
-  onApplyQuote,
-}: ResultPanelProps) {
+function ResultPanel({ lines, onQuantityChange, onRemove }: ResultPanelProps) {
   const live = formatLivePriceEstimate(lines)
   const combined = combineEstimates(lines)
 
@@ -484,7 +438,7 @@ function ResultPanel({
         <p className="mt-4 text-xs leading-relaxed text-gray-400">
           {ESTIMATE_DISCLAIMER}
         </p>
-        <ExactQuoteLink lines={lines} onApplyQuote={onApplyQuote} />
+        <ExactQuoteButton />
       </ResultShell>
     )
   }
@@ -554,86 +508,70 @@ function ResultPanel({
       <p className="mt-4 text-xs leading-relaxed text-gray-400">
         {ESTIMATE_DISCLAIMER}
       </p>
-      <ExactQuoteLink lines={lines} onApplyQuote={onApplyQuote} />
+      <ExactQuoteButton />
     </ResultShell>
   )
 }
 
 type QuoteCalculatorProps = {
-  onApplyQuote?: (payload: HomepageEstimatePayload | null) => void
+  onEstimateChange: (payload: PriceEstimatePayload | null) => void
 }
 
 export default function QuoteCalculator({
-  onApplyQuote,
+  onEstimateChange,
 }: QuoteCalculatorProps) {
   const [filter, setFilter] = useState<EstimateFilter>('all')
   const [selectedIds, setSelectedIds] = useState<string[]>([DEFAULT_SERVICE_ID])
-  const [quantities, setQuantities] =
-    useState<Record<string, string>>(initialQuantities)
+  const [quantities, setQuantities] = useState<Record<string, string>>(
+    createDefaultQuantities
+  )
 
   const visibleServices = QUOTE_SERVICES.filter((service) => {
     return serviceMatchesFilter(service, filter)
   })
 
-  const selectedLines: SelectedLineInput[] = []
-  for (const service of QUOTE_SERVICES) {
-    if (!selectedIds.includes(service.id)) {
-      continue
-    }
+  const selectedLines = buildSelectedLines(selectedIds, quantities)
 
-    const quantityInput =
-      quantities[service.id] ??
-      String(UNIT_CONFIG[service.unit].defaultQuantity)
-    selectedLines.push({ service, quantityInput })
+  function emitEstimate(
+    nextSelectedIds: readonly string[],
+    nextQuantities: Record<string, string>
+  ) {
+    onEstimateChange(
+      buildPriceEstimatePayload(
+        buildSelectedLines(nextSelectedIds, nextQuantities)
+      )
+    )
   }
 
   function handleToggleService(service: QuoteService) {
-    setSelectedIds((current) => {
-      if (current.includes(service.id)) {
-        return current.filter((id) => {
-          return id !== service.id
-        })
-      }
-
-      return [...current, service.id]
+    const nextSelectedIds = selectedIds.filter((id) => {
+      return id !== service.id
     })
+
+    if (!selectedIds.includes(service.id)) {
+      nextSelectedIds.push(service.id)
+    }
+
+    setSelectedIds(nextSelectedIds)
+    emitEstimate(nextSelectedIds, quantities)
   }
 
   function handleQuantityChange(serviceId: string, value: string) {
-    setQuantities((current) => {
-      return { ...current, [serviceId]: value }
-    })
+    const nextQuantities = { ...quantities, [serviceId]: value }
+    setQuantities(nextQuantities)
+    emitEstimate(selectedIds, nextQuantities)
   }
 
   return (
     <MotionConfig reducedMotion="user">
       <section
         id="estimate"
-        className="scroll-mt-28 max-w-full bg-white py-16 md:py-24"
+        className="scroll-mt-28 max-w-full bg-white py-12 md:py-16"
       >
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-7xl">
-            <motion.div
-              className="mx-auto max-w-3xl text-center"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.55, ease: 'easeOut' }}
-            >
-              <p className="text-sm font-semibold tracking-[0.18em] text-blue-600 uppercase">
-                Price estimate
-              </p>
-              <h2 className="mt-3 text-4xl text-slate-900 md:text-5xl">
-                Price Estimate
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                {ESTIMATE_GUIDE_INTRO} Choose one or more services and set an
-                approximate size for each.
-              </p>
-            </motion.div>
-
             <div
-              className="mt-8 flex max-w-full flex-wrap justify-center gap-2"
+              className="flex max-w-full flex-wrap justify-center gap-2"
               role="group"
               aria-label="Filter services"
             >
@@ -697,7 +635,6 @@ export default function QuoteCalculator({
                   lines={selectedLines}
                   onQuantityChange={handleQuantityChange}
                   onRemove={handleToggleService}
-                  onApplyQuote={onApplyQuote}
                 />
               </div>
             </div>

@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { Button } from './button'
 import { ArrowRight, Phone, Send, MessageSquare } from 'lucide-react'
 import { ReactNode } from 'react'
-import { cn } from '@/lib/utils'
 
 interface StandardButtonProps {
   variant?:
@@ -21,7 +20,6 @@ interface StandardButtonProps {
   icon?: 'arrow' | 'phone' | 'send' | 'message' | 'none'
   children: ReactNode
   className?: string
-  linkClassName?: string
   fullWidth?: boolean
 }
 
@@ -35,13 +33,12 @@ export function StandardButton({
   icon = 'arrow',
   children,
   className = '',
-  linkClassName = '',
   fullWidth = false,
 }: StandardButtonProps) {
   const getVariantClasses = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-gradient-to-r sm:min-w-[220px] font-semibold  min-h-[60px] from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+        return 'bg-gradient-to-r min-w-[220px] font-semibold  min-h-[60px] from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
       case 'secondary':
         return 'bg-white text-blue-600 min-w-[220px] font-semibold  min-h-[60px] hover:bg-gray-100'
       case 'white':
@@ -49,7 +46,7 @@ export function StandardButton({
       case 'purple':
         return 'bg-gradient-to-r from-purple-600 font-semibold to-violet-600 min-w-[220px] font-semibold  min-h-[60px] hover:from-purple-700 hover:to-violet-700 text-white'
       case 'outline-white':
-        return 'border-white text-white hover:bg-white font-semibold sm:w-[220px] max-w-full font-semibold  min-h-[60px] hover:text-blue-600 border'
+        return 'border-white text-white hover:bg-white font-semibold w-[220px] font-semibold  min-h-[60px] hover:text-blue-600 border'
       case 'outline-white-full':
         return 'border-white text-white hover:bg-white font-semibold w-full font-semibold  min-h-[60px] hover:text-blue-600 border'
       case 'outline-blue':
@@ -87,13 +84,13 @@ export function StandardButton({
     }
   }
 
-  const buttonClasses = cn(
-    getVariantClasses(),
-    getSizeClasses(),
-    fullWidth && 'w-full',
-    'cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105',
-    className
-  )
+  const buttonClasses = `
+    ${getVariantClasses()}
+    ${getSizeClasses()}
+    ${fullWidth ? 'w-full' : ''}
+    cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105
+    ${className}
+  `.trim()
 
   const buttonContent = (
     <Button
@@ -111,11 +108,7 @@ export function StandardButton({
   )
 
   if (href && !disabled) {
-    return (
-      <Link href={href} className={linkClassName}>
-        {buttonContent}
-      </Link>
-    )
+    return <Link href={href}>{buttonContent}</Link>
   }
 
   return buttonContent

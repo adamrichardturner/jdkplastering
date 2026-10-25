@@ -20,16 +20,10 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Suspense, useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import {
-  clearStoredPriceEstimate,
-  isContactService,
-  readStoredPriceEstimate,
-} from '@/lib/quote-rates'
 import {
   Select,
   SelectContent,
@@ -52,59 +46,24 @@ const staggerContainer = {
   },
 }
 
-type ContactFormProps = {
-  serviceParam: string
-  estimateParam: string
-  fromEstimate: boolean
-}
-
-function Contact({
-  serviceParam,
-  estimateParam,
-  fromEstimate,
-}: ContactFormProps) {
+export default function Contact() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [state, handleSubmit] = useForm('mvgrloed')
-  const initialService = isContactService(serviceParam) ? serviceParam : ''
   const [formData, setFormData] = useState({
-    service: initialService,
+    service: '',
   })
-  const [priceEstimate, setPriceEstimate] = useState(estimateParam)
-  const [appliedServiceParam, setAppliedServiceParam] = useState(serviceParam)
-  const [appliedEstimateParam, setAppliedEstimateParam] =
-    useState(estimateParam)
   const [previousSucceeded, setPreviousSucceeded] = useState(state.succeeded)
   const shouldResetForm =
     state.succeeded && previousSucceeded !== state.succeeded
-  const serviceParamChanged = appliedServiceParam !== serviceParam
-  const shouldApplyService =
-    serviceParamChanged && isContactService(serviceParam)
-  const estimateParamChanged = appliedEstimateParam !== estimateParam
 
   if (previousSucceeded !== state.succeeded) {
     setPreviousSucceeded(state.succeeded)
-  }
-
-  if (serviceParamChanged) {
-    setAppliedServiceParam(serviceParam)
-  }
-
-  if (shouldApplyService) {
-    setFormData((current) => {
-      return { ...current, service: serviceParam }
-    })
-  }
-
-  if (estimateParamChanged) {
-    setAppliedEstimateParam(estimateParam)
-    setPriceEstimate(estimateParam)
   }
 
   if (shouldResetForm) {
     setFormData({
       service: '',
     })
-    setPriceEstimate('')
   }
 
   // Prevent body scroll when mobile menu is open
@@ -125,57 +84,6 @@ function Contact({
       document.body.style.width = ''
     }
   }, [isMenuOpen])
-
-  useEffect(() => {
-    if (window.location.hash !== '#contact-form') {
-      return
-    }
-
-    const formSection = document.getElementById('contact-form')
-    if (!formSection) {
-      return
-    }
-
-    formSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [serviceParam, estimateParam])
-
-  useEffect(() => {
-    if (!state.succeeded) {
-      return
-    }
-
-    clearStoredPriceEstimate()
-  }, [state.succeeded])
-
-  useEffect(() => {
-    if (!fromEstimate) {
-      return
-    }
-
-    if (estimateParam !== '') {
-      return
-    }
-
-    const stored = readStoredPriceEstimate()
-    if (!stored) {
-      return
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setPriceEstimate(stored.priceEstimate)
-      if (isContactService(serviceParam)) {
-        return
-      }
-
-      setFormData((current) => {
-        return { ...current, service: stored.service }
-      })
-    }, 0)
-
-    return () => {
-      window.clearTimeout(timeoutId)
-    }
-  }, [fromEstimate, estimateParam, serviceParam])
 
   const contactInfo = [
     {
@@ -364,7 +272,7 @@ function Contact({
       </section>
 
       {/* Contact Form */}
-      <section id="contact-form" className="scroll-mt-28 py-24 bg-slate-50">
+      <section id="contact-form" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
             <motion.div
@@ -629,28 +537,6 @@ function Contact({
                         />
                       </div>
 
-                      {priceEstimate !== '' ? (
-                        <div>
-                          <label
-                            htmlFor="priceEstimate"
-                            className="block text-sm font-medium text-slate-700 mb-2"
-                          >
-                            Price estimate
-                          </label>
-                          <Textarea
-                            id="priceEstimate"
-                            name="priceEstimate"
-                            readOnly
-                            rows={5}
-                            value={priceEstimate}
-                            className="resize-none border-slate-300 bg-slate-50 break-words text-slate-800"
-                          />
-                          <p className="text-xs text-slate-500 mt-2">
-                            This estimate will be sent with your enquiry.
-                          </p>
-                        </div>
-                      ) : null}
-
                       <div>
                         <label
                           htmlFor="message"
@@ -738,32 +624,5 @@ function Contact({
 
       <Footer />
     </div>
-  )
-}
-
-function ContactWithSearchParams() {
-  const searchParams = useSearchParams()
-  const serviceParam = searchParams.get('service') ?? ''
-  const estimateParam = searchParams.get('priceEstimate') ?? ''
-  const fromEstimate = searchParams.get('fromEstimate') === '1'
-
-  return (
-    <Contact
-      serviceParam={serviceParam}
-      estimateParam={estimateParam}
-      fromEstimate={fromEstimate}
-    />
-  )
-}
-
-export default function ContactPage() {
-  return (
-    <Suspense
-      fallback={
-        <Contact serviceParam="" estimateParam="" fromEstimate={false} />
-      }
-    >
-      <ContactWithSearchParams />
-    </Suspense>
   )
 }
